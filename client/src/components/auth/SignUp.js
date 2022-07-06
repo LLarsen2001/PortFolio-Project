@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { AuthContext } from "../../providers/AuthProvider"
+import Button from "../../styledComponents/Button"
 
 
 const SignUp = () => {
@@ -46,7 +47,8 @@ const SignUp = () => {
                     value={passwordConfirm}
                     onChange={(r) => setPasswordconfirm(r.target.value)}
                 />
-                <button type="submit">Sign up.</button>
+                <Button className="ButtonContainer" type={'submit'}>Sign Up</Button>
+
             </form>
         </>
     )

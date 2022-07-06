@@ -12,7 +12,7 @@ const BuildingNavbar = () => {
             return (
                 <>
                     <Nav.Link href="/account">Account</Nav.Link>
-                    <Nav.Link href={logout()}>Logout</Nav.Link>
+                    <Nav.Link as={'li'} onClick={logout}>Logout</Nav.Link>
                 </>
             );
         } else {
