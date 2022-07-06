@@ -1,47 +1,51 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProvider";
 
-const Navbar = () => {
+import { AuthContext } from "../../providers/AuthProvider";
+import Navbar from "react-bootstrap/Navbar"
+import Nav from 'react-bootstrap/Nav'
+import Container from 'react-bootstrap/Container'
+
+const BuildingNavbar = () => {
     const { user, logout } = useContext(AuthContext);
     const renderNavItems = () => {
         if (user) {
             return (
                 <>
-                    <Link to="/account">
-                        <li>Account</li>
-                    </Link>
-                    <li onClick={logout}>Logout</li>
+                    <Nav.Link href="/account">Account</Nav.Link>
+                    <Nav.Link href={logout()}>Logout</Nav.Link>
                 </>
             );
         } else {
             return (
                 <>
-                    <Link to="/login">
-                        <li>Login</li>
-                    </Link>
-                    <Link to="/signup">
-                        <li>Sign up</li>
-                    </Link>
+
+
+
+                    <Nav.Link href="/login">Login</Nav.Link>
+                    <Nav.Link href="/signup">Sign Up</Nav.Link>
+
+
+
                 </>
             );
         }
     };
     return (
+
         <>
-            <nav>
-                <ul>
-                    <Link to="/">
-                        <li>Home</li>
-                    </Link>
-                    <Link to="/hooks">
-                        <li>Hooks</li>
-                    </Link>
-                    {renderNavItems()}
-                </ul>
-            </nav>
+            <Navbar bg="light" variant="light">
+                <Container>
+                    <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
+                    <Nav className="me-auto">
+                        <Nav.Link href="/home">Home</Nav.Link>
+                        <Nav.Link href="/hooks">Hooks</Nav.Link>
+                        {renderNavItems()}
+                    </Nav>
+                </Container>
+            </Navbar>
+
         </>
     );
 };
 
-export default Navbar;
+export default BuildingNavbar;
