@@ -12,6 +12,10 @@ const BuildingNavbar = () => {
             return (
                 <>
                     <Nav.Link href="/account">Account</Nav.Link>
+                    <Nav.Link href="/profile">Profile</Nav.Link>
+                    <Nav.Link href="/jobs">Jobs</Nav.Link>
+                    <Nav.Link href="/jobsboard">Jobs Board</Nav.Link>
+
                     <Nav.Link as={'li'} onClick={logout}>Logout</Nav.Link>
                 </>
             );
@@ -37,8 +41,8 @@ const BuildingNavbar = () => {
                 <Container>
                     <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href="/home">Home</Nav.Link>
-                        <Nav.Link href="/hooks">Hooks</Nav.Link>
+                        <Nav.Link href="/signup">Sign Up</Nav.Link>
+
                         {renderNavItems()}
                     </Nav>
                 </Container>

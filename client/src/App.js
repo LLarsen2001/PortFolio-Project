@@ -11,6 +11,9 @@ import Hooks from "./demos/Hooks.js";
 import { normalize } from 'styled-normalize'
 
 import { createGlobalStyle } from "styled-components";
+import Profile from "./components/Pages/Profile";
+import Jobs from "./components/Pages/Jobs";
+import JobsBoard from "./components/Pages/JobsBoard";
 
 const GlobalStyle = createGlobalStyle`
    ${normalize}
@@ -32,6 +35,9 @@ const App = () => (
           <Route path="/signup" element={<SignUp />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/account" element={<UserAccount />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/jobs" element={<Jobs />} />
+            <Route path="/jobsboard" element={<JobsBoard />} />
           </Route>
           <Route path="/*" element={<NoMatch />} />
         </Routes>
