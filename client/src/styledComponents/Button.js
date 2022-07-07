@@ -20,12 +20,13 @@ const ButtonContainer = styled.button`
 const Button = (props) => {
   console.log("props: ", props)
   return (
-    <ButtonContainer onClick={() => props.onClick()} >
+    <ButtonContainer type={props.type ? props.type : "button"}
+      onClick={Object.keys(props).includes('onClick') ? () => props.onClick() : () => null} >
       {props.children}
-    </ButtonContainer>
+    </ButtonContainer >
 
 
   )
 }
 
-export default Button
+export default Button;
