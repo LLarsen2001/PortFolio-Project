@@ -6,6 +6,17 @@ import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import { LinkContainer } from 'react-router-bootstrap'
 
+const MyLink = ({ url, children }) => {
+    return (
+        <>
+            <LinkContainer to={url}>
+                <Nav.Link > {children}</Nav.Link>
+            </LinkContainer>
+        </>
+    )
+};
+
+
 const BuildingNavbar = () => {
     const { user, logout } = useContext(AuthContext);
     const renderNavItems = () => {
@@ -13,23 +24,33 @@ const BuildingNavbar = () => {
             return (
                 <>
 
-                    <LinkContainer to="/account"><Nav.Link href="/account">Account</Nav.Link></LinkContainer>
-                    <Nav.Link as={'li'} onClick={logout}>Logout</Nav.Link>
+                    <MyLink url='/account' >Account</MyLink>
+
+                    <MyLink url="/profile">Profile</MyLink>
+
+                    <MyLink url="/jobs">Jobs</MyLink>
+
+                    <MyLink url="/jobsboard">Jobs Board</MyLink>
+
+
+                    <Nav.Link as={"li"} onClick={logout}>Logout</Nav.Link>
 
                 </>
+
+
             );
         } else {
             return (
                 <>
 
 
-                    <LinkContainer to="/login">
-                    <Nav.Link href="/login">Login</Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to="/signup">
-                    <Nav.Link href="/signup">Sign Up</Nav.Link>
-                    </LinkContainer>
-                    
+
+                    <MyLink url="/login">Login</MyLink>
+
+
+                    <MyLink url="/signup">Sign Up</MyLink>
+
+
 
 
 
@@ -43,15 +64,11 @@ const BuildingNavbar = () => {
             <Navbar bg="light" variant="light">
                 <Container>
                     <LinkContainer to="/">
-                    <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
+                        <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
                     </LinkContainer>
                     <Nav className="me-auto">
-                        <LinkContainer to="/">
-                        <Nav.Link href="/home">Home</Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to="/hooks">
-                        <Nav.Link href="/hooks">Hooks</Nav.Link>
-                        </LinkContainer>
+                        <MyLink url="/signup">Sign Up</MyLink>
+
                         {renderNavItems()}
                     </Nav>
                 </Container>
