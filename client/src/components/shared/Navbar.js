@@ -4,6 +4,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import Navbar from "react-bootstrap/Navbar"
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
+import { LinkContainer } from 'react-router-bootstrap'
 
 const BuildingNavbar = () => {
     const { user, logout } = useContext(AuthContext);
@@ -17,6 +18,7 @@ const BuildingNavbar = () => {
                     <Nav.Link href="/jobsboard">Jobs Board</Nav.Link>
 
                     <Nav.Link as={'li'} onClick={logout}>Logout</Nav.Link>
+
                 </>
             );
         } else {
@@ -24,9 +26,13 @@ const BuildingNavbar = () => {
                 <>
 
 
+                    <LinkContainer to="/login">
+                        <Nav.Link href="/login">Login</Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to="/signup">
+                        <Nav.Link href="/signup">Sign Up</Nav.Link>
+                    </LinkContainer>
 
-                    <Nav.Link href="/login">Login</Nav.Link>
-                    <Nav.Link href="/signup">Sign Up</Nav.Link>
 
 
 
@@ -39,7 +45,9 @@ const BuildingNavbar = () => {
         <>
             <Navbar bg="light" variant="light">
                 <Container>
-                    <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
+                    <LinkContainer to="/">
+                        <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
+                    </LinkContainer>
                     <Nav className="me-auto">
                         <Nav.Link href="/signup">Sign Up</Nav.Link>
 
