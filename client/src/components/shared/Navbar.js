@@ -6,32 +6,50 @@ import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import { LinkContainer } from 'react-router-bootstrap'
 
+const MyLink = ({ url, children }) => {
+    return (
+        <>
+            <LinkContainer to={url}>
+                <Nav.Link > {children}</Nav.Link>
+            </LinkContainer>
+        </>
+    )
+};
+
+
 const BuildingNavbar = () => {
     const { user, logout } = useContext(AuthContext);
     const renderNavItems = () => {
         if (user) {
             return (
                 <>
-                    <Nav.Link href="/account">Account</Nav.Link>
-                    <Nav.Link href="/profile">Profile</Nav.Link>
-                    <Nav.Link href="/jobs">Jobs</Nav.Link>
-                    <Nav.Link href="/jobsboard">Jobs Board</Nav.Link>
 
-                    <Nav.Link as={'li'} onClick={logout}>Logout</Nav.Link>
+                    <MyLink url='/account' >Account</MyLink>
+
+                    <MyLink url="/profile">Profile</MyLink>
+
+                    <MyLink url="/jobs">Jobs</MyLink>
+
+                    <MyLink url="/jobsboard">Jobs Board</MyLink>
+
+
+                    <Nav.Link as={"li"} onClick={logout}>Logout</Nav.Link>
 
                 </>
+
+
             );
         } else {
             return (
                 <>
 
 
-                    <LinkContainer to="/login">
-                        <Nav.Link href="/login">Login</Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to="/signup">
-                        <Nav.Link href="/signup">Sign Up</Nav.Link>
-                    </LinkContainer>
+
+                    <MyLink url="/login">Login</MyLink>
+
+
+                    <MyLink url="/signup">Sign Up</MyLink>
+
 
 
 
@@ -49,7 +67,7 @@ const BuildingNavbar = () => {
                         <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
                     </LinkContainer>
                     <Nav className="me-auto">
-                        <Nav.Link href="/signup">Sign Up</Nav.Link>
+                        <MyLink url="/signup">Sign Up</MyLink>
 
                         {renderNavItems()}
                     </Nav>
