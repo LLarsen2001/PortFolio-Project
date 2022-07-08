@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  jobname: MyString
+  company: one
+  salary: 1
+  description: MyText
+  remote: false
+  location: MyText
+  user: one
+  isFilled: false
+
+two:
+  jobname: MyString
+  company: two
+  salary: 1
+  description: MyText
+  remote: false
+  location: MyText
+  user: two
+  isFilled: false
