@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_08_175123) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_11_205918) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,12 +29,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_08_175123) do
     t.text "description"
     t.boolean "remote"
     t.text "location"
-    t.bigint "user_id", null: false
+    t.integer "user_id"
     t.boolean "isFilled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_jobs_on_company_id"
-    t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
   create_table "userjobs", force: :cascade do |t|
@@ -42,6 +41,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_08_175123) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "job_id", null: false
+    t.index ["job_id"], name: "index_userjobs_on_job_id"
     t.index ["user_id"], name: "index_userjobs_on_user_id"
   end
 
@@ -77,6 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_08_175123) do
   end
 
   add_foreign_key "jobs", "companies"
-  add_foreign_key "jobs", "users"
+  add_foreign_key "userjobs", "jobs"
   add_foreign_key "userjobs", "users"
 end
