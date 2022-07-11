@@ -6,6 +6,7 @@ class CreateCompanies < ActiveRecord::Migration[7.0]
       t.text :about
 
       t.timestamps
+      
     end
   end
 end

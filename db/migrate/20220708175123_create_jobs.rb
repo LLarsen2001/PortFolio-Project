@@ -7,7 +7,7 @@ class CreateJobs < ActiveRecord::Migration[7.0]
       t.text :description
       t.boolean :remote
       t.text :location
-      t.belongs_to :user, null: false, foreign_key: true
+      t.integer :user_id
       t.boolean :isFilled
 
       t.timestamps
