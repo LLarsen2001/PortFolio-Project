@@ -32,7 +32,7 @@ status = [
          email:Faker::Internet.email,
          password:'123456'
       )
-
+      5.times do
       j = Job.create(
             jobname:Faker::Job.title,
              salary:400000,
@@ -43,20 +43,20 @@ status = [
              company_id:c.id,
              user_id:u.id                 
           )
-       
+      
          uj = Userjob.create(
          status:status.sample,
          user_id:u.id,
          job_id:j.id
         )
       
-        
+      end
     end
         
       
     
-      puts "lan size:#{User.all.size}"
-      puts "lancejobs size:#{Userjob.all.size}"
+      puts "user size:#{User.all.size}"
+      puts "userjobs size:#{Userjob.all.size}"
       puts "Job size:#{Job.all.size}"
       puts "Company size:#{Company.all.size}"
     
