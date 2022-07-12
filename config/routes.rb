@@ -4,4 +4,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  namespace :api do
+    get '/users/:user_id/userjobs', to: 'userjobs#index'
+    get '/users/:user_id/userjobs/:id', to: 'userjobs#show'
+    put '/users/:user_id/userjobs/:id', to: 'userjobs#update'
+    delete '/users/:user_id/userjobs/:id', to: 'userjobs#destroy'
+  end
 end
