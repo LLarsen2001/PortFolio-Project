@@ -9,5 +9,10 @@ Rails.application.routes.draw do
     get '/users/:user_id/userjobs/:id', to: 'userjobs#show'
     put '/users/:user_id/userjobs/:id', to: 'userjobs#update'
     delete '/users/:user_id/userjobs/:id', to: 'userjobs#destroy'
+    get '/jobs', to: 'jobs#index'
+    get '/jobs/:job_id', to: 'jobs#show'
+    post '/jobs', to: 'jobs#create'
+    put '/jobs/:job_id', to: 'jobs#update'
+    delete '/jobs/:job_id', to: 'jobs#destroy'
   end
 end
