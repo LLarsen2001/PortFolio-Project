@@ -24,9 +24,7 @@ const UserJobCard = (props) => {
                         </Card.Footer>
                     </Card>
                 </Col>
-            ))}
-        </Row>
-
+          
 
 
     );

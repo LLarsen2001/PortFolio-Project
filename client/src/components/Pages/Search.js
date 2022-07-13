@@ -2,9 +2,9 @@ import React, { useState, useRef } from "react";
 
 const SearchBar = ({ searchFunction }) => {
   const [query, setQuery] = useState("");
-  const [searchHistory, setSearchHistory] = useState([]);
-  const [showHistory, setShowHistory] = useState(false);
-  const [filteredHistory, setFilteredHistory] = useState([]);
+  const [searchJob, setSearchJob] = useState([]);
+  const [showJob, setShowJob] = useState(false);
+  const [filteredJob, setFilteredJob] = useState([]);
   const inputRef = useRef();
 
   const BarStyling = {
@@ -15,13 +15,10 @@ const SearchBar = ({ searchFunction }) => {
     marginRight: "0.3rem"
   };
 
-  // React.useEffect(() => {
-  //   inputRef.current.focus();
-  // }, []);
 
   const submitSearch = () => {
     if (query !== "") {
-      setSearchHistory((prevHistory) => [...prevHistory, query].sort());
+      setSearchJob((prevJob) => [...prevJob, query].sort());
       searchFunction(query);
     }
   };
@@ -30,13 +27,13 @@ const SearchBar = ({ searchFunction }) => {
     setQuery(event.target.value);
   };
 
-  const handleKeyUp = (event) => {
+  const handleKeyUp = (event) => { 
     event.preventDefault();
     if (query) {
-      setFilteredHistory(searchHistory.filter((item) => item.includes(query)));
-      setShowHistory(true);
+      setFilteredJob(searchJob.filter((item) => item.includes(query)));
+      setShowJob(true);
     } else {
-      setShowHistory(false);
+      setShowJob(false);
     }
     if (event.keyCode === 13) {
       submitSearch();
@@ -58,9 +55,9 @@ const SearchBar = ({ searchFunction }) => {
         onChange={handleChange}
         onKeyUp={handleKeyUp}
       />
-      {showHistory && filteredHistory ? (
+      {showJob && filteredJob ? (
         <ul style={{ listStyleType: "none", textAlign: "left" }}>
-          {filteredHistory.map((item, index) => {
+          {filteredJob.map((item, index) => {
             return <li key={index}>{item}</li>;
           })}
         </ul>

@@ -17,6 +17,8 @@ import JobsBoard from "./components/Pages/JobsBoard";
 import SearchBar from "./components/Pages/Search";
 import QuoteApp from "./components/Pages/Drag and Drop Demo/Demo";
 
+
+
 const GlobalStyle = createGlobalStyle`
    ${normalize}
 `;
@@ -42,6 +44,11 @@ const App = () => (
             <Route path="/jobsboard" element={<JobsBoard />} />
             <Route path="/search" element={<SearchBar />} />
             <Route path="/demo" element={<QuoteApp />} />
+
+            <Route path="/search" element={<SearchBar />} />
+
+            <Route path="/demo" element={<QuoteApp />} />
+
           </Route>
           <Route path="/*" element={<NoMatch />} />
         </Routes>
