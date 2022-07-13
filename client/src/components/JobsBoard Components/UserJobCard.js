@@ -5,10 +5,9 @@ import Row from 'react-bootstrap/Row';
 const UserJobCard = (props) => {
 
     return (
-        <Row xs={1} md={2} className="g-4">
-            {Array.from({ length: 4 }).map((_, idx) => (
-                <Col>
-                    <Card key={'primary'} style={{ margin: '15px' }} >
+
+        <Col>
+            <Card key={'primary'} style={{ margin: '15px' }} >
 
 
                         <Card.Header>Posted by {props.email}</Card.Header>
@@ -27,6 +26,9 @@ const UserJobCard = (props) => {
                 </Col>
             ))}
         </Row>
+
+
+
     );
 }
 export default UserJobCard;
