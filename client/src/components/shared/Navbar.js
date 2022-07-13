@@ -32,6 +32,8 @@ const BuildingNavbar = () => {
 
                     <MyLink url="/jobsboard">Jobs Board</MyLink>
 
+                    <MyLink url="/demo">Demo</MyLink>
+
 
                     <Nav.Link as={"li"} onClick={logout}>Logout</Nav.Link>
 
