@@ -22,6 +22,15 @@ class Api::UserjobsController < ApplicationController
         end
     end
 
+    def create
+        @userjob = @user.userjobs.new(params.require(:userjob).permit(:status, :job_id))
+        if(@userjob.save)
+            render json: @userjob
+        else
+            render json: @userjob.errors.full_message, status: 422
+        end
+    end
+
     def destroy
         render json: @userjob.destroy
     end

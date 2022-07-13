@@ -24,11 +24,29 @@ const UserJobsProvider = ({ children }) => {
 
     };
 
+    const addUserJob = async (uj) => {
+        try {
+            let res = await axios.post('/api/users/:user_id/userjobs', uj)
+            setUserJobs([res.data, ...uj])
+        }
+        catch (err) {
+            alert('error occured in the add job to board')
+        }
+    }
 
+    const updateUserJobStatus = async (uj) => {
+        try {
+            let res = await axios.put(`/api/users/${user.id}/userjobs/${user.userjob_id} `, uj);
+            let updatedUserJob = uj.map((a) => a.id === res.data.id ? res.data : a);
+            setUserJobs(updatedUserJob);
+        } catch (err) {
+            alert('error has occured in change and users job status');
+        }
+    }
 
     return (
 
-        <UserJobsContext.Provider value={{ userJobs }}>
+        <UserJobsContext.Provider value={{ userJobs, addUserJob, updateUserJobStatus }}>
             {children}
         </UserJobsContext.Provider>
     )
