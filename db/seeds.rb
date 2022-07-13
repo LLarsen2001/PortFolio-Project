@@ -22,7 +22,7 @@ status = [
 
       
       
-     5.times do
+     10.times do
        c = Company.create(
         companyname:Faker::Company.name,
         baselocation:Faker::Address.full_address,
@@ -40,7 +40,7 @@ status = [
          password:'123456'
       )
 
-      5.times do
+      10.times do
       j = Job.create(
             jobname:Faker::Job.title,
              salary:400000,
