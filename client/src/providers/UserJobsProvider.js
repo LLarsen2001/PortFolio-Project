@@ -16,8 +16,10 @@ const UserJobsProvider = ({ children }) => {
         getUserJobs();
     }, [user]);
 
+
+
     const getUserJobs = async () => {
-        let res = await axios.get(`/api/users/${user.id}/userjobs`)
+        let res = await axios.get(`/api/users/${user.id}/data`)
         setUserJobs(res.data)
 
     };

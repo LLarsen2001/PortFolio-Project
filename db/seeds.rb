@@ -19,19 +19,27 @@ status = [
     'offer recieved',
     'offer accepted',
     ]
-    5.times do
+
+      
+      
+     5.times do
        c = Company.create(
         companyname:Faker::Company.name,
         baselocation:Faker::Address.full_address,
         about:Faker::Company.industry
      ) 
     
-    
+     uscr = User.create(
+      email:Faker::Internet.email,
+       password:'123456'
+      )
+
         u = User.create(
          
          email:Faker::Internet.email,
          password:'123456'
       )
+
       5.times do
       j = Job.create(
             jobname:Faker::Job.title,
@@ -41,7 +49,7 @@ status = [
              location:Faker::Address.full_address,
              isFilled:Faker::Boolean.boolean,
              company_id:c.id,
-             user_id:u.id                 
+             user_id:uscr.id                 
           )
       
          uj = Userjob.create(
