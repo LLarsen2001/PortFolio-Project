@@ -1,7 +1,10 @@
 class Api::UserjobsController < ApplicationController
-    before_action :set_user
+    before_action :set_user, except: [:boarddata]
     before_action :set_userjob, only: [:show, :update, :destroy]
     
+    def boarddata
+        render json: Userjob.available(params[:user_id])
+    end
 
     def index 
         render json: @user.userjobs
@@ -37,5 +40,7 @@ class Api::UserjobsController < ApplicationController
     def userjob_params 
         params.require(:userjob).permit(:status)
     end
+
+  
 
 end
