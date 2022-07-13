@@ -31,6 +31,7 @@ const BuildingNavbar = () => {
                     <MyLink url="/jobs">Jobs</MyLink>
 
                     <MyLink url="/jobsboard">Jobs Board</MyLink>
+                    <MyLink url="/search">Search</MyLink>
 
                     <MyLink url="/demo">Demo</MyLink>
 
