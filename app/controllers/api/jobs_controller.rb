@@ -3,7 +3,7 @@ class Api::JobsController < ApplicationController
   before_action :set_job, only: [:show, :update, :destroy]
 
   def index
-    render json: Job.all
+    render json: Job.availableJobs
   end
 
   def show
