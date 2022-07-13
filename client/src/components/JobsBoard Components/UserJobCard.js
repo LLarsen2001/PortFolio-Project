@@ -21,7 +21,7 @@ const UserJobCard = (props) => {
                         </Card.Body>
                         <Card.Footer>
                             {props.companyname}
-
+                            {props.baselocation}
                         </Card.Footer>
                     </Card>
                 </Col>
