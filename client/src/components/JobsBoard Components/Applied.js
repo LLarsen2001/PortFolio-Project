@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { UserJobsContext } from "../../providers/UserJobsProvider"
 import React from "react"
+import UserJobCard from "./UserJobCard"
 
 const Applied = () => {
     const [applied, setApplied] = useState([])
@@ -13,15 +14,15 @@ const Applied = () => {
         setApplied(userJobs.filter((p) => p.status === "applied"))
     };
 
-
-
-
-
+    const renderJobs = () => {
+        return applied.map(a => {
+            return <UserJobCard key={a.id} {...a} />
+        })
+    }
 
     return (
         <div>
-            <h2>Applied</h2>
-            <p>{JSON.stringify(applied)}</p>
+            {renderJobs()}
         </div>
     )
 }

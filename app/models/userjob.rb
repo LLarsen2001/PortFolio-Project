@@ -4,7 +4,7 @@ class Userjob < ApplicationRecord
 
   def self.available(user_id)
     Userjob.find_by_sql(["
-    SELECT uj.status, uj.id, uj.job_id, uj.user_id, j.user_id AS created_by, j.company_id, j.salary, j.description, j.remote, j.location, c.baselocation, c.companyname, c.about, u.email
+    SELECT uj.status, uj.id, uj.job_id, uj.user_id, j.jobname, j.user_id AS created_by, j.company_id, j.salary, j.description, j.remote, j.location, c.baselocation, c.companyname, c.about, u.email
     FROM userjobs AS uj
     LEFT JOIN jobs AS j ON job_id = j.id
     LEFT JOIN companies AS c ON j.company_id = c.id

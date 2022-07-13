@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { UserJobsContext } from "../../providers/UserJobsProvider"
 import React from "react"
+import UserJobCard from "./UserJobCard"
 
 const OfferAccepted = () => {
     const [offerAppecpted, setOfferAccepted] = useState([])
@@ -13,11 +14,15 @@ const OfferAccepted = () => {
         setOfferAccepted(userJobs.filter((p) => p.status === "interview"))
     };
 
+    const renderJobs = () => {
+        return offerAppecpted.map(oa => {
+            return <UserJobCard key={oa.id} {...oa} />
+        })
+    }
 
     return (
         <div>
-            <h2>Offer Accepted</h2>
-            <p>{JSON.stringify(offerAppecpted)}</p>
+            {renderJobs()}
         </div>
     )
 }

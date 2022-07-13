@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { UserJobsContext } from "../../providers/UserJobsProvider"
 import React from "react"
+import UserJobCard from "./UserJobCard"
 
 const OfferRecieved = () => {
     const [offerRecieved, setOfferRecieved] = useState([])
@@ -14,14 +15,15 @@ const OfferRecieved = () => {
     };
 
 
-
-
-
+    const renderJobs = () => {
+        return offerRecieved.map(or => {
+            return <UserJobCard key={or.id} {...or} />
+        })
+    }
 
     return (
         <div>
-            <h2>Offer Recieved</h2>
-            <p>{JSON.stringify(offerRecieved)}</p>
+            {renderJobs()}
         </div>
     )
 }
