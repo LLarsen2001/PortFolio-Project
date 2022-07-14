@@ -14,11 +14,11 @@ import { createGlobalStyle } from "styled-components";
 import Profile from "./components/Pages/Profile";
 import Jobs from "./components/Pages/Jobs";
 import JobsBoard from "./components/Pages/JobsBoard";
-
 import SearchBar from "./components/Pages/Search";
 
 import Demo from "./components/Pages/Drag and Drop Demo/Demo";
 import Kanban from "./components/Pages/Drag and Drop Demo/Demo2";
+
 
 
 const GlobalStyle = createGlobalStyle`
@@ -44,6 +44,8 @@ const App = () => (
             <Route path="/profile" element={<Profile />} />
             <Route path="/jobs" element={<Jobs />} />
             <Route path="/jobsboard" element={<JobsBoard />} />
+            <Route path="/search" element={<SearchBar />} />
+            <Route path="/demo" element={<QuoteApp />} />
 
             <Route path="/search" element={<SearchBar />} />
 
