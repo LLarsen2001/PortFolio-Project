@@ -9,7 +9,6 @@ const UserJobCard = (props) => {
         <Col>
             <Card key={'primary'} style={{ margin: '15px' }} >
 
-
                         <Card.Header>Posted by {props.email}</Card.Header>
                         <Card.Body>
                             <Card.Title>Job Title: {props.jobname}</Card.Title>
@@ -24,9 +23,7 @@ const UserJobCard = (props) => {
                         </Card.Footer>
                     </Card>
                 </Col>
-          
-
-
+        
     );
 }
 export default UserJobCard;
