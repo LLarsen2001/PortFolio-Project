@@ -33,9 +33,9 @@ const BuildingNavbar = () => {
                     <MyLink url="/jobsboard">Jobs Board</MyLink>
                     <MyLink url="/search">Search</MyLink>
 
-                    <MyLink url="/demo">Demo</MyLink>
+                    <MyLink url="/demo">React-DnD-Demo</MyLink>
 
-
+                    <MyLink url="/demo2">React-Beautiful DnD Demo</MyLink>
                     <Nav.Link as={"li"} onClick={logout}>Logout</Nav.Link>
 
                 </>

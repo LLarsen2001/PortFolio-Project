@@ -1,12 +1,19 @@
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { Draggable } from 'react-beautiful-dnd';
 
 const UserJobCard = (props) => {
 
     return (
 
-        <Col>
+        <Draggable key={props.id} draggableId={props.jobname} index={props.index}>
+        {(provided) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+          >
             <Card key={'primary'} style={{ margin: '15px' }} >
 
 
@@ -25,8 +32,9 @@ const UserJobCard = (props) => {
 
                 </Card.Footer>
             </Card>
-        </Col>
-
+        </div>
+        )}
+</Draggable>
 
 
 
