@@ -15,7 +15,9 @@ import Profile from "./components/Pages/Profile";
 import Jobs from "./components/Pages/Jobs";
 import JobsBoard from "./components/Pages/JobsBoard";
 import SearchBar from "./components/Pages/Search";
-import QuoteApp from "./components/Pages/Drag and Drop Demo/Demo";
+
+import Demo from "./components/Pages/Drag and Drop Demo/Demo";
+import Kanban from "./components/Pages/Drag and Drop Demo/Demo2";
 
 
 
@@ -47,8 +49,8 @@ const App = () => (
 
             <Route path="/search" element={<SearchBar />} />
 
-            <Route path="/demo" element={<QuoteApp />} />
-
+            <Route path="/demo" element={<Demo />} />
+            <Route path="/demo2" element={<Kanban />} />
           </Route>
           <Route path="/*" element={<NoMatch />} />
         </Routes>
