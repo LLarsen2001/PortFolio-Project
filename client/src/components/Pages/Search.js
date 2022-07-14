@@ -1,6 +1,7 @@
-import React, { useState, useRef } from "react";
+import axios from "axios";
+import React, { useState, useRef, useEffect } from "react";
 
-const SearchBar = ({ searchFunction }) => {
+const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [searchJob, setSearchJob] = useState([]);
   const [showJob, setShowJob] = useState(false);
@@ -15,11 +16,24 @@ const SearchBar = ({ searchFunction }) => {
     marginRight: "0.3rem"
   };
 
+  useEffect(() => {
+    getJobs()
+  }, [])
+
+  const getJobs = async () => {
+    try {
+      let res = await axios.get('/api/jobs')
+      setSearchJob(res.data)
+    } catch (err) {
+      alert("Error with getJobs")
+    }
+  }
+
 
   const submitSearch = () => {
     if (query !== "") {
       setSearchJob((prevJob) => [...prevJob, query].sort());
-      searchFunction(query);
+      // searchFunction(query);
     }
   };
 
@@ -30,7 +44,8 @@ const SearchBar = ({ searchFunction }) => {
   const handleKeyUp = (event) => { 
     event.preventDefault();
     if (query) {
-      setFilteredJob(searchJob.filter((item) => item.includes(query)));
+     
+      setFilteredJob(searchJob.filter((item) => item.jobname.includes(query)));
       setShowJob(true);
     } else {
       setShowJob(false);
@@ -58,11 +73,12 @@ const SearchBar = ({ searchFunction }) => {
       {showJob && filteredJob ? (
         <ul style={{ listStyleType: "none", textAlign: "left" }}>
           {filteredJob.map((item, index) => {
-            return <li key={index}>{item}</li>;
+            return <li key={index}>{item.jobname}</li>;
           })}
         </ul>
       ) : null}
       <button onClick={handleClick}>Submit</button>
+     
     </>
   );
 };
