@@ -70,7 +70,6 @@ const BuildingNavbar = () => {
                     <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
                 </LinkContainer>
                 <Nav className="me-auto">
-                    <MyLink url="/signup">Sign Up</MyLink>
 
                     {renderNavItems()}
                 </Nav>
