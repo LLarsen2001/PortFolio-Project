@@ -1,20 +1,21 @@
-import axios from "axios";
-import React, { useState, useRef, useEffect } from "react";
+import axios from "axios"
+import React, { useState, useRef, useEffect } from "react"
 
 const SearchBar = () => {
-  const [query, setQuery] = useState("");
-  const [searchJob, setSearchJob] = useState([]);
-  const [showJob, setShowJob] = useState(false);
-  const [filteredJob, setFilteredJob] = useState([]);
-  const inputRef = useRef();
+  const [query, setQuery] = useState("")
+  const [searchJob, setSearchJob] = useState([])
+  const [showJob, setShowJob] = useState(false)
+  const [filteredJob, setFilteredJob] = useState([])
+  const inputRef = useRef()
 
   const BarStyling = {
+    textAlign: "center",
     width: "20rem",
     background: "#F2F1F9",
     border: "none",
     padding: "0.5rem",
     marginRight: "0.3rem"
-  };
+  }
 
   useEffect(() => {
     getJobs()
@@ -28,37 +29,32 @@ const SearchBar = () => {
       alert("Error with getJobs")
     }
   }
-
+//ref https://codesandbox.io/s/94kz8?file=/src/SearchBar.js
 
   const submitSearch = () => {
     if (query !== "") {
-      setSearchJob((prevJob) => [...prevJob, query].sort());
-      // searchFunction(query);
+      setSearchJob((prevJob) => [...prevJob, query].sort())
+      // searchFunction(query)
     }
-  };
+  }
 
   const handleChange = (event) => {
-    setQuery(event.target.value);
-  };
+    setQuery(event.target.value)
+  }
 
   const handleKeyUp = (event) => { 
-    event.preventDefault();
+    event.preventDefault()
     if (query) {
      
-      setFilteredJob(searchJob.filter((item) => item.jobname.includes(query)));
-      setShowJob(true);
+      setFilteredJob(searchJob.filter((item) => item.jobname.includes(query)))
+      setShowJob(true)
     } else {
-      setShowJob(false);
+      setShowJob(false)
     }
     if (event.keyCode === 13) {
-      submitSearch();
+      submitSearch()
     }
-  };
-
-  const handleClick = (event) => {
-    event.preventDefault();
-    submitSearch();
-  };
+  }
 
   return (
     <>
@@ -71,16 +67,14 @@ const SearchBar = () => {
         onKeyUp={handleKeyUp}
       />
       {showJob && filteredJob ? (
-        <ul style={{ listStyleType: "none", textAlign: "left" }}>
+        <ul style={{ listStyleType: "none", textAlign: "center" }}>
           {filteredJob.map((item, index) => {
-            return <li key={index}>{item.jobname}</li>;
+            return <li key={index}>{item.jobname}</li>
           })}
         </ul>
       ) : null}
-      <button onClick={handleClick}>Submit</button>
-     
     </>
-  );
-};
+  )
+}
 
-export default SearchBar;
+export default SearchBar

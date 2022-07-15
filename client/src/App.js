@@ -18,6 +18,7 @@ import SearchBar from "./components/Pages/Search";
 
 import Demo from "./components/Pages/Drag and Drop Demo/Demo";
 import Kanban from "./components/Pages/Drag and Drop Demo/Demo2";
+import QuoteApp from "./components/Pages/Drag and Drop Demo/Demo";
 
 
 
