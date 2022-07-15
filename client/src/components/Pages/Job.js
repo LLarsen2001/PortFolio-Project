@@ -4,9 +4,6 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 const Job = (props) => {
-  const formatSalary = () => {
-    return "$" + props.salary + "/yr"
-  }
 
   return (
     <Row xs={1} md={2} className="g-4">
