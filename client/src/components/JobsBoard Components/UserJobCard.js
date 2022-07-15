@@ -1,8 +1,34 @@
 
-
 import Card from 'react-bootstrap/Card';
+import CardHeader from 'react-bootstrap/esm/CardHeader';
+import styled from 'styled-components';
+
 
 import { Draggable } from 'react-beautiful-dnd';
+
+const Cardstyle = styled.div`
+  
+  display: flex;
+  border-radius: 45px;
+  padding: 15px 15px;
+  margin-right: 45px;
+`;
+const Cardjobbodystyle = styled.div`
+  display-right: column;
+
+`
+
+const Cardbodystyle = styled.div`
+  
+  display: center;
+  border-radius: 5px;
+  padding: 15px 15px;
+  
+`;
+const Cardlocationtext = styled.div`
+  font-size: 12px;
+`;
+
 
 const UserJobCard = (props) => {
 
@@ -15,22 +41,36 @@ const UserJobCard = (props) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <Card key={'primary'} style={{ margin: '15px' }} >
-                        <Card.Header>Posted by {props.email}</Card.Header>
-                        <Card.Body>
-                            <Card.Title>Job Title: {props.jobname}</Card.Title>
-                            <Card.Text>
-                                <p>Job Description: {props.description}</p>
-                                <p>{props.location}</p>
-                                <p>userJob ID:{props.id}</p>
-                                <p>Job ID: {props.job_id}</p>
-                            </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                            {props.companyname}
-                            {props.baselocation}
-                        </Card.Footer>
-                    </Card>
+                    <Cardstyle>
+                        <Card
+                            text='white'
+                            style={{
+                                width: '25rem', background: "#2145F7", borderRadius: "30px"
+                            }}>
+                            <CardHeader>
+                                <Card.Text>Posted by: {props.email} </Card.Text>
+                            </CardHeader>
+                            <Cardjobbodystyle>
+                                <Card.Body>
+                                    <Card.Text>
+                                        <p><b>{props.jobname}</b>  <Cardlocationtext>{props.location}</Cardlocationtext></p>
+                                        <p>
+                                            {props.description}
+                                        </p>
+                                    </Card.Text>
+
+                                </Card.Body>
+                                <Card.Footer>
+
+                                    <Card.Text>
+                                        <p><b>{props.companyname}</b><Cardlocationtext>{props.baselocation}</Cardlocationtext></p>
+
+                                        <p>{props.about}</p>
+                                    </Card.Text>
+                                </Card.Footer>
+                            </Cardjobbodystyle>
+                        </Card >
+                    </Cardstyle >
                 </div>
             )}
         </Draggable>
@@ -40,3 +80,8 @@ const UserJobCard = (props) => {
     );
 }
 export default UserJobCard;
+
+
+
+
+
