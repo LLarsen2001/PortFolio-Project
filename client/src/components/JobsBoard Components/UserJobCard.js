@@ -7,24 +7,17 @@ import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
 
 const Cardstyle = styled.div`
-  
+  max-width: 19vw;
   display: flex;
   border-radius: 45px;
   padding: 15px 15px;
-  margin-right: 45px;
+  
 `;
 const Cardjobbodystyle = styled.div`
-  display-right: column;
+  display-left: left;
 
 `
 
-const Cardbodystyle = styled.div`
-  
-  display: center;
-  border-radius: 5px;
-  padding: 15px 15px;
-  
-`;
 const Cardlocationtext = styled.div`
   font-size: 12px;
 `;
@@ -48,7 +41,7 @@ const UserJobCard = (props) => {
                                 width: '25rem', background: "#2145F7", borderRadius: "30px"
                             }}>
                             <CardHeader>
-                                <Card.Text>Posted by: {props.email} </Card.Text>
+                                <Card.Text> <Cardlocationtext>Posted by: {props.email}  </Cardlocationtext></Card.Text>
                             </CardHeader>
                             <Cardjobbodystyle>
                                 <Card.Body>

@@ -13,20 +13,22 @@ const Container = styled.div`
 `;
 
 const TaskList = styled.div`
-  min-height: 100px;
+  min-height: 30px;
   display: flex;
   flex-direction: column;
   background: #f3f3f3;
-  min-width: 341px;
+  min-width: 100px;
   border-radius: 5px;
-  padding: 15px 15px;
-  margin-right: 45px;
+  
+  margin-right: 10px;
+  align-self: auto;
 `;
 
 const TaskColumnStyles = styled.div`
+
   margin: 8px;
   display: flex;
-  width: 100%;
+  
   min-height: 80vh;
 `;
 

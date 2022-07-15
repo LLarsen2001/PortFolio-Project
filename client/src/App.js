@@ -19,7 +19,7 @@ import SearchBar from "./components/Pages/Search";
 import Demo from "./components/Pages/Drag and Drop Demo/Demo";
 import Kanban from "./components/Pages/Drag and Drop Demo/Demo2";
 import QuoteApp from "./components/Pages/Drag and Drop Demo/Demo";
-import UserJbCard from "./components/Pages/Drag and Drop Demo/UserJbCard";
+
 
 
 
@@ -48,7 +48,7 @@ const App = () => (
             <Route path="/jobsboard" element={<JobsBoard />} />
             <Route path="/search" element={<SearchBar />} />
             <Route path="/demo" element={<QuoteApp />} />
-            <Route path="/userjbcard" element={<UserJbCard />} />
+
 
             <Route path="/search" element={<SearchBar />} />
 

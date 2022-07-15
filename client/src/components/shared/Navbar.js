@@ -3,13 +3,12 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Navbar from "react-bootstrap/Navbar"
 import Nav from 'react-bootstrap/Nav'
-import Container from 'react-bootstrap/Container'
 import { LinkContainer } from 'react-router-bootstrap'
 
 const MyLink = ({ url, children }) => {
     return (
         <>
-            <LinkContainer to={url}>
+            <LinkContainer to={url} >
                 <Nav.Link > {children}</Nav.Link>
             </LinkContainer>
         </>
@@ -32,7 +31,7 @@ const BuildingNavbar = () => {
 
                     <MyLink url="/jobsboard">Jobs Board</MyLink>
                     <MyLink url="/search">Search</MyLink>
-                    <MyLink url="/userjbcard">UserJbCard</MyLink>
+
 
                     <MyLink url="/demo">React-DnD-Demo</MyLink>
 
@@ -66,16 +65,16 @@ const BuildingNavbar = () => {
 
         <>
             <Navbar bg="light" variant="light">
-                <Container>
-                    <LinkContainer to="/">
-                        <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
-                    </LinkContainer>
-                    <Nav className="me-auto">
-                        <MyLink url="/signup">Sign Up</MyLink>
 
-                        {renderNavItems()}
-                    </Nav>
-                </Container>
+                <LinkContainer to="/">
+                    <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
+                </LinkContainer>
+                <Nav className="me-auto">
+                    <MyLink url="/signup">Sign Up</MyLink>
+
+                    {renderNavItems()}
+                </Nav>
+
             </Navbar>
 
         </>
