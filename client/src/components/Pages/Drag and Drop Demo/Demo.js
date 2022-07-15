@@ -56,7 +56,7 @@ const getListStyle = isDraggingOver => ({
   width: 250
 });
 
-function QuoteApp() {
+export default function QuoteApp() {
   const [state, setState] = useState([getItems(10), getItems(5, 10)]);
 
   function onDragEnd(result) {
@@ -166,4 +166,3 @@ function QuoteApp() {
 // const rootElement = document.getElementById("root");
 // ReactDOM.render(<QuoteApp />, rootElement);
 
-export default QuoteApp

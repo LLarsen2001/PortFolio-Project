@@ -1,10 +1,10 @@
 // Source: https://www.antstack.io/blog/to-do-app-with-react-beautiful-dnd/
-
+import { v4 as uuidv4 } from 'uuid';
 import React, { useContext, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import { columnsFromBackend } from './KanbanData';
+// import { columnsFromBackend } from './KanbanData';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import TaskCard from './TaskCard';
+
 import { UserJobsContext } from '../../../providers/UserJobsProvider';
 import UserJobCard from '../../JobsBoard Components/UserJobCard';
 
@@ -39,53 +39,133 @@ const Title = styled.span`
 `;
 
 const Kanban = () => {
-  const [columns, setColumns] = useState(columnsFromBackend);
-  const [wishList, setWishList] = useState([])
-  const { userJobs } = useContext(UserJobsContext)
+  const [wishLists, setWishLists] = useState([]);
+  const [applieds, setApplieds] = useState([]);
+  const [interviews, setInterviews] = useState([]);
+  const [offerAccepted, setOfferAccepteds] = useState([]);
+  const [offerRecieveds, setOfferRecieveds] = useState([]);
+  const [columns, setColumns] = useState({});
+  const { userJobs, updateUserJobStatus } = useContext(UserJobsContext);
+
+  console.log(userJobs)
   useEffect(() => {
-      getWishListJobs();
-  }, []);
+    // getAppliedJobs();
+    // getWishListJobs();
+    // getInterviewJobs();
+    // getOfferRecievedJobs();
+    // getOfferAcceptedJobs();
+    setBoardState();
+  }, [userJobs]);
 
-  const getWishListJobs = () => {
-      setWishList(userJobs.filter((p) => p.status === "wishlist"))
-  };
+  const setBoardState = () => {
+    let wishlistB = userJobs.filter((p) => p.status === "wishlist")
+    setWishLists(wishlistB)
+    let appliedB = userJobs.filter((p) => p.status === "applied")
+    setApplieds(appliedB)
+    let interviewB = userJobs.filter((p) => p.status === "interview")
+    setInterviews(interviewB)
+    let offerRecievedB = userJobs.filter((p) => p.status === "offer recieved")
+    setOfferRecieveds(offerRecievedB)
+    let offerAcceptedB = userJobs.filter((p) => p.status === "offer accepted")
+    setOfferAccepteds(offerAcceptedB)
 
+    let status = {
+      ['wishlist']: {
+        title: 'WishList',
+        jobs: wishlistB,
+      },
+      ['applied']: {
+        title: 'applied',
+        jobs: appliedB,
+      },
+      ['interview']: {
+        title: 'interview',
+        jobs: interviewB,
+      },
+      ['offer recieved']: {
+        title: 'offer recieved',
+        jobs: offerRecievedB,
+      },
+      ['offer accepted']: {
+        title: 'offer accepted',
+        jobs: offerAcceptedB,
+      }
+
+    }
+
+    setColumns(status);
+
+  }
+
+
+  // const getWishListJobs = () => {
+  //   setWishLists(userJobs.filter((p) => p.status === "wishlist"))
+  // };
+
+  // const getAppliedJobs = () => {
+  //   setApplieds(userJobs.filter((p) => p.status === "applied"))
+  // };
+
+  // const getInterviewJobs = () => {
+  //   setInterviews(userJobs.filter((p) => p.status === "interview"))
+  // };
+
+  // const getOfferRecievedJobs = () => {
+  //   setOfferRecieveds(userJobs.filter((p) => p.status === "offer recieved"))
+  // };
+
+  // const getOfferAcceptedJobs = () => {
+  //   setOfferAccepteds(userJobs.filter((p) => p.status === "offer accepted"))
+  // };
+  console.log(applieds)
+  console.log(interviews)
+  console.log(offerAccepted)
+  console.log(offerRecieveds)
+  console.log(wishLists)
+
+
+
+
+  console.log(columns)
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
+
+    updateUserJobStatus({ id: 305, status: 'applied' })
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
-      const sourceItems = [...sourceColumn.items];
-      const destItems = [...destColumn.items];
-      const [removed] = sourceItems.splice(source.index, 1);
-      destItems.splice(destination.index, 0, removed);
+      const sourcejobs = [...sourceColumn.jobs];
+      const destjobs = [...destColumn.jobs];
+      const [removed] = sourcejobs.splice(source.index, 1);
+      destjobs.splice(destination.index, 0, removed);
       setColumns({
         ...columns,
         [source.droppableId]: {
           ...sourceColumn,
-          items: sourceItems,
+          jobs: sourcejobs,
         },
         [destination.droppableId]: {
           ...destColumn,
-          items: destItems,
+          jobs: destjobs,
         },
       });
     } else {
       const column = columns[source.droppableId];
-      const copiedItems = [...column.items];
-      const [removed] = copiedItems.splice(source.index, 1);
-      copiedItems.splice(destination.index, 0, removed);
+      const copiedjobs = [...column.jobs];
+      const [removed] = copiedjobs.splice(source.index, 1);
+      copiedjobs.splice(destination.index, 0, removed);
       setColumns({
         ...columns,
         [source.droppableId]: {
           ...column,
-          items: copiedItems,
+          jobs: copiedjobs,
         },
       });
     }
   };
+
   return (
     <DragDropContext
       onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
@@ -101,8 +181,8 @@ const Kanban = () => {
                     {...provided.droppableProps}
                   >
                     <Title>{column.title}</Title>
-                    {wishList.map((wl) => (
-                      <UserJobCard key={wl.id} {...wl}/>
+                    {column.jobs.map((job, index) => (
+                      <UserJobCard key={job.id} job={job} index={index} {...job} />
                     ))}
                     {provided.placeholder}
                   </TaskList>
@@ -115,5 +195,6 @@ const Kanban = () => {
     </DragDropContext>
   );
 };
+
 
 export default Kanban;
