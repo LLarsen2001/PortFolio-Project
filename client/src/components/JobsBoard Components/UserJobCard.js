@@ -1,6 +1,7 @@
+
+
 import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+
 import { Draggable } from 'react-beautiful-dnd';
 
 const UserJobCard = (props) => {
@@ -21,6 +22,8 @@ const UserJobCard = (props) => {
                             <Card.Text>
                                 <p>Job Description: {props.description}</p>
                                 <p>{props.location}</p>
+                                <p>userJob ID:{props.id}</p>
+                                <p>Job ID: {props.job_id}</p>
                             </Card.Text>
                         </Card.Body>
                         <Card.Footer>
