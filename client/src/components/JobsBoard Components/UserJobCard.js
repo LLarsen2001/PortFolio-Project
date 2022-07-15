@@ -8,7 +8,7 @@ const UserJobCard = (props) => {
 
     return (
 
-        <Draggable key={props.id} draggableId={props.jobname} index={props.index}>
+        <Draggable key={props.id} draggableId={props.id.toString()} index={props.index}>
             {(provided) => (
                 <div
                     ref={provided.innerRef}

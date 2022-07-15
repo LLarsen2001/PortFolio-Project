@@ -1,5 +1,6 @@
 import axios from "axios"
 import React, { useState, useRef, useEffect } from "react"
+import Job from "./Job"
 
 const SearchBar = () => {
   const [query, setQuery] = useState("")
@@ -69,7 +70,7 @@ const SearchBar = () => {
       {showJob && filteredJob ? (
         <ul style={{ listStyleType: "none", textAlign: "center" }}>
           {filteredJob.map((item, index) => {
-            return <li key={index}>{item.jobname}</li>
+            return <Job key={index} {...item}></Job>
           })}
         </ul>
       ) : null}

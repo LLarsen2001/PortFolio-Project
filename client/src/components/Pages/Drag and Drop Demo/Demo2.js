@@ -130,9 +130,9 @@ const Kanban = () => {
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
-    const { source, destination } = result;
+    const { source, destination, draggableId } = result;
 
-    updateUserJobStatus({ id: 51, status: 'interview' })
+    updateUserJobStatus({ id: parseInt(draggableId), status: destination.droppableId })
     if (source.droppableId !== destination.droppableId) {
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
