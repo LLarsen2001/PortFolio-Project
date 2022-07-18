@@ -20,6 +20,7 @@ import Demo from "./components/Pages/Drag and Drop Demo/Demo";
 import Kanban from "./components/Pages/Drag and Drop Demo/Demo2";
 import QuoteApp from "./components/Pages/Drag and Drop Demo/Demo";
 import JobForm from "./components/JobForm";
+import CompanyForm from "./components/Pages/CompanyForm";
 
 
 
@@ -55,6 +56,7 @@ const App = () => (
             <Route path="/demo" element={<Demo />} />
             <Route path="/demo2" element={<Kanban />} />
             <Route path="/addjob" element={<JobForm />} />
+            <Route path="/addcompany" element={<CompanyForm />} />
           </Route>
           <Route path="/*" element={<NoMatch />} />
         </Routes>
