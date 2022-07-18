@@ -21,7 +21,6 @@ const Cardlocationtext = styled.div`
 font-size: 12px;
 `;
 
-
 const Job = (props) => {
   const { addUserJob } = useContext(UserJobsContext)
   const formatSalary = () => {

@@ -5,8 +5,9 @@ import styled from '@emotion/styled';
 // import { columnsFromBackend } from './KanbanData';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
-import { UserJobsContext } from '../../../providers/UserJobsProvider';
-import UserJobCard from '../../JobsBoard Components/UserJobCard';
+import { UserJobsContext } from '../../providers/UserJobsProvider';
+import UserJobCard from './UserJobCard';
+
 
 const Container = styled.div`
   display: flex;
@@ -40,7 +41,7 @@ const Title = styled.span`
   align-self: flex-start;
 `;
 
-const Kanban = () => {
+const JobsBoard = () => {
   const [wishLists, setWishLists] = useState([]);
   const [applieds, setApplieds] = useState([]);
   const [interviews, setInterviews] = useState([]);
@@ -51,11 +52,6 @@ const Kanban = () => {
 
   console.log(userJobs)
   useEffect(() => {
-    // getAppliedJobs();
-    // getWishListJobs();
-    // getInterviewJobs();
-    // getOfferRecievedJobs();
-    // getOfferAcceptedJobs();
     setBoardState();
   }, [userJobs]);
 
@@ -98,37 +94,6 @@ const Kanban = () => {
     setColumns(status);
 
   }
-
-
-  // const getWishListJobs = () => {
-  //   setWishLists(userJobs.filter((p) => p.status === "wishlist"))
-  // };
-
-  // const getAppliedJobs = () => {
-  //   setApplieds(userJobs.filter((p) => p.status === "applied"))
-  // };
-
-  // const getInterviewJobs = () => {
-  //   setInterviews(userJobs.filter((p) => p.status === "interview"))
-  // };
-
-  // const getOfferRecievedJobs = () => {
-  //   setOfferRecieveds(userJobs.filter((p) => p.status === "offer recieved"))
-  // };
-
-  // const getOfferAcceptedJobs = () => {
-  //   setOfferAccepteds(userJobs.filter((p) => p.status === "offer accepted"))
-  // };
-  console.log(applieds)
-  console.log(interviews)
-  console.log(offerAccepted)
-  console.log(offerRecieveds)
-  console.log(wishLists)
-
-
-
-
-  console.log(columns)
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -197,6 +162,4 @@ const Kanban = () => {
     </DragDropContext>
   );
 };
-
-
-export default Kanban;
+export default JobsBoard;
