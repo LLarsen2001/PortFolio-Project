@@ -56,7 +56,7 @@ const Job = (props) => {
 
             <Card.Text>
               <p><b>{props.companyname}</b><Cardlocationtext>{props.baselocation}</Cardlocationtext></p>
-              <p>{props.about}<button key={e.target.holder.id} onClick={handleSubmit}>add</button></p>
+              <p>{props.about}<button onClick={handleSubmit}>add</button></p>
 
             </Card.Text>
           </Card.Footer>
