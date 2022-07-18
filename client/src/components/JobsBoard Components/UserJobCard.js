@@ -5,6 +5,8 @@ import styled from 'styled-components';
 
 
 import { Draggable } from 'react-beautiful-dnd';
+import { useContext } from 'react';
+import { UserJobsContext } from '../../providers/UserJobsProvider';
 
 const Cardstyle = styled.div`
   max-width: 19vw;
@@ -13,6 +15,11 @@ const Cardstyle = styled.div`
   padding: 15px 15px;
   
 `;
+const DeleteButton = styled.div`
+float: right;
+border-radius: 50px;
+background-coler: #0a0a23;
+ `
 const Cardjobbodystyle = styled.div`
   display-left: left;
 
@@ -24,7 +31,7 @@ const Cardlocationtext = styled.div`
 
 
 const UserJobCard = (props) => {
-
+    const { deleteUserJob } = useContext(UserJobsContext)
     return (
 
         <Draggable key={props.id} draggableId={props.id.toString()} index={props.index}>
@@ -41,6 +48,7 @@ const UserJobCard = (props) => {
                                 width: '25rem', background: "#2145F7", borderRadius: "30px"
                             }}>
                             <CardHeader>
+                                <DeleteButton> <button onClick={() => deleteUserJob(props.id)}>X</button></DeleteButton>
                                 <Card.Text> <Cardlocationtext>Posted by: {props.email}  </Cardlocationtext></Card.Text>
                             </CardHeader>
                             <Cardjobbodystyle>
