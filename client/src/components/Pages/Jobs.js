@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import Job from './Job'
+import { UserJobsContext } from '../../providers/UserJobsProvider'
 
 const Jobs = () => {
+  const { addUserJobs } = useContext(UserJobsContext)
   const [jobs, setJobs] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -36,9 +38,9 @@ const Jobs = () => {
   return (
     <div>
       <h1>Discover Jobs</h1>
-    <div className="pagecontainer">
-      {renderJobs()}
-    </div>
+      <div className="pagecontainer">
+        {renderJobs()}
+      </div>
     </div>
   )
 }
