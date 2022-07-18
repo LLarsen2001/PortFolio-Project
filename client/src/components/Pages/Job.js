@@ -1,37 +1,71 @@
 import Card from 'react-bootstrap/Card'
-import React from 'react'
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import React, { useContext } from 'react'
+import styled from 'styled-components';
+import CardHeader from 'react-bootstrap/esm/CardHeader';
+import Button from 'react-bootstrap/esm/Button';
+import { UserJobsContext } from '../../providers/UserJobsProvider';
+
+const Cardstyle = styled.div`
+max-width: 19vw;
+display: flex;
+border-radius: 45px;
+padding: 15px 15px;
+
+`;
+const Cardjobbodystyle = styled.div`
+display-left: left;
+
+`
+
+const Cardlocationtext = styled.div`
+font-size: 12px;
+`;
+
 
 const Job = (props) => {
+  const { addUserJob } = useContext(UserJobsContext)
   const formatSalary = () => {
     return "$" + props.salary + "/yr"
   }
 
+  const handleSubmit = () => {
+    addUserJob(props.id)
+  }
   return (
-    <Row xs={1} md={2} className="g-4">
-     
-        <Col>
-          <Card key={'primary'} style={{ margin: '15px' }} >
+    <Cardstyle>
+      <Card
+        text='white'
+        style={{
+          width: '25rem', background: "#2145F7", borderRadius: "30px"
+        }}>
+        <CardHeader>
+          <Card.Text> <Cardlocationtext>Posted by: {props.email} </Cardlocationtext></Card.Text>
+        </CardHeader>
+        <Cardjobbodystyle>
+          <Card.Body>
+            <Card.Text>
+              <p><b>{props.jobname}</b>  <Cardlocationtext>{props.location}</Cardlocationtext></p>
+              <p>
+                {props.description}
+                {formatSalary()}
+              </p>
+            </Card.Text>
 
+          </Card.Body>
+          <Card.Footer>
 
-            <Card.Header>Posted by {props.email}</Card.Header>
-            <Card.Body>
-              <Card.Title>Job Title: {props.jobname}</Card.Title>
-              <Card.Text>
-                <p>Job Description: {props.description}</p>
-                <p>{props.location}</p>
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer>
-              {props.companyname}
+            <Card.Text>
+              <p><b>{props.companyname}</b><Cardlocationtext>{props.baselocation}</Cardlocationtext></p>
+              <p>{props.about}<button key={e.target.holder.id} onClick={handleSubmit}>add</button></p>
 
-            </Card.Footer>
-          </Card>
-        </Col>
-     
-    </Row>
+            </Card.Text>
+          </Card.Footer>
+        </Cardjobbodystyle>
+      </Card >
+    </Cardstyle >
   )
 }
+
+
 
 export default Job

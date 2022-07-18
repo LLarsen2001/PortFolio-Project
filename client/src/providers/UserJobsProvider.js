@@ -21,19 +21,24 @@ const UserJobsProvider = ({ children }) => {
 
     const getUserJobs = async () => {
         let res = await axios.get(`/api/users/${user.id}/data`)
-        console.log(res.data)
+
         setUserJobs(res.data)
 
     };
 
-    const addUserJob = async (uj) => {
+    const addUserJob = async (job_id) => {
+        let status = 'wishlist'
         try {
-            let res = await axios.post('/api/users/:user_id/userjobs', uj)
-            setUserJobs([res.data, ...uj])
+            debugger
+            console.log(job_id)
+            console.log(status)
+            let res = await axios.post(`/api/users/${user.id}/userjobs`, userJobs, job_id, status)
+            setUserJobs([res.data, ...userJobs])
         }
         catch (err) {
             alert('error occured in the add job to board')
         }
+        console.log(setUserJobs)
     }
 
     // uj = an object{id: userjob_id status: string}

@@ -41,7 +41,23 @@ class Api::UserjobsController < ApplicationController
     def create
         @userjob = @user.userjobs.new(params.require(:userjob).permit(:status, :job_id))
         if(@userjob.save)
-            render json: @userjob
+            render json: {
+                about: @userjob.job.company.about,
+                baselocation: @userjob.job.company.baselocation,
+                company_id: @userjob.job.company_id,
+                companyname:@userjob.job.company.companyname,
+                # created_by: @userjob.job.created_by,
+                description: @userjob.job.description,
+                email: @user.email,
+                id: @userjob.id,
+                job_id: @userjob.job_id,
+                jobname:@userjob.job.jobname,
+                location: @userjob.job.location,
+                remote: @userjob.job.remote,
+                salary: @userjob.job.salary,
+                status: @userjob.status,
+                user_id:@user.id
+            }
         else
             render json: @userjob.errors.full_message, status: 422
         end
