@@ -52,13 +52,21 @@ const UserJobsProvider = ({ children }) => {
         }
     }
 
-
+    const deleteUserJob = async (id) => {
+        try {
+            console.log(id)
+            await axios.delete(`/api/users/${user.id}/userjobs/${id}`);
+            setUserJobs(userJobs.filter((e) => e.id !== id))
+        } catch (err) {
+            alert('error has occured in the delete UserJob')
+        }
+    }
 
 
 
     return (
 
-        <UserJobsContext.Provider value={{ userJobs, addUserJob, updateUserJobStatus }}>
+        <UserJobsContext.Provider value={{ userJobs, addUserJob, updateUserJobStatus, deleteUserJob }}>
             {children}
         </UserJobsContext.Provider>
     )
