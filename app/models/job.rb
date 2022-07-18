@@ -3,10 +3,10 @@ class Job < ApplicationRecord
   has_many :userjobs
 
   def self.availableJobs
-    Job.find_by_sql('SELECT jobname, salary, description, remote, location, companyname, "isFilled"
+    Job.find_by_sql('SELECT j.id, j.jobname, j.salary, j.description, j.remote, j.user_id AS created_by, u.email, u.name, j.location, c.companyname, c.about, c.baselocation "isFilled"
     FROM jobs as j
-    INNER JOIN companies as c
-    ON j.company_id = c.id
+    INNER JOIN companies as c ON j.company_id = c.id
+    INNER JOIN users AS u ON j.user_id = u.id
     WHERE "isFilled" <> TRUE;')
   end
 end

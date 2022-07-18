@@ -29,7 +29,7 @@ const Job = (props) => {
   }
 
   const handleSubmit = () => {
-    addUserJob(props.id)
+    addUserJob({ job_id: props.id, status: 'wishlist' })
   }
   return (
     <Cardstyle>
@@ -49,13 +49,18 @@ const Job = (props) => {
                 {props.description}
                 {formatSalary()}
               </p>
+              <p>
+                {props.id}
+              </p>
+
             </Card.Text>
 
           </Card.Body>
           <Card.Footer>
 
             <Card.Text>
-              <p><b>{props.companyname}</b><Cardlocationtext>{props.baselocation}</Cardlocationtext></p>
+
+              <p><b>{props.companyname} </b><Cardlocationtext>{props.baselocation}</Cardlocationtext></p>
               <p>{props.about}<button onClick={handleSubmit}>add</button></p>
 
             </Card.Text>
