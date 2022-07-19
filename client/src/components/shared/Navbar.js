@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar"
 import Nav from 'react-bootstrap/Nav'
 import { LinkContainer } from 'react-router-bootstrap'
 
-const MyLink = ({ url, children }) => {
+export const MyLink = ({ url, children }) => {
     return (
         <>
             <LinkContainer to={url} >

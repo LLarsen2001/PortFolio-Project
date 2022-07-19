@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import Button from 'react-bootstrap/esm/Button'
 import axios from 'axios'
 import { AuthContext } from '../providers/AuthProvider'
+import { MyLink } from './shared/Navbar'
+import { useNavigate } from 'react-router-dom'
 
 const JobForm = () => {
   const { user } = useContext(AuthContext)
@@ -15,6 +17,7 @@ const JobForm = () => {
   const [location, setLocation] = useState("")
   const user_id = user.id
   const isFilled = false
+  const navigate = useNavigate()
 
   useEffect(()=> {
     getCompanies()
@@ -32,6 +35,7 @@ const JobForm = () => {
   const addJob = async (job) => {
     try {
       await axios.post('/api/jobs', job)
+      navigate("/jobs")
     } catch(err) {
       alert("Error occurred adding a job")
     }
@@ -111,6 +115,8 @@ const JobForm = () => {
           ))}
           </Form.Control>
           </Form.Group>
+          
+          <MyLink url="/addcompany">Add A New Company</MyLink>
 
           <Form.Group className="mb-3" controlId="remote">
           <Form.Label>Remote: </Form.Label>
