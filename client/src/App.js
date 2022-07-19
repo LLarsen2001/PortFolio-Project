@@ -16,6 +16,7 @@ import Jobs from "./components/Pages/Jobs";
 import SearchBar from "./components/Pages/Search";
 import JobForm from "./components/JobForm";
 import JobsBoard from "./components/Pages/BoardJobs";
+import CompanyForm from "./components/shared/CompanyForm";
 
 
 
@@ -46,7 +47,7 @@ const App = () => (
 
 
 
-            <Route path="/search" element={<SearchBar />} />
+            <Route path="/addcompany" element={<CompanyForm />} />
 
 
 
