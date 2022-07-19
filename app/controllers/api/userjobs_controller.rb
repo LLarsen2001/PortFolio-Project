@@ -21,7 +21,7 @@ class Api::UserjobsController < ApplicationController
                     baselocation: @userjob.job.company.baselocation,
                     company_id: @userjob.job.company_id,
                     companyname:@userjob.job.company.companyname,
-                    # created_by: @userjob.job.created_by,
+                    created_by: @userjob.job.user_id,
                     description: @userjob.job.description,
                     email: @user.email,
                     id: @userjob.id,
@@ -39,14 +39,15 @@ class Api::UserjobsController < ApplicationController
     end
 
     def create
-        @userjob = @user.userjobs.new(params.require(:userjob).permit(:status, :job_id))
+        puts @user
+        @userjob = @user.userjobs.create(userjob_params)
         if(@userjob.save)
             render json: {
                 about: @userjob.job.company.about,
                 baselocation: @userjob.job.company.baselocation,
                 company_id: @userjob.job.company_id,
                 companyname:@userjob.job.company.companyname,
-                # created_by: @userjob.job.created_by,
+                created_by: @userjob.job.user_id,
                 description: @userjob.job.description,
                 email: @user.email,
                 id: @userjob.id,
@@ -79,7 +80,7 @@ class Api::UserjobsController < ApplicationController
     
     
     def userjob_params 
-        params.require(:userjob).permit(:status)
+        params.require(:userjob).permit(:status, :job_id)
     end
 
   

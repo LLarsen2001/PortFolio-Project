@@ -26,13 +26,12 @@ const UserJobsProvider = ({ children }) => {
 
     };
 
-    const addUserJob = async (job_id) => {
-        let status = 'wishlist'
+    const addUserJob = async (uj) => {
         try {
             debugger
-            console.log(job_id)
-            console.log(status)
-            let res = await axios.post(`/api/users/${user.id}/userjobs`, userJobs, job_id, status)
+            console.log(uj.job_id)
+            console.log(uj.status)
+            let res = await axios.post(`/api/users/${user.id}/userjobs`, uj)
             setUserJobs([res.data, ...userJobs])
         }
         catch (err) {
@@ -44,7 +43,8 @@ const UserJobsProvider = ({ children }) => {
     // uj = an object{id: userjob_id status: string}
     const updateUserJobStatus = async (uj) => {
         try {
-            let res = await axios.put(`/api/users/${user.id}/userjobs/${uj.id} `, uj);
+            console.log(uj)
+            let res = await axios.put(`/api/users/${user.id}/userjobs/${uj.id} `, { ...uj });
             let updatedUserJob = userJobs.map((a) => a.id === res.data.id ? res.data : a);
             setUserJobs(updatedUserJob);
         } catch (err) {
