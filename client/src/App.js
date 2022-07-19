@@ -13,11 +13,9 @@ import { normalize } from 'styled-normalize'
 import { createGlobalStyle } from "styled-components";
 import Profile from "./components/Pages/Profile";
 import Jobs from "./components/Pages/Jobs";
-import JobsBoard from "./components/Pages/JobsBoard";
 import SearchBar from "./components/Pages/Search";
-
-import Demo from "./components/Pages/Drag and Drop Demo/Demo";
-import Kanban from "./components/Pages/Drag and Drop Demo/Demo2";
+import JobForm from "./components/JobForm";
+import JobsBoard from "./components/Pages/BoardJobs";
 
 
 
@@ -45,12 +43,14 @@ const App = () => (
             <Route path="/jobs" element={<Jobs />} />
             <Route path="/jobsboard" element={<JobsBoard />} />
             <Route path="/search" element={<SearchBar />} />
-            <Route path="/demo" element={<QuoteApp />} />
+
+
 
             <Route path="/search" element={<SearchBar />} />
 
-            <Route path="/demo" element={<Demo />} />
-            <Route path="/demo2" element={<Kanban />} />
+
+
+            <Route path="/addjob" element={<JobForm />} />
           </Route>
           <Route path="/*" element={<NoMatch />} />
         </Routes>

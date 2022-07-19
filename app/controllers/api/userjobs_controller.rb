@@ -16,16 +16,49 @@ class Api::UserjobsController < ApplicationController
 
     def update
         if(@userjob.update(userjob_params))
-            render json: @userjob
-        else
+            render json: {
+                    about: @userjob.job.company.about,
+                    baselocation: @userjob.job.company.baselocation,
+                    company_id: @userjob.job.company_id,
+                    companyname:@userjob.job.company.companyname,
+                    created_by: @userjob.job.user_id,
+                    description: @userjob.job.description,
+                    email: @user.email,
+                    id: @userjob.id,
+                    job_id: @userjob.job_id,
+                    jobname:@userjob.job.jobname,
+                    location: @userjob.job.location,
+                    remote: @userjob.job.remote,
+                    salary: @userjob.job.salary,
+                    status: @userjob.status,
+                    user_id:@user.id
+        }
+    else
             render json: @userjob.errors.full_message, status: 422
         end
     end
 
     def create
-        @userjob = @user.userjobs.new(params.require(:userjob).permit(:status, :job_id))
+        puts @user
+        @userjob = @user.userjobs.create(userjob_params)
         if(@userjob.save)
-            render json: @userjob
+            render json: {
+                about: @userjob.job.company.about,
+                baselocation: @userjob.job.company.baselocation,
+                company_id: @userjob.job.company_id,
+                companyname:@userjob.job.company.companyname,
+                created_by: @userjob.job.user_id,
+                description: @userjob.job.description,
+                email: @user.email,
+                id: @userjob.id,
+                job_id: @userjob.job_id,
+                jobname:@userjob.job.jobname,
+                location: @userjob.job.location,
+                remote: @userjob.job.remote,
+                salary: @userjob.job.salary,
+                status: @userjob.status,
+                user_id:@user.id
+            }
         else
             render json: @userjob.errors.full_message, status: 422
         end
@@ -47,7 +80,7 @@ class Api::UserjobsController < ApplicationController
     
     
     def userjob_params 
-        params.require(:userjob).permit(:status)
+        params.require(:userjob).permit(:status, :job_id)
     end
 
   
