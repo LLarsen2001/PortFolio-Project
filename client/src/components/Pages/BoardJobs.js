@@ -141,7 +141,7 @@ const JobsBoard = () => {
         <TaskColumnStyles>
           {Object.entries(columns).map(([columnId, column], index) => {
             return (
-              <Droppable key={columnId} droppableId={columnId}>
+              <Droppable key={columnId} droppableId={columnId} index={index}>
                 {(provided, snapshot) => (
                   <TaskList
                     ref={provided.innerRef}
@@ -149,7 +149,7 @@ const JobsBoard = () => {
                   >
                     <Title>{column.title}</Title>
                     {column.jobs.map((job, index) => (
-                      <UserJobCard key={job.id} job={job} index={index} {...job} />
+                      <UserJobCard key={job.id} job={job} index={index} />
                     ))}
                     {provided.placeholder}
                   </TaskList>
