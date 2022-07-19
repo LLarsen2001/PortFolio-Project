@@ -30,11 +30,12 @@ const Cardlocationtext = styled.div`
 `;
 
 
-const UserJobCard = (props) => {
+const UserJobCard = ({ job, index }) => {
     const { deleteUserJob } = useContext(UserJobsContext)
+    console.log(job)
     return (
 
-        <Draggable key={props.id} draggableId={props.id.toString()} index={props.index}>
+        <Draggable key={job.id} draggableId={job.id.toString()} index={index}>
             {(provided) => (
                 <div
                     ref={provided.innerRef}
@@ -48,15 +49,15 @@ const UserJobCard = (props) => {
                                 width: '25rem', background: "#2145F7", borderRadius: "30px"
                             }}>
                             <CardHeader>
-                                <DeleteButton> <button onClick={() => deleteUserJob(props.id)}>X</button></DeleteButton>
-                                <Card.Text> <Cardlocationtext>Posted by: {props.email}  </Cardlocationtext></Card.Text>
+                                <DeleteButton> <button onClick={() => deleteUserJob(job.id)}>X</button></DeleteButton>
+                                <Card.Text> <Cardlocationtext>Posted by: {job.email}  </Cardlocationtext></Card.Text>
                             </CardHeader>
                             <Cardjobbodystyle>
                                 <Card.Body>
                                     <Card.Text>
-                                        <p><b>{props.jobname}</b>  <Cardlocationtext>{props.location}</Cardlocationtext></p>
+                                        <p><b>{job.jobname}</b>  <Cardlocationtext>{job.location}</Cardlocationtext></p>
                                         <p>
-                                            {props.description}
+                                            {job.description}
                                         </p>
                                     </Card.Text>
 
@@ -64,9 +65,9 @@ const UserJobCard = (props) => {
                                 <Card.Footer>
 
                                     <Card.Text>
-                                        <p><b>{props.companyname}</b><Cardlocationtext>{props.baselocation}</Cardlocationtext></p>
+                                        <p><b>{job.companyname}</b><Cardlocationtext>{job.baselocation}</Cardlocationtext></p>
 
-                                        <p>{props.about}</p>
+                                        <p>{job.about}</p>
                                     </Card.Text>
                                 </Card.Footer>
                             </Cardjobbodystyle>
