@@ -10,7 +10,7 @@ class Profile extends Component {
       "https://image.tmdb.org/t/p/w185/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg";
     const userName = "Harvey Specter";
     const location = "New York, USA";
-    const filmList = [1, 2, 3, 4, 5, 6];
+
 
     const comments = [
       {
@@ -30,9 +30,7 @@ class Profile extends Component {
           photo={photo}
           userName={userName}
           location={location}
-          initialLikesCount={121}
-          initialFollowingCount={723}
-          initialFollowersCount={4433}
+          
           initialComments={comments}
         /> 
         <Button as={Link} to="/update" variant="info">Update</Button>

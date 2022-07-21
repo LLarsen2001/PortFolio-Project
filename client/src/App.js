@@ -12,6 +12,7 @@ import { normalize } from 'styled-normalize'
 
 import { createGlobalStyle } from "styled-components";
 import Profile from "./components/Pages/Profile";
+import Profile2 from "./components/Pages/Profile2";
 import Jobs from "./components/Pages/Jobs";
 import SearchBar from "./components/Pages/Search";
 import JobForm from "./components/JobForm";
@@ -41,6 +42,7 @@ const App = () => (
           <Route element={<ProtectedRoute />}>
             <Route path="/account" element={<UserAccount />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/profile2" element={<Profile2 />} />
             <Route path="/jobs" element={<Jobs />} />
             <Route path="/jobsboard" element={<JobsBoard />} />
             <Route path="/search" element={<SearchBar />} />

@@ -21,6 +21,7 @@ const BuildingNavbar = () => {
             return (
                 <>
                     <MyLink url="/profile">Profile</MyLink>
+                    <MyLink url="/profile2">profile2</MyLink>
                     <MyLink url="/jobs">Jobs</MyLink>
                     <MyLink url="/addjob">Add New Job</MyLink>
                     <MyLink url="/jobsboard">Jobs Board</MyLink>
