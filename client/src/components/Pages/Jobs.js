@@ -2,11 +2,18 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import Job from './Job'
 import { UserJobsContext } from '../../providers/UserJobsProvider'
+import styled from 'styled-components'
+
+const JobContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  `
 
 const Jobs = () => {
-  const { addUserJobs } = useContext(UserJobsContext)
   const [jobs, setJobs] = useState([])
   const [loading, setLoading] = useState(true)
+
+
 
   useEffect(() => {
     getJobs()
@@ -38,10 +45,11 @@ const Jobs = () => {
   return (
     <div>
       <h1>Discover Jobs</h1>
-      <div className="pagecontainer">
+      <JobContainer>
         {renderJobs()}
-      </div>
+      </JobContainer>
     </div>
+
   )
 }
 export default Jobs;

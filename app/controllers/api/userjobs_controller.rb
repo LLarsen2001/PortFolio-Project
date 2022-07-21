@@ -31,7 +31,9 @@ class Api::UserjobsController < ApplicationController
                     remote: @userjob.job.remote,
                     salary: @userjob.job.salary,
                     status: @userjob.status,
-                    user_id:@user.id
+                    user_id:@user.id,
+                    created_at:@userjob.created_at,
+                    updated_at:@userjob.updated_at
         }
     else
             render json: @userjob.errors.full_message, status: 422
@@ -57,7 +59,9 @@ class Api::UserjobsController < ApplicationController
                 remote: @userjob.job.remote,
                 salary: @userjob.job.salary,
                 status: @userjob.status,
-                user_id:@user.id
+                user_id:@user.id,
+                created_at:@userjob.created_at,
+                updated_at:@userjob.updated_at
             }
         else
             render json: @userjob.errors.full_message, status: 422
