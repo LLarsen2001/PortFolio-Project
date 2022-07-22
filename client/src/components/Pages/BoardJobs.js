@@ -19,7 +19,7 @@ const TaskList = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr) ) ;
  
   background: #f3f3f3;
-  min-width: 100px;
+  width: 19.8vw;
   border-radius: 5px;
   justify-content: space-between;
   

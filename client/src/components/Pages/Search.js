@@ -10,8 +10,9 @@ const SearchBar = () => {
   const inputRef = useRef()
 
   const BarStyling = {
+
     textAlign: "center",
-    width: "20rem",
+    width: "50rem",
     background: "#F2F1F9",
     border: "none",
     padding: "0.5rem",
@@ -30,7 +31,7 @@ const SearchBar = () => {
       alert("Error with getJobs")
     }
   }
-//ref https://codesandbox.io/s/94kz8?file=/src/SearchBar.js
+  //ref https://codesandbox.io/s/94kz8?file=/src/SearchBar.js
 
   const submitSearch = () => {
     if (query !== "") {
@@ -43,10 +44,10 @@ const SearchBar = () => {
     setQuery(event.target.value)
   }
 
-  const handleKeyUp = (event) => { 
+  const handleKeyUp = (event) => {
     event.preventDefault()
     if (query) {
-     
+
       setFilteredJob(searchJob.filter((item) => item.jobname.includes(query)))
       setShowJob(true)
     } else {
