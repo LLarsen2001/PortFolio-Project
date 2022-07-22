@@ -17,6 +17,7 @@ import SearchBar from "./components/Pages/Search";
 import JobForm from "./components/JobForm";
 import JobsBoard from "./components/Pages/BoardJobs";
 import CompanyForm from "./components/shared/CompanyForm";
+import ImageUpload from "./components/shared/ImageUpload";
 
 
 
@@ -52,6 +53,7 @@ const App = () => (
 
 
             <Route path="/addjob" element={<JobForm />} />
+            <Route path="image_upload" element={<ImageUpload />} />
           </Route>
           <Route path="/*" element={<NoMatch />} />
         </Routes>

@@ -1,6 +1,8 @@
 import Form from 'react-bootstrap/Form'
 import React, { useContext, useEffect, useState } from 'react'
 import Button from 'react-bootstrap/esm/Button'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import axios from 'axios'
 import { AuthContext } from '../providers/AuthProvider'
 import { MyLink } from './shared/Navbar'
@@ -50,6 +52,7 @@ const JobForm = () => {
     <div>
       <h1>Post a Job</h1>
       <Form onSubmit={handleSubmit}>
+        <Row className="mb-3">
         <Form.Group className="mb-3" controlId="jobname">
           <Form.Label>Job Name: </Form.Label>
           <Form.Control
@@ -61,7 +64,9 @@ const JobForm = () => {
             }}
           />
           </Form.Group>
-
+          </Row>
+          
+          <Row className="mb-3">
           <Form.Group className="mb-3" controlId="description">
           <Form.Label>Job Description: </Form.Label>
           <Form.Control
@@ -73,7 +78,9 @@ const JobForm = () => {
             }}
           />
           </Form.Group>
-
+          </Row>
+          
+          <Row className="mb-3">
           <Form.Group className="mb-3" controlId="salary">
           <Form.Label>Salary: </Form.Label>
           <Form.Control
@@ -85,7 +92,9 @@ const JobForm = () => {
             }}
           />
           </Form.Group>
-
+          </Row>
+          
+          <Row className="mb-3">
           <Form.Group className="mb-3" controlId="location">
           <Form.Label>Location: </Form.Label>
           <Form.Control
@@ -97,7 +106,10 @@ const JobForm = () => {
             }}
           />
           </Form.Group>
+          </Row>
 
+          <Row className="mb-3">
+            <Col>
           <Form.Group className="mb-3" controlId="company_id">
           <Form.Label>Company: </Form.Label>
           <Form.Control
@@ -118,6 +130,9 @@ const JobForm = () => {
           
           <MyLink url="/addcompany">Add A New Company</MyLink>
 
+          </Col>
+
+          <Col>
           <Form.Group className="mb-3" controlId="remote">
           <Form.Label>Remote: </Form.Label>
           <Form.Control
@@ -131,6 +146,8 @@ const JobForm = () => {
             <option value="false">No</option>
           </Form.Control>
           </Form.Group>
+          </Col>
+          </Row>
 
         <Button variant='primary' type='submit'>Submit</Button>
       </Form>
