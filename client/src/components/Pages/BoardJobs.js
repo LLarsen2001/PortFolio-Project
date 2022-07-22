@@ -21,9 +21,9 @@ const TaskList = styled.div`
   background: #f3f3f3;
   min-width: 100px;
   border-radius: 5px;
+  justify-content: space-between;
   
-  margin-right: 10px;
-  align-self: auto;
+  
 `;
 
 const TaskColumnStyles = styled.div`

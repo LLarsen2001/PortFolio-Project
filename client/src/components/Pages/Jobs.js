@@ -3,10 +3,16 @@ import axios from 'axios'
 import Job from './Job'
 import { UserJobsContext } from '../../providers/UserJobsProvider'
 import styled from 'styled-components'
+import SearchBar from './Search'
 
 const JobContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  transition: transform 200ms;
+  overflow: hidden;
+  border-radius:$radius;
+  
   `
 
 const Jobs = () => {
@@ -45,6 +51,9 @@ const Jobs = () => {
   return (
     <div>
       <h1>Discover Jobs</h1>
+      <div>
+        <SearchBar />
+      </div>
       <JobContainer>
         {renderJobs()}
       </JobContainer>

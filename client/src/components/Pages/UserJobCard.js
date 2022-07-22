@@ -8,13 +8,9 @@ import { Draggable } from 'react-beautiful-dnd';
 import { useContext, useEffect, useState } from 'react';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
 
-const Cardstyle = styled.div`
-  max-width: 19vw;
-  display: flex;
-  border-radius: 45px;
-  padding: 15px;
-  
-`;
+
+
+
 
 const DeleteButton = styled.div`
 float: right;
@@ -47,9 +43,9 @@ const UserJobCard = ({ job, index }) => {
         let d = DateTime.fromISO(time).diffNow("days")
         let day = { days: d.days * -1 }
         let duration = Duration.fromObject(day)
-        if (duration.values.days <= 2) {
+        if (duration.values.days <= 1) {
             return setCardColor("#21F778")
-        } else if (duration.values.days <= 3) {
+        } else if (duration.values.days <= 2) {
             return setCardColor("#F7B821")
 
         } else {
@@ -67,37 +63,37 @@ const UserJobCard = ({ job, index }) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <Cardstyle>
-                        <Card
-                            text='white'
-                            style={{
-                                width: '25rem', borderRadius: "30px", background: cardColor
-                            }}>
-                            <CardHeader>
-                                <DeleteButton> <button onClick={() => deleteUserJob(job.id)}>X</button></DeleteButton>
-                                <Card.Text> <Cardlocationtext>Posted by: {job.email}  </Cardlocationtext></Card.Text>
-                            </CardHeader>
-                            <Cardjobbodystyle>
-                                <Card.Body>
-                                    <Card.Text>
-                                        <p><b>{job.jobname}</b>  <Cardlocationtext>{job.location}</Cardlocationtext></p>
-                                        <p>
-                                            {job.description}{format(job.created_at)}
-                                        </p>
-                                    </Card.Text>
 
-                                </Card.Body>
-                                <Card.Footer>
+                    <Card
+                        text='white'
+                        style={{
+                            width: '19vw', height: '22vw', borderRadius: "30px", background: cardColor, margin: "10px"
+                        }}>
+                        <CardHeader>
+                            <DeleteButton> <button onClick={() => deleteUserJob(job.id)}>X</button></DeleteButton>
+                            <Card.Text> <Cardlocationtext>Posted by: {job.email}  </Cardlocationtext></Card.Text>
+                        </CardHeader>
+                        <Cardjobbodystyle>
+                            <Card.Body>
+                                <Card.Text>
+                                    <p><b>{job.jobname}</b>  <Cardlocationtext>{job.location}</Cardlocationtext></p>
+                                    <p>
+                                        {job.description}{format(job.created_at)}
+                                    </p>
+                                </Card.Text>
 
-                                    <Card.Text>
-                                        <p><b>{job.companyname}</b><Cardlocationtext>{job.baselocation}</Cardlocationtext></p>
+                            </Card.Body>
+                            <Card.Footer>
 
-                                        <p>{job.about}</p>
-                                    </Card.Text>
-                                </Card.Footer>
-                            </Cardjobbodystyle>
-                        </Card >
-                    </Cardstyle >
+                                <Card.Text>
+                                    <p><b>{job.companyname}</b><Cardlocationtext>{job.baselocation}</Cardlocationtext></p>
+
+                                    <p>{job.about}</p>
+                                </Card.Text>
+                            </Card.Footer>
+                        </Cardjobbodystyle>
+                    </Card >
+
                 </div>
             )}
         </Draggable>
