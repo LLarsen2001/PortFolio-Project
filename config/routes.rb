@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get '/users/:user_id/data', to: 'userjobs#boarddata'
     get '/users/:user_id/userjobs/:id', to: 'userjobs#show'
     post '/users/:user_id/userjobs', to: 'userjobs#create'
+    post '/users/:id/update_image', to: 'users#update_image'
     get '/users/:user_id/userjobs', to: 'userjobs#index'
     put '/users/:user_id/userjobs/:id', to: 'userjobs#update'
     delete '/users/:user_id/userjobs/:id', to: 'userjobs#destroy'
