@@ -39,7 +39,9 @@ const BuildingNavbar = () => {
     };
     return (
         <>
-            <Navbar bg="light" variant="light">
+            <Navbar bg="light" variant="light" style={{
+                paddingLeft: "2rem",
+            }}>
                 <LinkContainer to="/">
                     <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
                 </LinkContainer>

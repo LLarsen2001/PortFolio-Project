@@ -1,6 +1,17 @@
 import axios from "axios"
 import React, { useState, useRef, useEffect } from "react"
 import Job from "./Job"
+import styled from "styled-components";
+
+const JobContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 19vw);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  
+  
+  `;
 
 const SearchBar = () => {
   const [query, setQuery] = useState("")
@@ -68,13 +79,16 @@ const SearchBar = () => {
         onChange={handleChange}
         onKeyUp={handleKeyUp}
       />
-      {showJob && filteredJob ? (
-        <ul style={{ listStyleType: "none", textAlign: "center" }}>
-          {filteredJob.map((item, index) => {
-            return <Job key={index} {...item}></Job>
-          })}
-        </ul>
-      ) : null}
+      <JobContainer>
+
+        {showJob && filteredJob ? (
+          <ul style={{ listStyleType: "none", textAlign: "center" }}>
+            {filteredJob.map((item, index) => {
+              return <Job key={index} {...item}></Job>
+            })}
+          </ul>
+        ) : null}
+      </JobContainer>
     </>
   )
 }
