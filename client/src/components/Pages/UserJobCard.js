@@ -16,7 +16,7 @@ import { UserJobsContext } from '../../providers/UserJobsProvider';
 
 
 const Cardjobbodystyle = styled.div`
-  display-left: left;
+
 
 `;
 
@@ -70,31 +70,32 @@ const UserJobCard = ({ job, index }) => {
                             background: cardColor,
                             justifyContent: "space-between",
                             overflow: "hidden",
-                            margin: ".4vw"
+                            margin: ".2vw"
                         }}>
                         <Card.Header >
                             <a onClick={() => deleteUserJob(job.id)} class="close"></a>
                             <Card.Text> <Cardlocationtext>Added on {format(job.created_at)}  </Cardlocationtext></Card.Text>
                         </Card.Header>
-                        <Cardjobbodystyle>
-                            <Card.Body>
-                                <Card.Text>
-                                    <p><b>{job.jobname}</b>  <Cardlocationtext>{job.location}</Cardlocationtext></p>
-                                    <p>
-                                        {job.description}
-                                    </p>
-                                </Card.Text>
 
-                            </Card.Body>
-                            <Card.Footer>
+                        <Card.Body>
+                            <Card.Title>{job.jobname} </Card.Title>
+                            <Card.Text>
+                                <p><Cardlocationtext>Located At {job.location}</Cardlocationtext></p>
+                                <p>
+                                    {job.description}
+                                </p>
+                            </Card.Text>
 
-                                <Card.Text>
-                                    <p><b>{job.companyname}</b><Cardlocationtext>{job.baselocation}</Cardlocationtext></p>
+                        </Card.Body>
+                        <Card.Footer>
 
-                                    <p>{job.about}</p>
-                                </Card.Text>
-                            </Card.Footer>
-                        </Cardjobbodystyle>
+                            <Card.Text>
+                                <p><b>{job.companyname}</b><Cardlocationtext>{job.baselocation}</Cardlocationtext></p>
+
+                                <p>{job.about}</p>
+                            </Card.Text>
+                        </Card.Footer>
+
                     </Card >
 
                 </div>
