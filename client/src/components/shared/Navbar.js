@@ -22,7 +22,6 @@ const BuildingNavbar = () => {
                 <>
                     <MyLink url="/profile">Profile</MyLink>
                     <MyLink url="/jobs">Jobs</MyLink>
-                    <MyLink url="/addjob">Add New Job</MyLink>
                     <MyLink url="/jobsboard">Jobs Board</MyLink>
 
                     <Nav.Link as={"li"} onClick={logout}>Logout</Nav.Link>

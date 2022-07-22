@@ -19,7 +19,6 @@ const JobForm = () => {
   const [location, setLocation] = useState("")
   const user_id = user.id
   const isFilled = false
-  const navigate = useNavigate()
 
   useEffect(()=> {
     getCompanies()
@@ -37,7 +36,6 @@ const JobForm = () => {
   const addJob = async (job) => {
     try {
       await axios.post('/api/jobs', job)
-      navigate("/jobs")
     } catch(err) {
       alert("Error occurred adding a job")
     }

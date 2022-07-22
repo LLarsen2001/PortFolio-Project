@@ -6,12 +6,11 @@ import Row from 'react-bootstrap/Row';
 import axios from 'axios'
 
 import { MyLink } from './Navbar'
-import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../providers/AuthProvider';
 
-const EditJobForm = (props) => {
+const EditJobForm = (id) => {
   const { user } = useContext(AuthContext)
-  const [jobname, setJobName] = useState(props.jobname)
+  const [jobname, setJobName] = useState(null)
   const [companies, setCompanies] = useState([])
   const [company_id, setCompanyID] = useState(null)
   const [salary, setSalary] = useState(null)
@@ -20,7 +19,6 @@ const EditJobForm = (props) => {
   const [location, setLocation] = useState("")
   const user_id = user.id
   const isFilled = false
-  const navigate = useNavigate()
 
   useEffect(()=> {
     getCompanies()
@@ -35,23 +33,22 @@ const EditJobForm = (props) => {
     }
   }
 
-  const addJob = async (job) => {
+  const updateJob = async (job) => {
     try {
-      await axios.post('/api/jobs', job)
-      navigate("/jobs")
+      await axios.put(`/api/jobs/${id.id}`, job)
     } catch(err) {
-      alert("Error occurred adding a job")
+      alert("Error occurred updating a job")
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addJob({jobname, company_id, salary, description, remote, location, user_id, isFilled})
+    updateJob({jobname, company_id, salary, description, remote, location, user_id, isFilled})
   }
 
   return (
     <div>
-      <p>{JSON.stringify(props.props.show)}</p>
+      {JSON.stringify(id)}
       <h1>Edit Job</h1>
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3">

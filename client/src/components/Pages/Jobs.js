@@ -23,7 +23,7 @@ const Jobs = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const add = true
+  const add = true;
  
     
   useEffect(() => {

@@ -7,6 +7,8 @@ import { DateTime, Duration } from "luxon";
 import { Draggable } from 'react-beautiful-dnd';
 import { useContext, useEffect, useState } from 'react';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
+import Button from 'react-bootstrap/esm/Button';
+import ModalDemo from '../../demos/ModalDemo';
 
 
 
@@ -31,6 +33,10 @@ const Cardlocationtext = styled.div`
 const UserJobCard = ({ job, index }) => {
     const [cardColor, setCardColor] = useState("")
     const { deleteUserJob } = useContext(UserJobsContext)
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const add = false;
 
     useEffect(() => {
         diff(job.created_at);
@@ -70,6 +76,10 @@ const UserJobCard = ({ job, index }) => {
                             width: '19vw', height: '22vw', borderRadius: "30px", background: cardColor, margin: "10px"
                         }}>
                         <CardHeader>
+                            <Button variant="primary" onClick={handleShow}>
+                                Edit
+                            </Button>
+                            <ModalDemo show={show} handleClose={handleClose} add={add} job_id = {job.id}/>
                             <DeleteButton> <button onClick={() => deleteUserJob(job.id)}>X</button></DeleteButton>
                             <Card.Text> <Cardlocationtext>Posted by: {job.email}  </Cardlocationtext></Card.Text>
                         </CardHeader>
