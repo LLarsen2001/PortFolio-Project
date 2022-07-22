@@ -1,6 +1,5 @@
 
 import Card from 'react-bootstrap/Card';
-import CardHeader from 'react-bootstrap/esm/CardHeader';
 import styled from 'styled-components';
 import { DateTime, Duration } from "luxon";
 import "../../App.css"
@@ -8,22 +7,9 @@ import { Draggable } from 'react-beautiful-dnd';
 import { useContext, useEffect, useState } from 'react';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
 
-
-
-
-
-
-
-
-const Cardjobbodystyle = styled.div`
-
-
-`;
-
 const Cardlocationtext = styled.div`
   font-size: 12px;
 `;
-
 
 const UserJobCard = ({ job, index }) => {
     const [cardColor, setCardColor] = useState("")
@@ -49,7 +35,6 @@ const UserJobCard = ({ job, index }) => {
             return setCardColor("#D50404")
         }
     }
-
 
     return (
 
@@ -101,11 +86,6 @@ const UserJobCard = ({ job, index }) => {
                 </div>
             )}
         </Draggable>
-
-
-
     );
 }
 export default UserJobCard;
-
-
