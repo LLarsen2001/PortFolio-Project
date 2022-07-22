@@ -35,7 +35,7 @@ const Job = (props) => {
       <Card
         text='white'
         style={{
-          width: '25rem', background: "#2145F7", borderRadius: "30px", display: "flex", justifycontent: "space-between"
+          width: '19vw', height: '22vw', background: "#2145F7", borderRadius: "45px", justifycontent: "space-between", padding: '15px 15px'
         }}>
         <CardHeader>
           <Card.Text> <Cardlocationtext>Posted by: {props.email} </Cardlocationtext></Card.Text>
