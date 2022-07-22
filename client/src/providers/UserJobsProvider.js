@@ -23,7 +23,6 @@ const UserJobsProvider = ({ children }) => {
         let res = await axios.get(`/api/users/${user.id}/data`)
 
         setUserJobs(res.data)
-
     };
 
     const addUserJob = async (uj) => {

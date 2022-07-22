@@ -14,15 +14,16 @@ const Container = styled.div`
 `;
 
 const TaskList = styled.div`
-  min-height: 30px;
-  display: flex;
-  flex-direction: column;
+  
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr) ) ;
+ 
   background: #f3f3f3;
   min-width: 100px;
   border-radius: 5px;
+  justify-content: space-between;
   
-  margin-right: 10px;
-  align-self: auto;
+  
 `;
 
 const TaskColumnStyles = styled.div`
