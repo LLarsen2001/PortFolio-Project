@@ -35,11 +35,11 @@ const Job = (props) => {
       <Card
         text='white'
         style={{
-          width: '19vw', height: '22vw', background: "#2145F7", borderRadius: "45px", justifycontent: "space-between", padding: '15px 15px'
+          width: '19vw', height: '22vw', background: "#2145F7", borderRadius: "45px", justifyContent: "space-between", overflow: "hidden"
         }}>
-        <CardHeader>
+        <Card.Header>
           <Card.Text> <Cardlocationtext>Posted by: {props.email} </Cardlocationtext></Card.Text>
-        </CardHeader>
+        </Card.Header>
         <Cardjobbodystyle>
           <Card.Body>
             <Card.Text>

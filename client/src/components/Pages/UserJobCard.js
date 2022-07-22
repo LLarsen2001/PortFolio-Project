@@ -73,16 +73,16 @@ const UserJobCard = ({ job, index }) => {
                     <Card
                         text='white'
                         style={{
-                            width: '19vw', height: '22vw', borderRadius: "30px", background: cardColor, margin: "10px"
+                            width: '19vw', height: '22vw', borderRadius: "45px", background: cardColor, justifyContent: "space-between", overflow: "hidden", margin: ".4vw"
                         }}>
-                        <CardHeader>
+                        <Card.Header>
                             <Button variant="primary" onClick={handleShow}>
                                 Edit
                             </Button>
                             <ModalDemo show={show} handleClose={handleClose} add={add} job_id = {job.id}/>
                             <DeleteButton> <button onClick={() => deleteUserJob(job.id)}>X</button></DeleteButton>
                             <Card.Text> <Cardlocationtext>Posted by: {job.email}  </Cardlocationtext></Card.Text>
-                        </CardHeader>
+                        </Card.Header>
                         <Cardjobbodystyle>
                             <Card.Body>
                                 <Card.Text>

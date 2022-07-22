@@ -8,14 +8,20 @@ import ModalDemo from '../../demos/ModalDemo'
 import Button from 'react-bootstrap/esm/Button'
 
 const JobContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 200ms;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 19vw);
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  border-radius:$radius;
   
-  `
+  
+  `;
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  `;
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([])
@@ -23,9 +29,9 @@ const Jobs = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const add = true;
- 
-    
+  const add = true
+
+
   useEffect(() => {
     getJobs()
   }, [])
@@ -55,16 +61,23 @@ const Jobs = () => {
 
   return (
     <div>
-      <h1>Discover Jobs</h1>
-      <div>
-      <Button variant="primary" onClick={handleShow}>
-        Add Job
-      </Button>
-      <ModalDemo show={show} handleClose={handleClose} add={add}/>
-      </div>
-      <div>
-        <SearchBar />
-      </div>
+      <Container>
+        <h1>Discover Jobs</h1>
+      </Container>
+      <Container>
+        <div>
+
+          <Button variant="primary" onClick={handleShow}>
+            Add Job
+          </Button>
+          <ModalDemo show={show} handleClose={handleClose} add={add} />
+        </div>
+      </Container>
+      <Container>
+        <div>
+          <SearchBar />
+        </div>
+      </Container>
       <JobContainer>
         {renderJobs()}
       </JobContainer>
