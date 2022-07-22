@@ -17,10 +17,10 @@ const TaskList = styled.div`
   
   grid-gap: 10px;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr) ) ;
- 
+  border: 1px solid black;
   background: #f3f3f3;
   width: 19.8vw;
-  border-radius: 5px;
+  border-radius: 10px;
   justify-content: space-between;
   
   
@@ -38,8 +38,9 @@ const Title = styled.span`
   color: #10957d;
   background: rgba(16, 149, 125, 0.15);
   padding: 2px 10px;
-  border-radius: 5px;
-  align-self: flex-start;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
 `;
 
 const JobsBoard = () => {
