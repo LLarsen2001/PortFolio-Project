@@ -1,9 +1,10 @@
 import Card from 'react-bootstrap/Card'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import Button from 'react-bootstrap/esm/Button';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
+import ModalDemo from '../../demos/ModalDemo'
 
 const Cardstyle = styled.div`
 max-width: 19vw;
@@ -23,6 +24,10 @@ font-size: 12px;
 
 const Job = (props) => {
   const { addUserJob } = useContext(UserJobsContext)
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const add = true;
   const formatSalary = () => {
     return "$" + props.salary + "/yr"
   }
@@ -38,6 +43,10 @@ const Job = (props) => {
           width: '19vw', height: '22vw', background: "#2145F7", borderRadius: "45px", justifyContent: "space-between", overflow: "hidden"
         }}>
         <Card.Header>
+        <Button variant="primary" onClick={handleShow}>
+          Edit
+        </Button>
+        <ModalDemo show={show} handleClose={handleClose} add={add} />
           <Card.Text> <Cardlocationtext>Posted by: {props.email} </Cardlocationtext></Card.Text>
         </Card.Header>
         <Cardjobbodystyle>

@@ -13,10 +13,9 @@ function TabsDemo(props) {
       className="mb-3"
     >
       <Tab eventKey="details" title="Job Details">
-        {props.add ? (<JobForm />) : <EditJobForm id = {props.id}/> }
+        {props.add ? (<JobForm />) : <EditJobForm job={props.job}/> }
       </Tab>
       <Tab eventKey="notes" title="Notes">
-        {JSON.stringify(props)}
         <p>Notes Section Goes Here</p>
       </Tab>
       <Tab eventKey="documents" title="Documents">

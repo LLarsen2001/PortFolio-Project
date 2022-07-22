@@ -8,7 +8,7 @@ import axios from 'axios'
 import { MyLink } from './Navbar'
 import { AuthContext } from '../../providers/AuthProvider';
 
-const EditJobForm = (id) => {
+const EditJobForm = (job) => {
   const { user } = useContext(AuthContext)
   const [jobname, setJobName] = useState(null)
   const [companies, setCompanies] = useState([])
@@ -35,7 +35,7 @@ const EditJobForm = (id) => {
 
   const updateJob = async (job) => {
     try {
-      await axios.put(`/api/jobs/${id.id}`, job)
+      await axios.put(`/api/jobs/${job.job.id}`, job)
     } catch(err) {
       alert("Error occurred updating a job")
     }
@@ -48,7 +48,6 @@ const EditJobForm = (id) => {
 
   return (
     <div>
-      {JSON.stringify(id)}
       <h1>Edit Job</h1>
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3">
@@ -56,7 +55,7 @@ const EditJobForm = (id) => {
           <Form.Label>Job Name: </Form.Label>
           <Form.Control
             type='jobname'
-            placeholder={jobname}
+            placeholder={job.job.jobname}
             value={jobname}
             onChange={(e) => {
               setJobName(e.target.value)
@@ -70,7 +69,7 @@ const EditJobForm = (id) => {
           <Form.Label>Job Description: </Form.Label>
           <Form.Control
             type='description'
-            placeholder='Enter Job Description'
+            placeholder={job.job.description}
             value={description}
             onChange={(e) => {
               setDescription(e.target.value)
@@ -84,7 +83,7 @@ const EditJobForm = (id) => {
           <Form.Label>Salary: </Form.Label>
           <Form.Control
             type='salary'
-            placeholder='Enter Salary'
+            placeholder={job.job.salary}
             value={salary}
             onChange={(e) => {
               setSalary(e.target.value)

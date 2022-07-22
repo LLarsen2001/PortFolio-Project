@@ -78,10 +78,14 @@ const UserJobCard = ({ job, index }) => {
                             overflow: "hidden",
                             margin: ".4vw"
                         }}>
-                        <Card.Header >
+                        <CardHeader >
+                            <Button variant="primary" onClick={handleShow}>
+                                Edit
+                            </Button>
+                            <ModalDemo show={show} handleClose={handleClose} add={add} job={job}/>
                             <a onClick={() => deleteUserJob(job.id)} class="close"></a>
                             <Card.Text> <Cardlocationtext>Added on {format(job.created_at)}  </Cardlocationtext></Card.Text>
-                        </Card.Header>
+                        </CardHeader>
                         <Cardjobbodystyle>
                             <Card.Body>
                                 <Card.Text>
