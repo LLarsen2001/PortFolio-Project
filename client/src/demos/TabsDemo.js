@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import JobForm from '../components/JobForm';
+import EditJobForm from '../components/shared/EditJobForm';
 
-function TabsDemo(props) {
-  const [add, setAdd] = useState(false)
+function TabsDemo(add) {
+  
   return (
     <Tabs
       defaultActiveKey="details"
@@ -13,7 +13,7 @@ function TabsDemo(props) {
       className="mb-3"
     >
       <Tab eventKey="details" title="Job Details">
-        <EditJobForm props={props}/>
+        {add ? (<JobForm />) :<EditJobForm /> }
       </Tab>
       <Tab eventKey="notes" title="Notes">
         <p>Notes Section Goes Here</p>
