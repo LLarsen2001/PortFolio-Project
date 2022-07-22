@@ -7,7 +7,7 @@ class Api::JobsController < ApplicationController
   end
 
   def show
-    render json: @book
+    render json: @job
   end
 
   def create 

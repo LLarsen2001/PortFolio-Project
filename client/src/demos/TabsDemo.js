@@ -3,7 +3,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import JobForm from '../components/JobForm';
 import EditJobForm from '../components/shared/EditJobForm';
 
-function TabsDemo(add) {
+function TabsDemo(props) {
   
   return (
     <Tabs
@@ -13,7 +13,7 @@ function TabsDemo(add) {
       className="mb-3"
     >
       <Tab eventKey="details" title="Job Details">
-        {add ? (<JobForm />) :<EditJobForm /> }
+        {props.add ? (<JobForm />) : <EditJobForm job={props.job}/> }
       </Tab>
       <Tab eventKey="notes" title="Notes">
         <p>Notes Section Goes Here</p>

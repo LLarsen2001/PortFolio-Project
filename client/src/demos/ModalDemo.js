@@ -17,13 +17,12 @@ function ModalDemo(props) {
           <Modal.Title>Edit Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <TabsDemo add={props.add}/>
+          <TabsDemo add={props.add} job={props.job}/>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.handleClose}>
+          {/* <Button variant="secondary" onClick={props.handleClose}>
             Close
-          </Button>
-          <Button variant="primary">Understood</Button>
+          </Button> */}
         </Modal.Footer>
       </Modal>
     </>

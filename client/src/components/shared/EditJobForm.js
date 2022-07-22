@@ -6,12 +6,11 @@ import Row from 'react-bootstrap/Row';
 import axios from 'axios'
 
 import { MyLink } from './Navbar'
-import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../providers/AuthProvider';
 
-const EditJobForm = (props) => {
+const EditJobForm = (job) => {
   const { user } = useContext(AuthContext)
-  const [jobname, setJobName] = useState(props.jobname)
+  const [jobname, setJobName] = useState(null)
   const [companies, setCompanies] = useState([])
   const [company_id, setCompanyID] = useState(null)
   const [salary, setSalary] = useState(null)
@@ -20,7 +19,6 @@ const EditJobForm = (props) => {
   const [location, setLocation] = useState("")
   const user_id = user.id
   const isFilled = false
-  const navigate = useNavigate()
 
   useEffect(()=> {
     getCompanies()
@@ -35,23 +33,21 @@ const EditJobForm = (props) => {
     }
   }
 
-  const addJob = async (job) => {
+  const updateJob = async (job) => {
     try {
-      await axios.post('/api/jobs', job)
-      navigate("/jobs")
+      await axios.put(`/api/jobs/${job.job.id}`, job)
     } catch(err) {
-      alert("Error occurred adding a job")
+      alert("Error occurred updating a job")
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addJob({jobname, company_id, salary, description, remote, location, user_id, isFilled})
+    updateJob({jobname, company_id, salary, description, remote, location, user_id, isFilled})
   }
 
   return (
     <div>
-      <p>{JSON.stringify(props.props.show)}</p>
       <h1>Edit Job</h1>
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3">
@@ -59,7 +55,7 @@ const EditJobForm = (props) => {
           <Form.Label>Job Name: </Form.Label>
           <Form.Control
             type='jobname'
-            placeholder={jobname}
+            placeholder={job.job.jobname}
             value={jobname}
             onChange={(e) => {
               setJobName(e.target.value)
@@ -73,7 +69,7 @@ const EditJobForm = (props) => {
           <Form.Label>Job Description: </Form.Label>
           <Form.Control
             type='description'
-            placeholder='Enter Job Description'
+            placeholder={job.job.description}
             value={description}
             onChange={(e) => {
               setDescription(e.target.value)
@@ -87,7 +83,7 @@ const EditJobForm = (props) => {
           <Form.Label>Salary: </Form.Label>
           <Form.Control
             type='salary'
-            placeholder='Enter Salary'
+            placeholder={job.job.salary}
             value={salary}
             onChange={(e) => {
               setSalary(e.target.value)

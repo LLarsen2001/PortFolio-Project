@@ -6,6 +6,8 @@ import "../../App.css"
 import { Draggable } from 'react-beautiful-dnd';
 import { useContext, useEffect, useState } from 'react';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
+import Button from 'react-bootstrap/esm/Button';
+import ModalDemo from '../../demos/ModalDemo';
 
 const Cardlocationtext = styled.div`
   font-size: 12px;
@@ -14,6 +16,10 @@ const Cardlocationtext = styled.div`
 const UserJobCard = ({ job, index }) => {
     const [cardColor, setCardColor] = useState("")
     const { deleteUserJob } = useContext(UserJobsContext)
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const add = false;
 
     useEffect(() => {
         diff(job.created_at);
@@ -57,10 +63,14 @@ const UserJobCard = ({ job, index }) => {
                             overflow: "hidden",
                             margin: ".2vw"
                         }}>
-                        <Card.Header >
+                        <CardHeader >
+                            <Button variant="primary" onClick={handleShow}>
+                                Edit
+                            </Button>
+                            <ModalDemo show={show} handleClose={handleClose} add={add} job={job}/>
                             <a onClick={() => deleteUserJob(job.id)} class="close"></a>
                             <Card.Text> <Cardlocationtext>Added on {format(job.created_at)}  </Cardlocationtext></Card.Text>
-                        </Card.Header>
+                        </CardHeader>
 
                         <Card.Body>
                             <Card.Title>{job.jobname} </Card.Title>
