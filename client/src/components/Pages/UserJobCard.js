@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import styled from 'styled-components';
 import { DateTime, Duration } from "luxon";
-
+import "../../App.css"
 import { Draggable } from 'react-beautiful-dnd';
 import { useContext, useEffect, useState } from 'react';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
@@ -14,11 +14,8 @@ import ModalDemo from '../../demos/ModalDemo';
 
 
 
-const DeleteButton = styled.div`
-float: right;
-border-radius: 50px;
-background-coler: #0a0a23;
- `;
+
+
 
 const Cardjobbodystyle = styled.div`
   display-left: left;
@@ -43,7 +40,7 @@ const UserJobCard = ({ job, index }) => {
     }, [])
 
     const format = (time) => {
-        return DateTime.fromISO(time).toFormat('ffff')
+        return DateTime.fromISO(time).toFormat('ff')
     }
     const diff = (time) => {
         let d = DateTime.fromISO(time).diffNow("days")
@@ -73,22 +70,24 @@ const UserJobCard = ({ job, index }) => {
                     <Card
                         text='white'
                         style={{
-                            width: '19vw', height: '22vw', borderRadius: "45px", background: cardColor, justifyContent: "space-between", overflow: "hidden", margin: ".4vw"
+                            width: '19vw',
+                            height: '22vw',
+                            borderRadius: "45px",
+                            background: cardColor,
+                            justifyContent: "space-between",
+                            overflow: "hidden",
+                            margin: ".4vw"
                         }}>
-                        <Card.Header>
-                            <Button variant="primary" onClick={handleShow}>
-                                Edit
-                            </Button>
-                            <ModalDemo show={show} handleClose={handleClose} add={add} job_id = {job.id}/>
-                            <DeleteButton> <button onClick={() => deleteUserJob(job.id)}>X</button></DeleteButton>
-                            <Card.Text> <Cardlocationtext>Posted by: {job.email}  </Cardlocationtext></Card.Text>
+                        <Card.Header >
+                            <a onClick={() => deleteUserJob(job.id)} class="close"></a>
+                            <Card.Text> <Cardlocationtext>Added on {format(job.created_at)}  </Cardlocationtext></Card.Text>
                         </Card.Header>
                         <Cardjobbodystyle>
                             <Card.Body>
                                 <Card.Text>
                                     <p><b>{job.jobname}</b>  <Cardlocationtext>{job.location}</Cardlocationtext></p>
                                     <p>
-                                        {job.description}{format(job.created_at)}
+                                        {job.description}
                                     </p>
                                 </Card.Text>
 
@@ -113,8 +112,5 @@ const UserJobCard = ({ job, index }) => {
     );
 }
 export default UserJobCard;
-
-
-
 
 
