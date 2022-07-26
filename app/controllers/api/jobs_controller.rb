@@ -2,10 +2,14 @@ class Api::JobsController < ApplicationController
   # before_action :authenticate_user!
   before_action :set_job, only: [:show, :update, :destroy]
 
-  def index
+  def available
     render json: Job.availableJobs
   end
 
+  def all
+    render json: Job.all
+  end
+  
   def show
     render json: @job
   end

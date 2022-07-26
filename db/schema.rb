@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_11_205918) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_26_173627) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_11_205918) do
     t.text "about"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.bigint "userjob_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["userjob_id"], name: "index_documents_on_userjob_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -34,6 +43,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_11_205918) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_jobs_on_company_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.bigint "userjob_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["userjob_id"], name: "index_notes_on_userjob_id"
   end
 
   create_table "userjobs", force: :cascade do |t|
@@ -77,7 +95,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_11_205918) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "documents", "userjobs"
   add_foreign_key "jobs", "companies"
+  add_foreign_key "notes", "userjobs"
   add_foreign_key "userjobs", "jobs"
   add_foreign_key "userjobs", "users"
 end
