@@ -76,7 +76,7 @@ const UserJobCard = ({ job, index }) => {
                                 onClick={() => {
                                 handleShow(job.id)
                             }}>
-                                {JSON.stringify(job.id)}
+                                Edit
                             </Button>
                             <ModalDemo show={show} handleClose={handleClose} add={add} />
                             <a onClick={() => deleteUserJob(job.id)} class="close"></a>

@@ -43,9 +43,9 @@ const Job = (props) => {
           width: '19vw', height: '22vw', background: "#2145F7", borderRadius: "45px", justifyContent: "space-between", overflow: "hidden"
         }}>
         <Card.Header>
-        <Button variant="primary" onClick={handleShow}>
+        {/* <Button variant="primary" onClick={handleShow}>
           Edit
-        </Button>
+        </Button> */}
         <ModalDemo show={show} handleClose={handleClose} add={add} />
           <Card.Text> <Cardlocationtext>Posted by: {props.email} </Cardlocationtext></Card.Text>
         </Card.Header>

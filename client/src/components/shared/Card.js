@@ -6,10 +6,10 @@ const Card = (props) => {
     return (
         <CardContainer>
             <CardHeaderContainer>
-                <h3>{props.header}</h3>
+                <h3>{props.title}</h3>
                 <Button onClick={toggle}>{show ? 'hide' : 'show'}</Button>
             </CardHeaderContainer>
-            {show && <CardBody>{props.children}</CardBody>}
+            {show && <CardBody>{props.body}</CardBody>}
         </CardContainer>
     );
 };

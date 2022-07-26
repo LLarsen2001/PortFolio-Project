@@ -37,7 +37,7 @@ const EditJobForm = () => {
 
   const updateJob = async (updatedJob) => {
     try {
-      await axios.put(`/api/jobs/${job.id}`, updatedJob)
+      await axios.put(`/api/jobs/${job[0].id}`, updatedJob)
     } catch(err) {
       alert("Error occurred updating a job")
     }
@@ -50,7 +50,6 @@ const EditJobForm = () => {
 
   return (
     <div>
-      {JSON.stringify(job)}
       <h1>Edit Job</h1>
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3">
@@ -58,7 +57,7 @@ const EditJobForm = () => {
           <Form.Label>Job Name: </Form.Label>
           <Form.Control
             type='jobname'
-            placeholder={job.jobname}
+            placeholder={job[0].jobname}
             value={jobname}
             onChange={(e) => {
               setJobName(e.target.value)
@@ -72,7 +71,7 @@ const EditJobForm = () => {
           <Form.Label>Job Description: </Form.Label>
           <Form.Control
             type='description'
-            placeholder={job.description}
+            placeholder={job[0].description}
             value={description}
             onChange={(e) => {
               setDescription(e.target.value)
@@ -86,7 +85,7 @@ const EditJobForm = () => {
           <Form.Label>Salary: </Form.Label>
           <Form.Control
             type='salary'
-            placeholder={job.salary}
+            placeholder={job[0].salary}
             value={salary}
             onChange={(e) => {
               setSalary(e.target.value)
@@ -100,7 +99,7 @@ const EditJobForm = () => {
           <Form.Label>Location: </Form.Label>
           <Form.Control
             type='location'
-            placeholder='Enter Location'
+            placeholder={job[0].location}
             value={location}
             onChange={(e) => {
               setLocation(e.target.value)
