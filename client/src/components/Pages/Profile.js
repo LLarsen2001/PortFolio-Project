@@ -1,27 +1,106 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Card from 'react-bootstrap/Card'
 import { AuthContext } from "../../providers/AuthProvider";
 import styled from "styled-components";
+import Form from "react-bootstrap/Form"
+
+import Button from "react-bootstrap/esm/Button";
+import SingleImageUpload from "../shared/SingleImageUpload";
+
 const ImageS = styled.div`
-  display: flex
+  display: flex;
 `;
 const Profile = () => {
-  const { user } = useContext(AuthContext)
+  const [noImage] = useState("https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.kindpng.com%2Fpicc%2Fm%2F451-4517876_default-profile-hd-png-download.png&imgrefurl=https%3A%2F%2Fwww.kindpng.com%2Fimgv%2FhxibTwh_default-profile-hd-png-download%2F&tbnid=4edWzZTKs1yRvM&vet=12ahUKEwiu48-sk5f5AhXmATQIHQ_qBisQMygdegUIARCkAg..i&docid=xwIlDPGqcBhivM&w=860&h=663&q=default%20profile%20picture&ved=2ahUKEwiu48-sk5f5AhXmATQIHQ_qBisQMygdegUIARCkAg")
+  const { user, setUser, EditUser } = useContext(AuthContext)
+  const [emailToggle, setEmailToggle] = useState(false)
+  const [nameToggle, setNameToggle] = useState(false)
+  const [email, setEmail] = useState(user.email || '')
+  const [name, setName] = useState(user.name || '')
+
+  const handleEmailToggle = () => {
+    setEmailToggle(!emailToggle)
+  }
+  const handleNameToggle = () => {
+    setNameToggle(!nameToggle)
+  }
+  const handleEmailSubmit = (e) => {
+    e.preventDefault()
+    EditUser({ email })
+    setEmailToggle(false)
+  }
+  const handleUsernameSubmit = (n) => {
+    n.preventDefault()
+    EditUser({ name })
+    setNameToggle(false)
+  }
+
   return (
     <Card style={{
       width: "40vw",
       height: "40vw",
       boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
       justifyContent: "center",
-      alignItems: "center",
+      alignItems: "",
       margin: "0 auto",
       float: "none",
       marginTop: "1rem",
     }}>
       <Card.Body>
-        {/* <ImageS><Card.image>{user.image}</Card.image></ImageS> */}
+        <ImageS><Card.Img variant="top" src={noImage} /></ImageS >
         <Card.Title>Profile Page</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Email {user.email}</Card.Subtitle>
+        <Card.Text>Username {user.name}</Card.Text>
+
+
+        <Card.Text>Email {user.email}</Card.Text>
+        <>
+          <Button size="sm" onClick={handleEmailToggle}>Edit</Button>
+          {emailToggle &&
+            <Form onSubmit={handleEmailSubmit}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value)
+                  }}
+                  type="email" placeholder="Change Email?"
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
+          }
+
+        </>
+
+        <>
+          <Card.Text>Username {user.name}</Card.Text>
+          <Button size="sm" onClick={handleNameToggle}>Edit</Button>
+          {nameToggle &&
+            <Form onSubmit={handleUsernameSubmit}>
+              <Form.Group className="mb-3" controlId="formBasicName">
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  value={name}
+                  onChange={(n) => {
+                    setName(n.target.value)
+                  }}
+                  type="name" placeholder="Change Username?"
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
+          }
+
+        </>
+      </Card.Body>
+      <Card.Body>
+        <Card.Text>You can change your Profile image by dragging desired image file into the dropbox below.</Card.Text>
+        <SingleImageUpload style={{}} id={user.id} setUser={setUser} />
       </Card.Body>
     </Card>
   );

@@ -5,7 +5,7 @@ import { FilePond, registerPlugin } from 'react-filepond'
 
 // Import FilePond styles
 import 'filepond/dist/filepond.min.css'
-
+import styled from 'styled-components'
 // Import the Image EXIF Orientation and Image Preview plugins
 // Note: These need to be installed separately
 // `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
@@ -16,18 +16,25 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)
 
-function SingleImageUpload({id, setUser}) {
+const ImageStyle = styled.div`
+width: 40em;
+height: 6rem; 
+`;
+
+function SingleImageUpload({ id, setUser }) {
   const [files, setFiles] = useState([])
   return (
     <div className="App">
-      <FilePond
-        files={files}
-        onupdatefiles={setFiles}
-        allowMultiple={false}
-        server={`/api/users/${id}/update_image`}
-        name="file" 
-        labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
-      />
+      <ImageStyle>
+        <FilePond
+          files={files}
+          onupdatefiles={setFiles}
+          allowMultiple={false}
+          server={`/api/users/${id}/update_image`}
+          name="file"
+          labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
+        />
+      </ImageStyle>
     </div>
   )
 }

@@ -37,6 +37,8 @@ const AuthProvider = ({ children }) => {
         }
     };
 
+
+
     const Signup = async (user) => {
         // TODO axios call interact with DB
         try {
@@ -50,8 +52,18 @@ const AuthProvider = ({ children }) => {
         }
     };
 
+    const EditUser = async (uj) => {
+        try {
+            let res = await axios.put(`/api/users/${user.id}`, uj)
+            console.log(res)
+            setUser(res.data)
+        } catch (err) {
+            alert("user update didnt work")
+        }
+    }
+
     return (
-        <AuthContext.Provider value={{ user, setUser, login, logout, Signup }}>
+        <AuthContext.Provider value={{ user, setUser, login, logout, Signup, EditUser }}>
             {children}
         </AuthContext.Provider>
     );
