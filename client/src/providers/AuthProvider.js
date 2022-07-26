@@ -8,6 +8,7 @@ const AuthProvider = ({ children }) => {
     // if user is null, we are not logged in
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+
     const login = async (user) => {
         // TODO axios call interact with DB
         try {
@@ -18,6 +19,7 @@ const AuthProvider = ({ children }) => {
             alert("signin did not work");
             console.log(err);
         }
+
     };
     const logout = async () => {
         //Not working which user to logout?
@@ -34,6 +36,7 @@ const AuthProvider = ({ children }) => {
             console.log(err);
         }
     };
+
     const Signup = async (user) => {
         // TODO axios call interact with DB
         try {
@@ -46,6 +49,7 @@ const AuthProvider = ({ children }) => {
             console.log(err);
         }
     };
+
     return (
         <AuthContext.Provider value={{ user, setUser, login, logout, Signup }}>
             {children}

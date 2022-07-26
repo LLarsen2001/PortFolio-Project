@@ -1,4 +1,16 @@
-class Api::UsersController < ApplicationController
+class Api::UsersController < ApplicationController 
+  before_action :set_user, only: [:update, :destroy]
+  def update
+    if(@user.update(user_params))
+        render json: @user
+    else 
+        render json: @user.errors.full_message, status: 422
+    end
+end
+
+  def destroy
+    render json: @user.destroy
+  end
 
   def update_image
     file = params[:file]
@@ -22,4 +34,13 @@ class Api::UsersController < ApplicationController
       end
     end
   end
+  private
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:email, :name, :password)
+  end
+
 end
