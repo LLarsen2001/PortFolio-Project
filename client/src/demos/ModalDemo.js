@@ -17,7 +17,7 @@ function ModalDemo(props) {
           <Modal.Title>Edit Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <TabsDemo add={props.add} job={props.job}/>
+          <TabsDemo add={props.add} />
         </Modal.Body>
         <Modal.Footer>
           {/* <Button variant="secondary" onClick={props.handleClose}>

@@ -8,18 +8,26 @@ import { useContext, useEffect, useState } from 'react';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
 import Button from 'react-bootstrap/esm/Button';
 import ModalDemo from '../../demos/ModalDemo';
+import { FormDataContext } from '../../providers/FormDataProvider';
 
 const Cardlocationtext = styled.div`
   font-size: 12px;
 `;
 
 const UserJobCard = ({ job, index }) => {
+    const { setJobData } = useContext(FormDataContext)
     const [cardColor, setCardColor] = useState("")
     const { deleteUserJob } = useContext(UserJobsContext)
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const add = false;
+    const handleClose = () => setShow(false);
+    const handleShow = (id) => {
+        console.log(id)
+        setJobData(id)
+        setShow(true)
+        
+    }
+    
 
     useEffect(() => {
         diff(job.created_at);
@@ -64,10 +72,13 @@ const UserJobCard = ({ job, index }) => {
                             margin: ".2vw"
                         }}>
                         <Card.Header >
-                            <Button variant="primary" onClick={handleShow}>
-                                Edit
+                            <Button variant="primary" 
+                                onClick={() => {
+                                handleShow(job.id)
+                            }}>
+                                {JSON.stringify(job.id)}
                             </Button>
-                            <ModalDemo show={show} handleClose={handleClose} add={add} job={job}/>
+                            <ModalDemo show={show} handleClose={handleClose} add={add} />
                             <a onClick={() => deleteUserJob(job.id)} class="close"></a>
                             <Card.Text> <Cardlocationtext>Added on {format(job.created_at)}  </Cardlocationtext></Card.Text>
                         </Card.Header>
