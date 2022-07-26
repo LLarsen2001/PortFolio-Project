@@ -25,9 +25,9 @@ const UserJobCard = ({ job, index }) => {
         console.log(id)
         setJobData(id)
         setShow(true)
-        
+
     }
-    
+
 
     useEffect(() => {
         diff(job.created_at);
@@ -72,10 +72,10 @@ const UserJobCard = ({ job, index }) => {
                             margin: ".2vw"
                         }}>
                         <Card.Header >
-                            <Button variant="primary" 
+                            <Button variant="primary"
                                 onClick={() => {
-                                handleShow(job.id)
-                            }}>
+                                    handleShow(job.id)
+                                }}>
                                 Edit
                             </Button>
                             <ModalDemo show={show} handleClose={handleClose} add={add} />
