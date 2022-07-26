@@ -3,11 +3,10 @@ class Api::DocumentsController < ApplicationController
 
   def upload_document
     file = params[:file]
-   if file 
+    if file 
       begin
-        cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
-        user.image = cloud_image['secure_url']
-        
+        cloud_file = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
+        url = cloud_file['secure_url']
         if file.save
           render json: file
         else
@@ -21,6 +20,8 @@ class Api::DocumentsController < ApplicationController
          render json: {errors: e, message:'Error uploading to cloudinary'}, status: 422
       end
     end
+    
+    @document = @userjob.documents.new(document_params, url)
   end
 
   private
@@ -35,6 +36,6 @@ class Api::DocumentsController < ApplicationController
   
   
   def document_params
-      params.require(:note).permit(:title, :body, :userjob_id)
+      params.require(:document).permit(:title, :url, :userjob_id)
   end
 end

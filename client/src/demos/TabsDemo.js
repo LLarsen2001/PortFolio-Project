@@ -3,7 +3,9 @@ import { useContext, useEffect, useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import JobForm from '../components/JobForm';
+import DocumentUpload from '../components/shared/DocumentUpload';
 import EditJobForm from '../components/shared/EditJobForm';
+import NoteCard from '../components/shared/NoteCard';
 import NoteForm from '../components/shared/NoteForm';
 import { FormDataContext } from '../providers/FormDataProvider';
 
@@ -24,6 +26,15 @@ function TabsDemo(props) {
       alert("Error occurred getting notes")
     }
   }
+
+  const renderNotes = () => {
+    return notes.map(n => {
+      return (<div className='jobpage'>
+        <NoteCard key={n.id} {...n} />
+      </div>
+      )
+    })
+  }
   
   return (
     <Tabs
@@ -37,10 +48,10 @@ function TabsDemo(props) {
       </Tab>
       <Tab eventKey="notes" title="Notes">
         <NoteForm />
-        {JSON.stringify(notes)}
+        {renderNotes()}
       </Tab>
       <Tab eventKey="documents" title="Documents">
-        <p>Documents Section Goes Here</p>
+        <DocumentUpload id={job[0].id}/>
       </Tab>
     </Tabs>
   );
