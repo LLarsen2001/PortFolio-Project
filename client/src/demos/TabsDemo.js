@@ -13,16 +13,16 @@ function TabsDemo(props) {
   const [notes, setNotes] = useState([])
   const { job } = useContext(FormDataContext)
 
-  useEffect(()=> {
+  useEffect(() => {
     getNotes()
   }, [])
-
+  console.log(job)
   const getNotes = async () => {
     try {
       console.log(job[0].id)
       let res = await axios.get(`/api/userjobs/${job[0].id}/notes`)
       setNotes(res.data)
-    } catch(err) {
+    } catch (err) {
       alert("Error occurred getting notes")
     }
   }
@@ -35,7 +35,7 @@ function TabsDemo(props) {
       )
     })
   }
-  
+
   return (
     <Tabs
       defaultActiveKey="details"
@@ -44,14 +44,14 @@ function TabsDemo(props) {
       className="mb-3"
     >
       <Tab eventKey="details" title="Job Details">
-        {props.add ? (<JobForm />) : <EditJobForm /> }
+        {props.add ? (<JobForm />) : <EditJobForm />}
       </Tab>
       <Tab eventKey="notes" title="Notes">
         <NoteForm />
         {renderNotes()}
       </Tab>
       <Tab eventKey="documents" title="Documents">
-        <DocumentUpload id={job[0].id}/>
+        <DocumentUpload id={job[0].id} />
       </Tab>
     </Tabs>
   );

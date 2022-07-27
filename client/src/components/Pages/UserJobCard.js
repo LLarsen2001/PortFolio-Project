@@ -22,8 +22,8 @@ const UserJobCard = ({ job, index }) => {
     const add = false;
     const handleClose = () => setShow(false);
     const handleShow = (id) => {
-        console.log(id)
-        setJobData(id)
+        console.log(job)
+        setJobData(job.job_id)
         setShow(true)
 
     }
