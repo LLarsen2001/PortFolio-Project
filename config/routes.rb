@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get '/jobs', to: 'jobs#available'
     get '/jobs/all', to: 'jobs#all'
     get '/jobs/:job_id', to: 'jobs#show'
+    get '/users/:user_id/postedjobs', to: 'jobs#posted'
     post '/jobs', to: 'jobs#create'
     put '/jobs/:job_id', to: 'jobs#update'
     delete '/jobs/:job_id', to: 'jobs#destroy'

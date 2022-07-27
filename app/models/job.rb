@@ -9,4 +9,10 @@ class Job < ApplicationRecord
     INNER JOIN users AS u ON j.user_id = u.id
     WHERE "isFilled" <> TRUE;')
   end
+
+  def self.postedJobs(user_id)
+    Job.find_by_sql(["SELECT * 
+    FROM jobs as j
+    WHERE (j.user_id)= ?", user_id])
+  end
 end

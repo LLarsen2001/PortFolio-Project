@@ -34,6 +34,7 @@ const Profile = () => {
   const [passwordConfirm, setPasswordConfirm] = useState('')
   const [postedJobs, setPostedJobs] = useState([])
   const [loading, setLoading] = useState(true)
+  const edit = true;
 
   useEffect(()=> {
     getPostedJobs()
@@ -84,7 +85,7 @@ const Profile = () => {
 
     return postedJobs.map(j => {
       return (<div className='jobpage'>
-        <Job key={j.id} {...j} />
+        <Job key={j.id} edit={edit} {...j} />
       </div>
       )
     })
