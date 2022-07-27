@@ -1,11 +1,7 @@
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import EditJobForm from '../components/shared/EditJobForm';
-import UserJobTabs from '../components/shared/UserJobTabs';
-import TabsDemo from './TabsDemo';
+import JobForm from '../JobForm';
 
-function ModalDemo(props) {
-
+const AddJobModal = (props) => {
   return (
     <>
 
@@ -19,14 +15,13 @@ function ModalDemo(props) {
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {props.userJob ? (<UserJobTabs />) : <EditJobForm /> }
+          <JobForm />
         </Modal.Body>
         <Modal.Footer>
-          
         </Modal.Footer>
       </Modal>
     </>
   );
 }
 
-export default ModalDemo
+export default AddJobModal

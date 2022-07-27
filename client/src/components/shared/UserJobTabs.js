@@ -2,32 +2,29 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import JobForm from '../components/JobForm';
-import Job from '../components/Pages/Job';
-import DocumentUpload from '../components/shared/DocumentUpload';
-import EditJobForm from '../components/shared/EditJobForm';
-import NoteCard from '../components/shared/NoteCard';
-import NoteForm from '../components/shared/NoteForm';
-import { AuthContext } from '../providers/AuthProvider';
-import { FormDataContext } from '../providers/FormDataProvider';
-import { UserJobsContext } from '../providers/UserJobsProvider';
+import { AuthContext } from '../../providers/AuthProvider';
+import { FormDataContext } from '../../providers/FormDataProvider';
+import { UserJobsContext } from '../../providers/UserJobsProvider';
+import DocumentUpload from './DocumentUpload';
+import NoteCard from './NoteCard';
+import NoteForm from './NoteForm';
 
-function TabsDemo(props) {
+function UserJobTabs(props) {
   const [notes, setNotes] = useState([])
   const { job } = useContext(FormDataContext)
   const { user } = useContext(AuthContext)
   const { userJob } = useContext(UserJobsContext)
 
-  useEffect(() => {
+  useEffect(()=> {
     getNotes()
   }, [])
-  console.log(job)
+
   const getNotes = async () => {
     try {
       console.log(userJob[0].id)
       let res = await axios.get(`/api/userjobs/${userJob[0].id}/notes`)
       setNotes(res.data)
-    } catch (err) {
+    } catch(err) {
       alert("Error occurred getting notes")
     }
   }
@@ -40,27 +37,23 @@ function TabsDemo(props) {
       )
     })
   }
-
+  
   return (
     <Tabs
-      defaultActiveKey={props.add ? "details" : "notes"}
+      defaultActiveKey={props.add ? "details" : "notes" }
       transition={false}
       id="noanim-tab-example"
       className="mb-3"
     >
-      {props.add &&
-        <Tab eventKey="details" title="Job Details">
-          {props.add ? <JobForm /> : <EditJobForm />}
-        </Tab>}
       <Tab eventKey="notes" title="Notes">
         <NoteForm />
         {renderNotes()}
       </Tab>
       <Tab eventKey="documents" title="Documents">
-        <DocumentUpload id={userJob[0].id} />
+        <DocumentUpload id={userJob[0].id}/>
       </Tab>
     </Tabs>
   );
 }
 
-export default TabsDemo;
+export default UserJobTabs;

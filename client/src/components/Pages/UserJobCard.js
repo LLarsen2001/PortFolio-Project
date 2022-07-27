@@ -17,15 +17,21 @@ const Cardlocationtext = styled.div`
 const UserJobCard = ({ job, index }) => {
     const { setJobData } = useContext(FormDataContext)
     const [cardColor, setCardColor] = useState("")
-    const { deleteUserJob } = useContext(UserJobsContext)
+    const { deleteUserJob, setUserJobData } = useContext(UserJobsContext)
     const [show, setShow] = useState(false);
-    const add = false;
+    const userJob = true;
     const handleClose = () => setShow(false);
     const handleShow = (id) => {
+<<<<<<< HEAD
         console.log(job)
         setJobData(job.job_id)
         setShow(true)
 
+=======
+        console.log(id)
+        setUserJobData(id)
+        setShow(true)
+>>>>>>> 1d482a649878df9953957c103e138405e5495c74
     }
 
 
@@ -74,11 +80,17 @@ const UserJobCard = ({ job, index }) => {
                         <Card.Header >
                             <Button variant="primary"
                                 onClick={() => {
+<<<<<<< HEAD
                                     handleShow(job.id)
                                 }}>
                                 Edit
+=======
+                                handleShow(job.id)
+                            }}>
+                                Add Notes
+>>>>>>> 1d482a649878df9953957c103e138405e5495c74
                             </Button>
-                            <ModalDemo show={show} handleClose={handleClose} add={add} />
+                            <ModalDemo show={show} handleClose={handleClose} userJob={userJob} />
                             <a onClick={() => deleteUserJob(job.id)} class="close"></a>
                             <Card.Text> <Cardlocationtext>Added on {format(job.created_at)}  </Cardlocationtext></Card.Text>
                         </Card.Header>
