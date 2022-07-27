@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import JobForm from '../components/JobForm';
+import Job from '../components/Pages/Job';
 import DocumentUpload from '../components/shared/DocumentUpload';
 import EditJobForm from '../components/shared/EditJobForm';
 import NoteCard from '../components/shared/NoteCard';
@@ -38,14 +39,15 @@ function TabsDemo(props) {
   
   return (
     <Tabs
-      defaultActiveKey="details"
+      defaultActiveKey={props.add ? "details" : "notes" }
       transition={false}
       id="noanim-tab-example"
       className="mb-3"
     >
+      {props.add &&
       <Tab eventKey="details" title="Job Details">
-        {props.add ? (<JobForm />) : <EditJobForm /> }
-      </Tab>
+        <JobForm />
+      </Tab>}
       <Tab eventKey="notes" title="Notes">
         <NoteForm />
         {renderNotes()}
