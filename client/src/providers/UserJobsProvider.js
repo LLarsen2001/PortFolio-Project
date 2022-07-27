@@ -9,6 +9,7 @@ export const UserJobsContext = React.createContext();
 const UserJobsProvider = ({ children }) => {
     const { user } = useContext(AuthContext)
     const [userJobs, setUserJobs] = useState([])
+    const [userJob, setUserJob] = useState(null)
     console.log(user)
     useEffect(() => {
         if (!user) {
@@ -24,6 +25,10 @@ const UserJobsProvider = ({ children }) => {
 
         setUserJobs(res.data)
     };
+
+    const setUserJobData = (id) => {
+        setUserJob(userJobs.filter(uj => uj.id === id))
+       }
 
     const addUserJob = async (uj) => {
         try {
@@ -61,7 +66,7 @@ const UserJobsProvider = ({ children }) => {
 
     return (
 
-        <UserJobsContext.Provider value={{ userJobs, addUserJob, updateUserJobStatus, deleteUserJob }}>
+        <UserJobsContext.Provider value={{ userJobs, addUserJob, updateUserJobStatus, deleteUserJob, getUserJobs, setUserJobData, userJob }}>
             {children}
         </UserJobsContext.Provider>
     )

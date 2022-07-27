@@ -10,8 +10,8 @@ import Card from 'react-bootstrap/Card'
 
 const Login = () => {
     const { login } = useContext(AuthContext)
-    const [email, setEmail] = useState("test@test.com")
-    const [password, setPassword] = useState("123456")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
     const handleSubmit = (r) => {
         r.preventDefault()

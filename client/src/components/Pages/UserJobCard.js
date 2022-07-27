@@ -17,15 +17,14 @@ const Cardlocationtext = styled.div`
 const UserJobCard = ({ job, index }) => {
     const { setJobData } = useContext(FormDataContext)
     const [cardColor, setCardColor] = useState("")
-    const { deleteUserJob } = useContext(UserJobsContext)
+    const { deleteUserJob, setUserJobData } = useContext(UserJobsContext)
     const [show, setShow] = useState(false);
     const add = false;
     const handleClose = () => setShow(false);
     const handleShow = (id) => {
         console.log(id)
-        setJobData(id)
+        setUserJobData(id)
         setShow(true)
-        
     }
     
 
@@ -76,7 +75,7 @@ const UserJobCard = ({ job, index }) => {
                                 onClick={() => {
                                 handleShow(job.id)
                             }}>
-                                Edit
+                                Add Notes
                             </Button>
                             <ModalDemo show={show} handleClose={handleClose} add={add} />
                             <a onClick={() => deleteUserJob(job.id)} class="close"></a>
