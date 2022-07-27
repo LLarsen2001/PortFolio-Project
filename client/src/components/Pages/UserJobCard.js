@@ -9,6 +9,11 @@ import { UserJobsContext } from '../../providers/UserJobsProvider';
 import Button from 'react-bootstrap/esm/Button';
 import ModalDemo from '../../demos/ModalDemo';
 import { FormDataContext } from '../../providers/FormDataProvider';
+import { ThemeContext } from '../../providers/ThemeProvider';
+
+const UjButtonStyle = styled.button`
+  font-size: 12px;
+`;
 
 const Cardlocationtext = styled.div`
   font-size: 12px;
@@ -19,6 +24,7 @@ const UserJobCard = ({ job, index }) => {
     const [cardColor, setCardColor] = useState("")
     const { deleteUserJob, setUserJobData } = useContext(UserJobsContext)
     const [show, setShow] = useState(false);
+    const { primary, secondary, tertiary } = useContext(ThemeContext)
     const userJob = true;
     const handleClose = () => setShow(false);
     const handleShow = (id) => {
@@ -26,7 +32,7 @@ const UserJobCard = ({ job, index }) => {
         setUserJobData(id)
         setShow(true)
     }
-    
+
 
     useEffect(() => {
         diff(job.created_at);
@@ -40,7 +46,7 @@ const UserJobCard = ({ job, index }) => {
         let day = { days: d.days * -1 }
         let duration = Duration.fromObject(day)
         if (duration.values.days <= 1) {
-            return setCardColor("#21F778")
+            return setCardColor(primary)
         } else if (duration.values.days <= 2) {
             return setCardColor("#F7B821")
 
@@ -71,15 +77,17 @@ const UserJobCard = ({ job, index }) => {
                             margin: ".2vw"
                         }}>
                         <Card.Header >
-                            <Button variant="primary" 
+                            <Button bsPrefix={{
+                                width: ".5rem", height: ".5rem"
+                            }} variant="primary"
                                 onClick={() => {
-                                handleShow(job.id)
-                            }}>
+                                    handleShow(job.id)
+                                }}>
                                 Add Notes
                             </Button>
-                            <ModalDemo show={show} handleClose={handleClose} userJob={userJob} />
-                            <a onClick={() => deleteUserJob(job.id)} class="close"></a>
-                            <Card.Text> <Cardlocationtext>Added on {format(job.created_at)}  </Cardlocationtext></Card.Text>
+                            {/* <ModalDemo show={show} handleClose={handleClose} userJob={userJob} /> */}
+                            <a onClick={() => deleteUserJob(job.id)} className="close"></a>
+                            <Cardlocationtext>  <Card.Text> Added on {format(job.created_at)}  </Card.Text></Cardlocationtext>
                         </Card.Header>
 
                         <Card.Body>
@@ -95,7 +103,7 @@ const UserJobCard = ({ job, index }) => {
                         <Card.Footer>
 
                             <Card.Text>
-                                <p><b>{job.companyname}</b><Cardlocationtext>{job.baselocation}</Cardlocationtext></p>
+                                {/* <p><b>{job.companyname}</b><Cardlocationtext>{job.baselocation}</Cardlocationtext></p> */}
 
                                 <p>{job.about}</p>
                             </Card.Text>
