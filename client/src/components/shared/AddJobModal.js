@@ -1,7 +1,14 @@
+import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import JobForm from '../JobForm';
+import CompanyForm from './CompanyForm';
 
 const AddJobModal = (props) => {
+  const [company, setCompany] = useState(false)
+
+  const toggleForms = () => {
+    setCompany(!company)
+  }
   return (
     <>
 
@@ -15,8 +22,8 @@ const AddJobModal = (props) => {
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <JobForm />
-        </Modal.Body>
+          {company ? <CompanyForm toggleForms={toggleForms}/> : <JobForm handleClose={props.handleClose} toggleForms={toggleForms}/>}
+          </Modal.Body>
         <Modal.Footer>
         </Modal.Footer>
       </Modal>

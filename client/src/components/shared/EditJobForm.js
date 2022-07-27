@@ -9,7 +9,7 @@ import { MyLink } from './Navbar'
 import { AuthContext } from '../../providers/AuthProvider';
 import { FormDataContext } from '../../providers/FormDataProvider';
 
-const EditJobForm = () => {
+const EditJobForm = (props) => {
   const { job } = useContext(FormDataContext)
   const { user } = useContext(AuthContext)
   const [jobname, setJobName] = useState(null)
@@ -46,6 +46,7 @@ const EditJobForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     updateJob({jobname, company_id, salary, description, remote, location, user_id, isFilled})
+    props.handleClose()
   }
 
   return (
