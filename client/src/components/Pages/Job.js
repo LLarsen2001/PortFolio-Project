@@ -31,7 +31,7 @@ const Job = (props) => {
   const handleShow = (id) => {
     setJobData(id)
     setShow(true)
-}
+  }
   const formatSalary = () => {
     return "$" + props.salary + "/yr"
   }
@@ -44,17 +44,17 @@ const Job = (props) => {
       <Card
         text='white'
         style={{
-          width: '19vw', height: '22vw', background: "#2145F7", borderRadius: "45px", justifyContent: "space-between", overflow: "hidden"
+          width: '19vw', height: '22vw', background: "#4640DE", borderRadius: "45px", justifyContent: "space-between", overflow: "hidden"
         }}>
         <Card.Header>
-        {props.edit && 
-        <Button variant="primary" onClick={() => {
-          handleShow(props.id)
-      }}>
-          Edit
-        </Button>
-        }
-        <ModalDemo show={show} handleClose={handleClose} edit={props.edit} />
+          {props.edit &&
+            <Button variant="primary" onClick={() => {
+              handleShow(props.id)
+            }}>
+              Edit
+            </Button>
+          }
+          <ModalDemo show={show} handleClose={handleClose} edit={props.edit} />
           <Card.Text> <Cardlocationtext>Posted by: {props.email} </Cardlocationtext></Card.Text>
         </Card.Header>
         <Cardjobbodystyle>

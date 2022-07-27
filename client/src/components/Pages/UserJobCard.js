@@ -9,10 +9,10 @@ import { UserJobsContext } from '../../providers/UserJobsProvider';
 import Button from 'react-bootstrap/esm/Button';
 import ModalDemo from '../../demos/ModalDemo';
 import { FormDataContext } from '../../providers/FormDataProvider';
+import { ThemeContext } from '../../providers/ThemeProvider';
 
 const UjButtonStyle = styled.button`
-  width: .5rem;
-  height: .5rem;
+  font-size: 12px;
 `;
 
 const Cardlocationtext = styled.div`
@@ -24,6 +24,7 @@ const UserJobCard = ({ job, index }) => {
     const [cardColor, setCardColor] = useState("")
     const { deleteUserJob, setUserJobData } = useContext(UserJobsContext)
     const [show, setShow] = useState(false);
+    const { primary, secondary, tertiary } = useContext(ThemeContext)
     const userJob = true;
     const handleClose = () => setShow(false);
     const handleShow = (id) => {
@@ -45,7 +46,7 @@ const UserJobCard = ({ job, index }) => {
         let day = { days: d.days * -1 }
         let duration = Duration.fromObject(day)
         if (duration.values.days <= 1) {
-            return setCardColor("#21F778")
+            return setCardColor(primary)
         } else if (duration.values.days <= 2) {
             return setCardColor("#F7B821")
 
