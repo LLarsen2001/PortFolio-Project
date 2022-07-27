@@ -10,6 +10,10 @@ import Button from 'react-bootstrap/esm/Button';
 import ModalDemo from '../../demos/ModalDemo';
 import { FormDataContext } from '../../providers/FormDataProvider';
 
+const UjButtonStyle = styled.button`
+  font-size: 12px;
+`;
+
 const Cardlocationtext = styled.div`
   font-size: 12px;
 `;
@@ -22,16 +26,9 @@ const UserJobCard = ({ job, index }) => {
     const userJob = true;
     const handleClose = () => setShow(false);
     const handleShow = (id) => {
-<<<<<<< HEAD
-        console.log(job)
-        setJobData(job.job_id)
-        setShow(true)
-
-=======
         console.log(id)
         setUserJobData(id)
         setShow(true)
->>>>>>> 1d482a649878df9953957c103e138405e5495c74
     }
 
 
@@ -78,21 +75,17 @@ const UserJobCard = ({ job, index }) => {
                             margin: ".2vw"
                         }}>
                         <Card.Header >
-                            <Button variant="primary"
+                            <Button bsPrefix={{
+                                width: ".5rem", height: ".5rem"
+                            }} variant="primary"
                                 onClick={() => {
-<<<<<<< HEAD
                                     handleShow(job.id)
                                 }}>
-                                Edit
-=======
-                                handleShow(job.id)
-                            }}>
                                 Add Notes
->>>>>>> 1d482a649878df9953957c103e138405e5495c74
                             </Button>
-                            <ModalDemo show={show} handleClose={handleClose} userJob={userJob} />
-                            <a onClick={() => deleteUserJob(job.id)} class="close"></a>
-                            <Card.Text> <Cardlocationtext>Added on {format(job.created_at)}  </Cardlocationtext></Card.Text>
+                            {/* <ModalDemo show={show} handleClose={handleClose} userJob={userJob} /> */}
+                            <a onClick={() => deleteUserJob(job.id)} className="close"></a>
+                            <Cardlocationtext>  <Card.Text> Added on {format(job.created_at)}  </Card.Text></Cardlocationtext>
                         </Card.Header>
 
                         <Card.Body>
@@ -108,7 +101,7 @@ const UserJobCard = ({ job, index }) => {
                         <Card.Footer>
 
                             <Card.Text>
-                                <p><b>{job.companyname}</b><Cardlocationtext>{job.baselocation}</Cardlocationtext></p>
+                                {/* <p><b>{job.companyname}</b><Cardlocationtext>{job.baselocation}</Cardlocationtext></p> */}
 
                                 <p>{job.about}</p>
                             </Card.Text>
