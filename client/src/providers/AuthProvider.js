@@ -52,9 +52,9 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-    const EditUser = async (uj) => {
+    const EditUser = async (u) => {
         try {
-            let res = await axios.put(`/api/users/${user.id}`, uj)
+            let res = await axios.put(`/api/users/${user.id}`, u)
             console.log(res)
             setUser(res.data)
         } catch (err) {
