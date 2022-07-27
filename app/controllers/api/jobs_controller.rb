@@ -10,6 +10,10 @@ class Api::JobsController < ApplicationController
     render json: Job.all
   end
   
+  def posted
+    render json: Job.postedJobs(params[:user_id])
+  end
+
   def show
     render json: @job
   end

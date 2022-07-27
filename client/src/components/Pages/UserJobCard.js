@@ -19,7 +19,7 @@ const UserJobCard = ({ job, index }) => {
     const [cardColor, setCardColor] = useState("")
     const { deleteUserJob, setUserJobData } = useContext(UserJobsContext)
     const [show, setShow] = useState(false);
-    const add = false;
+    const userJob = true;
     const handleClose = () => setShow(false);
     const handleShow = (id) => {
         console.log(id)
@@ -77,7 +77,7 @@ const UserJobCard = ({ job, index }) => {
                             }}>
                                 Add Notes
                             </Button>
-                            <ModalDemo show={show} handleClose={handleClose} add={add} />
+                            <ModalDemo show={show} handleClose={handleClose} userJob={userJob} />
                             <a onClick={() => deleteUserJob(job.id)} class="close"></a>
                             <Card.Text> <Cardlocationtext>Added on {format(job.created_at)}  </Cardlocationtext></Card.Text>
                         </Card.Header>

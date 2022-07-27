@@ -6,10 +6,22 @@ import Form from "react-bootstrap/Form"
 
 import Button from "react-bootstrap/esm/Button";
 import SingleImageUpload from "../shared/SingleImageUpload";
+import axios from "axios";
+import { useEffect } from "react";
+import Job from "./Job";
 
 const ImageS = styled.div`
   display: flex;
 `;
+
+const CreatedJobs = styled.div`
+display: flex;
+
+align-items: center;
+justify-content: center;
+overflow-x: auto;
+`;
+
 const Profile = () => {
   const [noImage] = useState("https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.kindpng.com%2Fpicc%2Fm%2F451-4517876_default-profile-hd-png-download.png&imgrefurl=https%3A%2F%2Fwww.kindpng.com%2Fimgv%2FhxibTwh_default-profile-hd-png-download%2F&tbnid=4edWzZTKs1yRvM&vet=12ahUKEwiu48-sk5f5AhXmATQIHQ_qBisQMygdegUIARCkAg..i&docid=xwIlDPGqcBhivM&w=860&h=663&q=default%20profile%20picture&ved=2ahUKEwiu48-sk5f5AhXmATQIHQ_qBisQMygdegUIARCkAg")
   const { user, setUser, EditUser } = useContext(AuthContext)
@@ -20,6 +32,13 @@ const Profile = () => {
   const [name, setName] = useState(user.name || '')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
+  const [postedJobs, setPostedJobs] = useState([])
+  const [loading, setLoading] = useState(true)
+  const edit = true;
+
+  useEffect(()=> {
+    getPostedJobs()
+  }, [])
 
   const handleEmailToggle = () => {
     setEmailToggle(!emailToggle)
@@ -52,10 +71,30 @@ const Profile = () => {
     EditUser({ password })
     setPasswordToggle(false)
   }
+
+  const getPostedJobs = async () => {
+    let res = await axios.get(`/api/users/${user.id}/postedjobs`)
+    setPostedJobs(res.data)
+    setLoading(false)
+  }
+
+  const renderPostedJobs = () => {
+    if (loading) {
+      return <p>Loading</p>
+    }
+
+    return postedJobs.map(j => {
+      return (<div className='jobpage'>
+        <Job key={j.id} edit={edit} {...j} />
+      </div>
+      )
+    })
+  }
+
   return (
     <Card style={{
-      width: "40vw",
-      height: "40vw",
+      width: "50vw",
+      height: "65vw",
       boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
       justifyContent: "center",
       alignItems: "",
@@ -65,7 +104,7 @@ const Profile = () => {
     }}>
 
       <Card.Body>
-        <ImageS><Card.Img variant="top" src={noImage} /></ImageS >
+        <ImageS><Card.Img variant="top" src={user.image ? user.image : noImage} /></ImageS >
         <Card.Title>Profile Page</Card.Title>
         <Card.Text>Username {user.name}</Card.Text>
 
@@ -151,6 +190,12 @@ const Profile = () => {
       <Card.Body>
         <Card.Text>You can change your Profile image by dragging desired image file into the dropbox below.</Card.Text>
         <SingleImageUpload style={{}} id={user.id} setUser={setUser} />
+      </Card.Body>
+      <Card.Body>
+          <Card.Text>My Posted Jobs</Card.Text>
+          <CreatedJobs>
+          {renderPostedJobs()}
+          </CreatedJobs>
       </Card.Body>
     </Card>
   );

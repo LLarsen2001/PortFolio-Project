@@ -5,6 +5,7 @@ import CardHeader from 'react-bootstrap/esm/CardHeader';
 import Button from 'react-bootstrap/esm/Button';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
 import ModalDemo from '../../demos/ModalDemo'
+import { FormDataContext } from '../../providers/FormDataProvider';
 
 const Cardstyle = styled.div`
 max-width: 19vw;
@@ -23,11 +24,14 @@ font-size: 12px;
 `;
 
 const Job = (props) => {
+  const { setJobData } = useContext(FormDataContext)
   const { addUserJob } = useContext(UserJobsContext)
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const add = true;
+  const handleShow = (id) => {
+    setJobData(id)
+    setShow(true)
+}
   const formatSalary = () => {
     return "$" + props.salary + "/yr"
   }
@@ -43,10 +47,14 @@ const Job = (props) => {
           width: '19vw', height: '22vw', background: "#2145F7", borderRadius: "45px", justifyContent: "space-between", overflow: "hidden"
         }}>
         <Card.Header>
-        {/* <Button variant="primary" onClick={handleShow}>
+        {props.edit && 
+        <Button variant="primary" onClick={() => {
+          handleShow(props.id)
+      }}>
           Edit
-        </Button> */}
-        <ModalDemo show={show} handleClose={handleClose} add={add} />
+        </Button>
+        }
+        <ModalDemo show={show} handleClose={handleClose} edit={props.edit} />
           <Card.Text> <Cardlocationtext>Posted by: {props.email} </Cardlocationtext></Card.Text>
         </Card.Header>
         <Cardjobbodystyle>

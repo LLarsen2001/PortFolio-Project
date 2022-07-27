@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import SearchBar from './Search'
 import ModalDemo from '../../demos/ModalDemo'
 import Button from 'react-bootstrap/esm/Button'
+import AddJobModal from '../shared/AddJobModal'
 
 const JobContainer = styled.div`
   display: grid;
@@ -81,7 +82,7 @@ const Jobs = () => {
           <Button variant="primary" onClick={handleShow}>
             Add Job
           </Button>
-          <ModalDemo show={show} handleClose={handleClose} add={add} />
+          <AddJobModal show={show} handleClose={handleClose} />
         </div>
       </Container>
       <Container>

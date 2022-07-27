@@ -4,16 +4,19 @@ import Button from 'react-bootstrap/esm/Button'
 import Row from 'react-bootstrap/esm/Row'
 import Form from 'react-bootstrap/Form'
 import { FormDataContext } from '../../providers/FormDataProvider'
+import { UserJobsContext } from '../../providers/UserJobsProvider'
 
 const NoteForm = () => {
   const { job } = useContext(FormDataContext)
+  const { userJob } = useContext(UserJobsContext)
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")
 
   const addNote = async (note) => {
     try {
-      await axios.post(`/api/userjobs/${job[0].id}/notes`, note)
+      await axios.post(`/api/userjobs/${userJob[0].id}/notes`, note)
     } catch(err) {
+      console.log(err)
       alert("Error occurred adding a note")
     }
   }
