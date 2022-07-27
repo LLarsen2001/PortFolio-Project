@@ -3,7 +3,7 @@ class Api::DocumentsController < ApplicationController
 
   def upload_document
     file = params[:file]
-    # binding.pry
+    
     if file 
       begin
         @document = Document.new(userjob_id:params[:id])
