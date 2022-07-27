@@ -8,11 +8,15 @@ import DocumentUpload from '../components/shared/DocumentUpload';
 import EditJobForm from '../components/shared/EditJobForm';
 import NoteCard from '../components/shared/NoteCard';
 import NoteForm from '../components/shared/NoteForm';
+import { AuthContext } from '../providers/AuthProvider';
 import { FormDataContext } from '../providers/FormDataProvider';
+import { UserJobsContext } from '../providers/UserJobsProvider';
 
 function TabsDemo(props) {
   const [notes, setNotes] = useState([])
   const { job } = useContext(FormDataContext)
+  const { user } = useContext(AuthContext)
+  const { userJob } = useContext(UserJobsContext)
 
   useEffect(()=> {
     getNotes()
@@ -20,8 +24,8 @@ function TabsDemo(props) {
 
   const getNotes = async () => {
     try {
-      console.log(job[0].id)
-      let res = await axios.get(`/api/userjobs/${job[0].id}/notes`)
+      console.log(userJob[0].id)
+      let res = await axios.get(`/api/userjobs/${userJob[0].id}/notes`)
       setNotes(res.data)
     } catch(err) {
       alert("Error occurred getting notes")
@@ -53,7 +57,7 @@ function TabsDemo(props) {
         {renderNotes()}
       </Tab>
       <Tab eventKey="documents" title="Documents">
-        <DocumentUpload id={job[0].id}/>
+        <DocumentUpload id={userJob[0].id}/>
       </Tab>
     </Tabs>
   );
