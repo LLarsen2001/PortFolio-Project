@@ -15,14 +15,20 @@ const Profile = () => {
   const { user, setUser, EditUser } = useContext(AuthContext)
   const [emailToggle, setEmailToggle] = useState(false)
   const [nameToggle, setNameToggle] = useState(false)
+  const [passwordToggle, setPasswordToggle] = useState(false)
   const [email, setEmail] = useState(user.email || '')
   const [name, setName] = useState(user.name || '')
+  const [password, setPassword] = useState('')
+  const [passwordConfirm, setPasswordConfirm] = useState('')
 
   const handleEmailToggle = () => {
     setEmailToggle(!emailToggle)
   }
   const handleNameToggle = () => {
     setNameToggle(!nameToggle)
+  }
+  const handlePasswordToggle = () => {
+    setPasswordToggle(!passwordToggle)
   }
   const handleEmailSubmit = (e) => {
     e.preventDefault()
@@ -34,7 +40,18 @@ const Profile = () => {
     EditUser({ name })
     setNameToggle(false)
   }
-
+  const handlePasswordSubmit = (p) => {
+    p.preventDefault()
+    if (password.length < 6) {
+      alert('Passwaor not long enough')
+    }
+    if (password !== passwordConfirm) {
+      alert('passwords do not match')
+    }
+    console.log(password)
+    EditUser({ password })
+    setPasswordToggle(false)
+  }
   return (
     <Card style={{
       width: "40vw",
@@ -46,6 +63,7 @@ const Profile = () => {
       float: "none",
       marginTop: "1rem",
     }}>
+
       <Card.Body>
         <ImageS><Card.Img variant="top" src={noImage} /></ImageS >
         <Card.Title>Profile Page</Card.Title>
@@ -74,7 +92,6 @@ const Profile = () => {
           }
 
         </>
-
         <>
           <Card.Text>Username {user.name}</Card.Text>
           <Button size="sm" onClick={handleNameToggle}>Edit</Button>
@@ -97,7 +114,40 @@ const Profile = () => {
           }
 
         </>
+        <>
+          <Card.Text>Password {user.password}</Card.Text>
+          <Button size="sm" onClick={handlePasswordToggle}>Edit</Button>
+          {passwordToggle &&
+            <Form onSubmit={handlePasswordSubmit}>
+              <Form.Group className="mb-3" controlId="formBasicName">
+                <Form.Label>password</Form.Label>
+                <Form.Control
+                  value={password}
+                  onChange={(p) => {
+                    setPassword(p.target.value)
+                  }}
+                  type="name" placeholder="Change Password"
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicName">
+                <Form.Label>Confirm Password </Form.Label>
+                <Form.Control
+                  value={passwordConfirm}
+                  onChange={(p) => {
+                    setPasswordConfirm(p.target.value)
+                  }}
+                  type="name" placeholder="Confirm changed Password"
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
+          }
+
+        </>
       </Card.Body>
+
       <Card.Body>
         <Card.Text>You can change your Profile image by dragging desired image file into the dropbox below.</Card.Text>
         <SingleImageUpload style={{}} id={user.id} setUser={setUser} />
