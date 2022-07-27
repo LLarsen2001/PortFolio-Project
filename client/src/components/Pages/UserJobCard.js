@@ -11,7 +11,8 @@ import ModalDemo from '../../demos/ModalDemo';
 import { FormDataContext } from '../../providers/FormDataProvider';
 
 const UjButtonStyle = styled.button`
-  font-size: 12px;
+  width: .5rem;
+  height: .5rem;
 `;
 
 const Cardlocationtext = styled.div`
