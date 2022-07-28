@@ -1,4 +1,3 @@
-
 import Card from 'react-bootstrap/Card';
 import styled from 'styled-components';
 import { DateTime, Duration } from "luxon";
@@ -18,7 +17,6 @@ const UjButtonStyle = styled.button`
 const Cardlocationtext = styled.div`
   font-size: 12px;
 `;
-
 const UserJobCard = ({ job, index }) => {
     const { setJobData } = useContext(FormDataContext)
     const [cardColor, setCardColor] = useState("")
@@ -32,12 +30,9 @@ const UserJobCard = ({ job, index }) => {
         setUserJobData(id)
         setShow(true)
     }
-
-
     useEffect(() => {
         diff(job.created_at);
     }, [])
-
     const format = (time) => {
         return DateTime.fromISO(time).toFormat('ff')
     }
@@ -54,9 +49,7 @@ const UserJobCard = ({ job, index }) => {
             return setCardColor("#D50404")
         }
     }
-
     return (
-
         <Draggable key={job.id} draggableId={job.id.toString()} index={index}>
             {(provided) => (
                 <div
@@ -64,7 +57,6 @@ const UserJobCard = ({ job, index }) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-
                     <Card
                         text='white'
                         style={{
@@ -85,11 +77,10 @@ const UserJobCard = ({ job, index }) => {
                                 }}>
                                 Add Notes
                             </Button>
-                            {/* <ModalDemo show={show} handleClose={handleClose} userJob={userJob} /> */}
+                            <ModalDemo show={show} handleClose={handleClose} userJob={userJob} />
                             <a onClick={() => deleteUserJob(job.id)} className="close"></a>
                             <Cardlocationtext>  <Card.Text> Added on {format(job.created_at)}  </Card.Text></Cardlocationtext>
                         </Card.Header>
-
                         <Card.Body>
                             <Card.Title>{job.jobname} </Card.Title>
                             <Card.Text>
@@ -98,19 +89,14 @@ const UserJobCard = ({ job, index }) => {
                                     {job.description}
                                 </p>
                             </Card.Text>
-
                         </Card.Body>
                         <Card.Footer>
-
                             <Card.Text>
                                 {/* <p><b>{job.companyname}</b><Cardlocationtext>{job.baselocation}</Cardlocationtext></p> */}
-
                                 <p>{job.about}</p>
                             </Card.Text>
                         </Card.Footer>
-
                     </Card >
-
                 </div>
             )}
         </Draggable>

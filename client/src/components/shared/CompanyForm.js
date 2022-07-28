@@ -2,18 +2,15 @@ import { useState } from "react"
 import axios from "axios"
 import Form from 'react-bootstrap/Form'
 import Button from "react-bootstrap/esm/Button"
-import { useNavigate } from "react-router-dom"
 
-const CompanyForm = () => {
+const CompanyForm = (props) => {
   const [companyname, setCompanyName] = useState("")
   const [baselocation, setBaseLocation] = useState("")
   const [about, setAbout] = useState("")
-  const navigate = useNavigate()
 
   const addCompany = async (company) => {
     try {
       await axios.post('/api/companies', company)
-      navigate("/addjob")
     } catch(err) {
       alert("Error occurred adding a company")
     }
@@ -22,10 +19,12 @@ const CompanyForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     addCompany({companyname, baselocation, about})
+    props.toggleForms()
   }
 
   return (
     <div>
+      <Button size="sm" onClick={props.toggleForms}>Go Back</Button>
       <h1>Add A Company</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="companyname">

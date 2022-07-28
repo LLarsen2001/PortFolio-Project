@@ -8,7 +8,7 @@ import { AuthContext } from '../providers/AuthProvider'
 import { MyLink } from './shared/Navbar'
 import { useNavigate } from 'react-router-dom'
 
-const JobForm = () => {
+const JobForm = (props) => {
   const { user } = useContext(AuthContext)
   const [jobname, setJobName] = useState("")
   const [companies, setCompanies] = useState([])
@@ -44,6 +44,7 @@ const JobForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     addJob({jobname, company_id, salary, description, remote, location, user_id, isFilled})
+    props.handleClose()
   }
 
   return (
@@ -126,7 +127,8 @@ const JobForm = () => {
           </Form.Control>
           </Form.Group>
           
-          <MyLink url="/addcompany">Add A New Company</MyLink>
+          {/* <MyLink url="/addcompany">Add A New Company</MyLink> */}
+          <Button size="sm" onClick={props.toggleForms}>Add Company</Button>
 
           </Col>
 

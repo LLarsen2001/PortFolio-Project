@@ -21,17 +21,15 @@ const FormDataProvider = ({ children }) => {
     };
 
     const setJobData = (id) => {
-        console.log(jobs)
-        console.log(jobs.filter(j => j.id === id))
         setJob(jobs.filter(j => j.id === id))
-
+       
     }
 
     return (
 
-        <FormDataContext.Provider value={{ job, setJobData }}>
-            {children}
-        </FormDataContext.Provider>
-    )
+         <FormDataContext.Provider value={{ job, setJobData }}>
+             {children}
+         </FormDataContext.Provider>
+     )
 };
 export default FormDataProvider;

@@ -6,23 +6,18 @@ import Button from 'react-bootstrap/esm/Button';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
 import ModalDemo from '../../demos/ModalDemo'
 import { FormDataContext } from '../../providers/FormDataProvider';
-
 const Cardstyle = styled.div`
 max-width: 19vw;
 display: flex;
 border-radius: 45px;
 padding: 15px 15px;
-
 `;
 const Cardjobbodystyle = styled.div`
 display-left: left;
-
 `
-
 const Cardlocationtext = styled.div`
 font-size: 12px;
 `;
-
 const Job = (props) => {
   const { setJobData } = useContext(FormDataContext)
   const { addUserJob } = useContext(UserJobsContext)
@@ -35,7 +30,6 @@ const Job = (props) => {
   const formatSalary = () => {
     return "$" + props.salary + "/yr"
   }
-
   const handleSubmit = () => {
     addUserJob({ job_id: props.id, status: 'wishlist' })
   }
@@ -68,17 +62,12 @@ const Job = (props) => {
               <p>
                 {props.id}
               </p>
-
             </Card.Text>
-
           </Card.Body>
           <Card.Footer>
-
             <Card.Text>
-
               <p><b>{props.companyname} </b><Cardlocationtext>{props.baselocation}</Cardlocationtext></p>
               <p>{props.about}<button onClick={handleSubmit}>add</button></p>
-
             </Card.Text>
           </Card.Footer>
         </Cardjobbodystyle>
@@ -86,7 +75,4 @@ const Job = (props) => {
     </Cardstyle >
   )
 }
-
-
-
 export default Job
