@@ -7,6 +7,7 @@ const ThemeProvider = ({ children }) => {
   let secondary = "#CCCCF5"
   let tertiary = "#E7F6FD"
 
+
   return (
     <ThemeContext.Provider value={{ primary, secondary, tertiary }}>
       {children}
