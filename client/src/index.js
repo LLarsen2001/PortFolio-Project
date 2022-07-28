@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { initMiddleware } from 'devise-axios'
 import UserJobsProvider from './providers/UserJobsProvider';
 import FormDataProvider from './providers/FormDataProvider';
+import ThemeProvider from './providers/ThemeProvider';
 
 initMiddleware();
 
@@ -17,7 +18,9 @@ root.render(
     <AuthProvider>
       <UserJobsProvider>
         <FormDataProvider>
-        <App />
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
         </FormDataProvider>
       </UserJobsProvider>
     </AuthProvider>
