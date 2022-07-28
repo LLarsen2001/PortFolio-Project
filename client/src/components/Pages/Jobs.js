@@ -4,6 +4,7 @@ import Job from './Job'
 import { UserJobsContext } from '../../providers/UserJobsProvider'
 import styled from 'styled-components'
 import SearchBar from './Search'
+
 import Button from 'react-bootstrap/esm/Button'
 import AddJobModal from '../shared/AddJobModal'
 

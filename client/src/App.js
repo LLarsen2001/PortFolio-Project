@@ -39,12 +39,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/hooks" element={<Hooks />} />
+          <Route path="/jobs" element={<Jobs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/account" element={<UserAccount />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/jobs" element={<Jobs />} />
             <Route path="/jobsboard" element={<JobsBoard />} />
             <Route path="/search" element={<SearchBar />} />
 

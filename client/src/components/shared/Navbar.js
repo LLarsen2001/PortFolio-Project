@@ -21,7 +21,6 @@ const BuildingNavbar = () => {
             return (
                 <>
                     <MyLink url="/profile">Profile</MyLink>
-                    <MyLink url="/jobs">Jobs</MyLink>
                     <MyLink url="/jobsboard">Jobs Board</MyLink>
 
                     <Nav.Link as={"li"} onClick={logout}>Logout</Nav.Link>
@@ -30,6 +29,7 @@ const BuildingNavbar = () => {
         } else {
             return (
                 <>
+                    <MyLink url="/jobs">Jobs</MyLink>
                     <MyLink url="/login">Login</MyLink>
                     <MyLink url="/signup">Sign Up</MyLink>
                 </>
