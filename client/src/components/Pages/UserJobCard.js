@@ -1,4 +1,3 @@
-
 import Card from 'react-bootstrap/Card';
 import styled from 'styled-components';
 import { DateTime, Duration } from "luxon";
@@ -9,16 +8,21 @@ import { UserJobsContext } from '../../providers/UserJobsProvider';
 import Button from 'react-bootstrap/esm/Button';
 import ModalDemo from '../../demos/ModalDemo';
 import { FormDataContext } from '../../providers/FormDataProvider';
+import { ThemeContext } from '../../providers/ThemeProvider';
+
+const UjButtonStyle = styled.button`
+  font-size: 12px;
+`;
 
 const Cardlocationtext = styled.div`
   font-size: 12px;
 `;
-
 const UserJobCard = ({ job, index }) => {
     const { setJobData } = useContext(FormDataContext)
     const [cardColor, setCardColor] = useState("")
     const { deleteUserJob, setUserJobData } = useContext(UserJobsContext)
     const [show, setShow] = useState(false);
+    const { primary, secondary, tertiary } = useContext(ThemeContext)
     const userJob = true;
     const handleClose = () => setShow(false);
     const handleShow = (id) => {
@@ -26,12 +30,9 @@ const UserJobCard = ({ job, index }) => {
         setUserJobData(id)
         setShow(true)
     }
-    
-
     useEffect(() => {
         diff(job.created_at);
     }, [])
-
     const format = (time) => {
         return DateTime.fromISO(time).toFormat('ff')
     }
@@ -40,7 +41,7 @@ const UserJobCard = ({ job, index }) => {
         let day = { days: d.days * -1 }
         let duration = Duration.fromObject(day)
         if (duration.values.days <= 1) {
-            return setCardColor("#21F778")
+            return setCardColor(primary)
         } else if (duration.values.days <= 2) {
             return setCardColor("#F7B821")
 
@@ -48,9 +49,7 @@ const UserJobCard = ({ job, index }) => {
             return setCardColor("#D50404")
         }
     }
-
     return (
-
         <Draggable key={job.id} draggableId={job.id.toString()} index={index}>
             {(provided) => (
                 <div
@@ -58,7 +57,6 @@ const UserJobCard = ({ job, index }) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-
                     <Card
                         text='white'
                         style={{
@@ -71,17 +69,18 @@ const UserJobCard = ({ job, index }) => {
                             margin: ".2vw"
                         }}>
                         <Card.Header >
-                            <Button variant="primary" 
+                            <Button bsPrefix={{
+                                width: ".5rem", height: ".5rem"
+                            }} variant="primary"
                                 onClick={() => {
-                                handleShow(job.id)
-                            }}>
+                                    handleShow(job.id)
+                                }}>
                                 Add Notes
                             </Button>
                             <ModalDemo show={show} handleClose={handleClose} userJob={userJob} />
-                            <a onClick={() => deleteUserJob(job.id)} class="close"></a>
-                            <Card.Text> <Cardlocationtext>Added on {format(job.created_at)}  </Cardlocationtext></Card.Text>
+                            <a onClick={() => deleteUserJob(job.id)} className="close"></a>
+                            <Cardlocationtext>  <Card.Text> Added on {format(job.created_at)}  </Card.Text></Cardlocationtext>
                         </Card.Header>
-
                         <Card.Body>
                             <Card.Title>{job.jobname} </Card.Title>
                             <Card.Text>
@@ -90,19 +89,14 @@ const UserJobCard = ({ job, index }) => {
                                     {job.description}
                                 </p>
                             </Card.Text>
-
                         </Card.Body>
                         <Card.Footer>
-
                             <Card.Text>
-                                <p><b>{job.companyname}</b><Cardlocationtext>{job.baselocation}</Cardlocationtext></p>
-
+                                {/* <p><b>{job.companyname}</b><Cardlocationtext>{job.baselocation}</Cardlocationtext></p> */}
                                 <p>{job.about}</p>
                             </Card.Text>
                         </Card.Footer>
-
                     </Card >
-
                 </div>
             )}
         </Draggable>
