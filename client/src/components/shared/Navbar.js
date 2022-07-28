@@ -3,6 +3,9 @@ import { AuthContext } from "../../providers/AuthProvider";
 import Navbar from "react-bootstrap/Navbar"
 import Nav from 'react-bootstrap/Nav'
 import { LinkContainer } from 'react-router-bootstrap'
+import styled from "styled-components"
+
+
 
 export const MyLink = ({ url, children }) => {
     return (
@@ -20,35 +23,56 @@ const BuildingNavbar = () => {
         if (user) {
             return (
                 <>
-                    <MyLink url="/profile">Profile</MyLink>
-                    <MyLink url="/jobsboard">Jobs Board</MyLink>
+                    <Navbar bg="light" variant="light" style={{
+                        paddingLeft: "2rem",
+                    }}>
+                        <LinkContainer to="/">
+                            <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
+                        </LinkContainer>
+                        <Nav className="me-auto">
+                            <MyLink url="/profile">Profile</MyLink>
+                            <MyLink url="/jobs">Jobs</MyLink>
+                            <MyLink url="/jobsboard">Jobs Board</MyLink>
+                        </Nav>
+                        <Nav>
+                            <Nav.Link as={"li"} onClick={logout}>Logout</Nav.Link>
+                        </Nav>
 
-                    <Nav.Link as={"li"} onClick={logout}>Logout</Nav.Link>
+                    </Navbar>
                 </>
             );
         } else {
             return (
                 <>
-                    <MyLink url="/jobs">Jobs</MyLink>
-                    <MyLink url="/login">Login</MyLink>
-                    <MyLink url="/signup">Sign Up</MyLink>
+                    <Navbar bg="light" variant="light" style={{
+                        paddingLeft: "2rem",
+                    }}>
+                        <LinkContainer to="/">
+                            <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
+                        </LinkContainer>
+                        <Nav className="me-auto">
+
+                            <MyLink url="/jobs">Jobs</MyLink>
+                        </Nav>
+                        <Nav>
+
+                            <MyLink url="/login">Login</MyLink>
+                            <MyLink url="/signup">Sign Up</MyLink>
+
+                        </Nav>
+
+                    </Navbar>
                 </>
             );
         }
-    };
+    }
+
     return (
-        <>
-            <Navbar bg="light" variant="light" style={{
-                paddingLeft: "2rem",
-            }}>
-                <LinkContainer to="/">
-                    <Navbar.Brand href="/home">JobSeek</Navbar.Brand>
-                </LinkContainer>
-                <Nav className="me-auto">
-                    {renderNavItems()}
-                </Nav>
-            </Navbar>
-        </>
+
+
+        renderNavItems()
+
+
     );
-};
+}
 export default BuildingNavbar;
