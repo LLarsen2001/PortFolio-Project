@@ -37,14 +37,6 @@ const EditJobForm = (props) => {
     }
   }
 
-  // const updateJob = async (updatedJob) => {
-  //   try {
-  //     await axios.put(`/api/jobs/${job[0].id}`, updatedJob)
-  //   } catch(err) {
-  //     alert("Error occurred updating a job")
-  //   }
-  // }
-
   const handleSubmit = (e) => {
     e.preventDefault()
     updateJob({jobname, company_id, salary, description, remote, location, user_id, isFilled}, job[0].id)

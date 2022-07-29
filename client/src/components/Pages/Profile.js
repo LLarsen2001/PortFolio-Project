@@ -36,13 +36,8 @@ const Profile = () => {
   const [name, setName] = useState(user.name || '')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
-  // const [postedJobs, setPostedJobs] = useState([])
   const [loading, setLoading] = useState(true)
   const edit = true;
-
-  // useEffect(() => {
-  //   getPostedJobs()
-  // }, [])
 
   const handleEmailToggle = () => {
     setEmailToggle(!emailToggle)
@@ -63,7 +58,7 @@ const Profile = () => {
   const handlePasswordSubmit = (p) => {
     p.preventDefault()
     if (password.length < 6) {
-      alert('Passwaor not long enough')
+      alert('Password not long enough')
     }
     if (password !== passwordConfirm) {
       alert('passwords do not match')
@@ -72,12 +67,6 @@ const Profile = () => {
     EditUser({ password })
     setPasswordToggle(false)
   }
-
-  // const getPostedJobs = async () => {
-  //   let res = await axios.get(`/api/users/${user.id}/postedjobs`)
-  //   setPostedJobs(res.data)
-  //   setLoading(false)
-  // }
 
   const renderPostedJobs = () => {
     console.log('renderPostedJobs called')

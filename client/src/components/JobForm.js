@@ -13,7 +13,6 @@ const JobForm = (props) => {
   const { addJob, companies } = useContext(JobsContext)
   const { user } = useContext(AuthContext)
   const [jobname, setJobName] = useState("")
-  // const [companies, setCompanies] = useState([])
   const [company_id, setCompanyID] = useState(null)
   const [salary, setSalary] = useState(null)
   const [description, setDescription] = useState("")
