@@ -9,6 +9,7 @@ import { initMiddleware } from 'devise-axios'
 import UserJobsProvider from './providers/UserJobsProvider';
 import FormDataProvider from './providers/FormDataProvider';
 import ThemeProvider from './providers/ThemeProvider';
+import JobsProvider from './providers/JobsProvider';
 
 initMiddleware();
 
@@ -17,11 +18,13 @@ root.render(
   <BrowserRouter>
     <AuthProvider>
       <UserJobsProvider>
-        <FormDataProvider>
-          <ThemeProvider>
-            <App />
-          </ThemeProvider>
-        </FormDataProvider>
+        <JobsProvider>
+          <FormDataProvider>
+            <ThemeProvider>
+              <App />
+            </ThemeProvider>
+          </FormDataProvider>
+        </JobsProvider>
       </UserJobsProvider>
     </AuthProvider>
   </BrowserRouter>

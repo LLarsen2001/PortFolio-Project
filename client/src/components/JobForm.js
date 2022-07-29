@@ -7,8 +7,10 @@ import axios from 'axios'
 import { AuthContext } from '../providers/AuthProvider'
 import { MyLink } from './shared/Navbar'
 import { useNavigate } from 'react-router-dom'
+import { JobsContext } from '../providers/JobsProvider';
 
 const JobForm = (props) => {
+  const { addJob } = useContext(JobsContext)
   const { user } = useContext(AuthContext)
   const [jobname, setJobName] = useState("")
   const [companies, setCompanies] = useState([])
@@ -33,13 +35,13 @@ const JobForm = (props) => {
     }
   }
 
-  const addJob = async (job) => {
-    try {
-      await axios.post('/api/jobs', job)
-    } catch(err) {
-      alert("Error occurred adding a job")
-    }
-  }
+  // const addJob = async (job) => {
+  //   try {
+  //     await axios.post('/api/jobs', job)
+  //   } catch(err) {
+  //     alert("Error occurred adding a job")
+  //   }
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault()
