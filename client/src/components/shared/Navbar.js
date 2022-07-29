@@ -42,7 +42,7 @@ const BuildingNavbar = () => {
                 <>
                     {ButtonStyle()}
                     <Navbar bg="light" variant="light" style={{
-                        paddingLeft: "2rem",
+                        paddingLeft: "2rem", boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
                     }}>
                         <LinkContainer to="/">
                             <Navbar.Brand href="/Home">JobSeek</Navbar.Brand>
@@ -66,7 +66,7 @@ const BuildingNavbar = () => {
                 <>
                     {ButtonStyle()}
                     <Navbar bg="light" variant="light" style={{
-                        paddingLeft: "2rem",
+                        paddingLeft: "2rem", boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
                     }}>
                         <LinkContainer to="/">
                             <Navbar.Brand href="/home">JobSeek</Navbar.Brand>

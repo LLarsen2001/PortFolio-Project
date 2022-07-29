@@ -9,13 +9,13 @@ import Button from 'react-bootstrap/esm/Button';
 import ModalDemo from '../../demos/ModalDemo';
 import { FormDataContext } from '../../providers/FormDataProvider';
 import { ThemeContext } from '../../providers/ThemeProvider';
-
-const UjButtonStyle = styled.button`
-  font-size: 12px;
-`;
+import Badge from 'react-bootstrap/esm/Badge';
 
 const Cardlocationtext = styled.div`
-  font-size: 12px;
+font-size: 12px;
+`;
+const Titletext = styled.div`
+font-size: .9rem;
 `;
 const UserJobCard = ({ job, index }) => {
     const { setJobData } = useContext(FormDataContext)
@@ -49,6 +49,19 @@ const UserJobCard = ({ job, index }) => {
             return setCardColor("#D50404")
         }
     }
+
+    const formatSalary = () => {
+        return "$" + job.salary + "/yr"
+
+    }
+    const CheckRemote = () => {
+        if (job.remote === true) {
+            return ('Remote')
+        } else {
+            return
+        }
+    }
+
     return (
         <Draggable key={job.id} draggableId={job.id.toString()} index={index}>
             {(provided) => (
@@ -60,46 +73,80 @@ const UserJobCard = ({ job, index }) => {
                     <Card
                         text='white'
                         style={{
-                            width: '19vw',
-                            height: '22vw',
-                            borderRadius: "45px",
-                            background: cardColor,
+
+                            width: '18.5vw',
+                            height: '21.5vh',
+                            background: "#4640DE",
+                            borderRadius: "24px",
                             justifyContent: "space-between",
                             overflow: "hidden",
-                            margin: ".2vw"
+                            background: cardColor,
+                            boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
+                            padding: ".4vw .4vw",
+                            margin: '.4rem'
                         }}>
-                        <Card.Header >
-                            <Button bsPrefix={{
-                                width: ".5rem", height: ".5rem"
-                            }} variant="primary"
+                        <div style={{ display: 'flex', flexDirection: 'row' }}>
+
+                            <Card.Text style={{ marginRight: 'auto', marginLeft: '.5rem' }}><Cardlocationtext>Created by {job.name}
+                                <p> Added on {format(job.created_at)}  </p>
+
+                            </Cardlocationtext>
+                            </Card.Text>
+                            <ModalDemo show={show} handleClose={handleClose} userJob={userJob} />
+                            <button style={{
+                                width: "4.2rem", height: "1.5rem", marginleft: 'auto', marginRight: '.5rem', marginTop: '.5rem', fontSize: '1rem'
+                            }}
                                 onClick={() => {
                                     handleShow(job.id)
                                 }}>
-                                Add Notes
-                            </Button>
-                            <ModalDemo show={show} handleClose={handleClose} userJob={userJob} />
-                            <a onClick={() => deleteUserJob(job.id)} className="close"></a>
-                            <Cardlocationtext>  <Card.Text> Added on {format(job.created_at)}  </Card.Text></Cardlocationtext>
-                        </Card.Header>
-                        <Card.Body>
-                            <Card.Title>{job.jobname} </Card.Title>
+                                Notes
+                            </button>
+                            {/* // <a onClick={() => deleteUserJob(job.id)} className="close"></a> */}
+                        </div>
+                        <Card.Body style={{ marginTop: '-2rem' }}>
                             <Card.Text>
-                                <p><Cardlocationtext>Located At {job.location}</Cardlocationtext></p>
-                                <p>
-                                    {job.description}
+                                <p><b><Titletext>{job.jobname}</Titletext></b>
+                                    <Cardlocationtext>{job.companyname}</Cardlocationtext>
                                 </p>
+
+                                <div>
+                                    <h6>
+                                        <Badge style={{ marginLeft: 'auto', marginRight: '.75rem' }}>{job.description}</Badge>
+                                        <Badge style={{ marginRight: 'auto', marginLeft: '.75rem' }}>{CheckRemote()}</Badge>
+
+                                    </h6>
+                                </div>
+
                             </Card.Text>
                         </Card.Body>
-                        <Card.Footer>
-                            <Card.Text>
-                                {/* <p><b>{job.companyname}</b><Cardlocationtext>{job.baselocation}</Cardlocationtext></p> */}
-                                <p>{job.about}</p>
-                            </Card.Text>
-                        </Card.Footer>
+
+
+                        <div style={{
+                            display: 'flex', flexDirection: 'row', fontWeight: 'bold', justifyContent: 'spaceBetween'
+
+                        }}>
+                            <div style={{ marginRight: 'auto', marginLeft: '1.3rem' }}>
+                                <Cardlocationtext>
+                                    <p>  {formatSalary()}</p>
+                                </Cardlocationtext>
+                            </div>
+
+
+                            <div style={{ marginLeft: 'auto', marginRight: '1.3rem' }}>
+
+
+                                <Cardlocationtext>
+                                    <p>{job.location}</p>
+                                </Cardlocationtext>
+                            </div>
+                        </div>
+
                     </Card >
                 </div>
             )}
         </Draggable>
     );
 }
+
 export default UserJobCard;
+

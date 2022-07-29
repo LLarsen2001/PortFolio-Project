@@ -8,12 +8,12 @@ import { UserJobsContext } from '../../providers/UserJobsProvider';
 import ModalDemo from '../../demos/ModalDemo'
 import Badge from 'react-bootstrap/Badge'
 import { FormDataContext } from '../../providers/FormDataProvider';
-const Cardstyle = styled.div`
-max-width: 19vw;
-display: flex;
-border-radius: 45px;
-padding: .4vw .4vw;
-`;
+// const Cardstyle = styled.div`
+// max-width: 19vw;
+// display: flex;
+// border-radius: 45px;
+// padding: .4vw .4vw;
+// `;
 
 const Cardlocationtext = styled.div`
 font-size: 12px;
@@ -34,9 +34,6 @@ const Job = (props) => {
     return "$" + props.salary + "/yr"
 
   }
-  const handleSubmit = () => {
-    addUserJob({ job_id: props.id, status: 'wishlist' })
-  }
   const CheckRemote = () => {
     if (props.remote === true) {
       return ('Remote')
@@ -45,12 +42,17 @@ const Job = (props) => {
     }
   }
 
+  const handleSubmit = () => {
+    addUserJob({ job_id: props.id, status: 'wishlist' })
+  }
   return (
-    <Cardstyle>
+    <div style={{ margin: ".5rem" }}>
+
       <Card
         text='white'
         style={{
-          width: '20vw', height: '23vh', background: "#4640DE", borderRadius: "24px", justifyContent: "space-between", overflow: "hidden"
+          width: '18.5vw', height: '21vh', background: "#4640DE", borderRadius: "24px", justifyContent: "space-between", overflow: "hidden",
+          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
         }}>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           {props.edit &&
@@ -106,7 +108,8 @@ const Job = (props) => {
         </div>
 
       </Card >
-    </Cardstyle >
+    </div>
+
   )
 }
 export default Job

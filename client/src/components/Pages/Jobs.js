@@ -10,10 +10,11 @@ import AddJobModal from '../shared/AddJobModal'
 
 const JobContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 19vw);
+  grid-template-columns: repeat(auto-fill, 19.5vw);
   align-items: center;
   justify-content: center;
   overflow: hidden;
+ 
   
   
   `;
