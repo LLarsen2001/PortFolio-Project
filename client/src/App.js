@@ -47,13 +47,7 @@ const App = () => (
             <Route path="/profile" element={<Profile />} />
             <Route path="/jobsboard" element={<JobsBoard />} />
             <Route path="/search" element={<SearchBar />} />
-
-
-
             <Route path="/addcompany" element={<CompanyForm />} />
-
-
-
             <Route path="/addjob" element={<JobForm />} />
             <Route path="image_upload" element={<ImageUpload />} />
             <Route path="demoprofile" element={<DemoProfileImage />} />

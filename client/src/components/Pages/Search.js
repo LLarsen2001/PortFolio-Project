@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const JobContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 19vw);
+  grid-template-columns: repeat(auto-fill, 19.5vw);
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -27,7 +27,9 @@ const SearchBar = () => {
     background: "#F2F1F9",
     border: "none",
     padding: "0.5rem",
-    marginRight: "0.3rem"
+    marginRight: "0.3rem",
+    border: "1px solid black",
+    borderRadius: "12px"
   }
 
   useEffect(() => {

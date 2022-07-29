@@ -10,10 +10,12 @@ import AddJobModal from '../shared/AddJobModal'
 
 const JobContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 19vw);
+  grid-template-columns: repeat(auto-fill, 19.5vw);
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: 9.25rem;
+  padding-top: 2rem;
   
   
   `;
@@ -76,7 +78,7 @@ const Jobs = () => {
       <Container>
         <h1>Discover Jobs</h1>
       </Container>
-      <Container>
+      <Container style={{ paddingBottom: '1rem', }}>
         <div>
 
           <Button variant="primary" onClick={handleShow}>
