@@ -8,6 +8,7 @@ import SearchBar from './Search'
 import Button from 'react-bootstrap/esm/Button'
 import AddJobModal from '../shared/AddJobModal'
 import { JobsContext } from '../../providers/JobsProvider'
+import { AuthContext } from '../../providers/AuthProvider'
 
 const JobContainer = styled.div`
   display: grid;
@@ -28,6 +29,7 @@ const Container = styled.div`
   `;
 
 const Jobs = () => {
+  const { user } = useContext(AuthContext)
   const { jobs } = useContext(JobsContext)
   const { userJobs } = useContext(UserJobsContext)
   const [loading, setLoading] = useState(true)
@@ -60,10 +62,11 @@ const Jobs = () => {
       </Container>
       <Container style={{ paddingBottom: '1rem', }}>
         <div>
-
+          {user && 
           <Button variant="primary" onClick={handleShow}>
             Add Job
           </Button>
+          }
           <AddJobModal show={show} handleClose={handleClose} />
         </div>
       </Container>
