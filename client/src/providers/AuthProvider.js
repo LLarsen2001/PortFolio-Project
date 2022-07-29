@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
             let res = await axios.post("/api/auth", user);
             console.log(res);
             setUser(res.data.data);
-            navigate("/");
+            navigate("/jobs");
         } catch (err) {
             alert("Sign In did not work");
             console.log(err);

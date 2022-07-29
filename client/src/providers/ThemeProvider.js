@@ -10,7 +10,7 @@ const ThemeProvider = ({ children }) => {
   let ujThirdColor = "#34A853"
 
   return (
-    <ThemeContext.Provider value={{ primary, secondary, tertiary }}>
+    <ThemeContext.Provider value={{ primary, secondary, tertiary, ujSecondColor, ujThirdColor }}>
       {children}
     </ThemeContext.Provider>
   )

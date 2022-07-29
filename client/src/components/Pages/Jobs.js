@@ -14,7 +14,8 @@ const JobContainer = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
- 
+  padding: 9.25rem;
+  padding-top: 2rem;
   
   
   `;
@@ -77,7 +78,7 @@ const Jobs = () => {
       <Container>
         <h1>Discover Jobs</h1>
       </Container>
-      <Container>
+      <Container style={{ paddingBottom: '1rem', }}>
         <div>
 
           <Button variant="primary" onClick={handleShow}>
