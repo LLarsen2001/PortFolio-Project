@@ -8,8 +8,10 @@ import axios from 'axios'
 import { MyLink } from './Navbar'
 import { AuthContext } from '../../providers/AuthProvider';
 import { FormDataContext } from '../../providers/FormDataProvider';
+import { JobsContext } from '../../providers/JobsProvider';
 
 const EditJobForm = (props) => {
+  const { updateJob } = useContext(JobsContext)
   const { job } = useContext(FormDataContext)
   const { user } = useContext(AuthContext)
   const [jobname, setJobName] = useState(null)
@@ -35,17 +37,17 @@ const EditJobForm = (props) => {
     }
   }
 
-  const updateJob = async (updatedJob) => {
-    try {
-      await axios.put(`/api/jobs/${job[0].id}`, updatedJob)
-    } catch(err) {
-      alert("Error occurred updating a job")
-    }
-  }
+  // const updateJob = async (updatedJob) => {
+  //   try {
+  //     await axios.put(`/api/jobs/${job[0].id}`, updatedJob)
+  //   } catch(err) {
+  //     alert("Error occurred updating a job")
+  //   }
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    updateJob({jobname, company_id, salary, description, remote, location, user_id, isFilled})
+    updateJob({jobname, company_id, salary, description, remote, location, user_id, isFilled}, job[0].id)
     props.handleClose()
   }
 

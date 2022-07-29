@@ -40,15 +40,22 @@ const JobsProvider = ({ children }) => {
     }
   }
 
-  // const updateJob = async (updatedJob, id) => {
-  //   console.log(id)
-  //   try {
-  //     let res = await axios.put(`/api/jobs/${id}`, updatedJob)
-  //     setJobs([res.data, ...jobs])
-  //   } catch(err) {
-  //     alert("Error occurred updating a job")
-  //   }
-  // }
+  const updateJob = async (updatedJob, id) => {
+  console.log('updateJob called')
+    try {
+      let res = await axios.put(`/api/jobs/${id}`, updatedJob)
+      const updatedArray = jobs.map((j)=> {
+        if(j.id === id) {
+          return res.data
+        }
+        return j
+      })
+      console.log(res.data)
+      setJobs(updatedArray)
+    } catch(err) {
+      alert("Error occurred updating a job")
+    }
+  }
 
   const getCompanies = async () => {
     try {
@@ -71,7 +78,7 @@ const JobsProvider = ({ children }) => {
 
   return (
 
-    <JobsContext.Provider value={{ jobs, companies, addJob, addCompany }}>
+    <JobsContext.Provider value={{ jobs, companies, addJob, addCompany, updateJob }}>
       {children}
     </JobsContext.Provider>
   )

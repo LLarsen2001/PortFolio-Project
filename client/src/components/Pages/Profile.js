@@ -9,9 +9,12 @@ import SingleImageUpload from "../shared/SingleImageUpload";
 import axios from "axios";
 import { useEffect } from "react";
 import Job from "./Job";
+import { JobsContext } from "../../providers/JobsProvider";
 
 const ImageS = styled.div`
   display: flex;
+  max-width: 30%;
+  float: right;
 `;
 
 const CreatedJobs = styled.div`
@@ -25,6 +28,7 @@ overflow-x: auto;
 const Profile = () => {
   const [noImage] = useState("https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.kindpng.com%2Fpicc%2Fm%2F451-4517876_default-profile-hd-png-download.png&imgrefurl=https%3A%2F%2Fwww.kindpng.com%2Fimgv%2FhxibTwh_default-profile-hd-png-download%2F&tbnid=4edWzZTKs1yRvM&vet=12ahUKEwiu48-sk5f5AhXmATQIHQ_qBisQMygdegUIARCkAg..i&docid=xwIlDPGqcBhivM&w=860&h=663&q=default%20profile%20picture&ved=2ahUKEwiu48-sk5f5AhXmATQIHQ_qBisQMygdegUIARCkAg")
   const { user, setUser, EditUser } = useContext(AuthContext)
+  const { jobs } = useContext(JobsContext)
   const [emailToggle, setEmailToggle] = useState(false)
   const [nameToggle, setNameToggle] = useState(false)
   const [passwordToggle, setPasswordToggle] = useState(false)
@@ -32,13 +36,13 @@ const Profile = () => {
   const [name, setName] = useState(user.name || '')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
-  const [postedJobs, setPostedJobs] = useState([])
+  // const [postedJobs, setPostedJobs] = useState([])
   const [loading, setLoading] = useState(true)
   const edit = true;
 
-  useEffect(() => {
-    getPostedJobs()
-  }, [])
+  // useEffect(() => {
+  //   getPostedJobs()
+  // }, [])
 
   const handleEmailToggle = () => {
     setEmailToggle(!emailToggle)
@@ -69,17 +73,20 @@ const Profile = () => {
     setPasswordToggle(false)
   }
 
-  const getPostedJobs = async () => {
-    let res = await axios.get(`/api/users/${user.id}/postedjobs`)
-    setPostedJobs(res.data)
-    setLoading(false)
-  }
+  // const getPostedJobs = async () => {
+  //   let res = await axios.get(`/api/users/${user.id}/postedjobs`)
+  //   setPostedJobs(res.data)
+  //   setLoading(false)
+  // }
 
   const renderPostedJobs = () => {
-    if (loading) {
-      return <p>Loading</p>
-    }
-
+    console.log('renderPostedJobs called')
+    // if (loading) {
+    //   return <p>Loading</p>
+    // }
+    console.log(jobs)
+    let postedJobs = jobs.filter((j)=> j.created_by === user.id)
+    console.log(postedJobs)
     return postedJobs.map(j => {
       return (<div className='jobpage'>
         <Job key={j.id} edit={edit} {...j} />
