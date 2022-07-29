@@ -25,7 +25,7 @@ status = [
      10.times do
        c = Company.create(
         companyname:Faker::Company.name,
-        baselocation:Faker::Address.full_address,
+        baselocation:(Faker::Address.city)+ (", ")+( Faker::Address.state_abbr),
         about:Faker::Company.industry
      ) 
     
@@ -46,7 +46,7 @@ status = [
              salary:400000,
              description:Faker::Job.key_skill,
              remote:Faker::Boolean.boolean,
-             location:Faker::Address.full_address,
+             location:(Faker::Address.city)+ (", ")+( Faker::Address.state_abbr),
              isFilled:Faker::Boolean.boolean,
              company_id:c.id,
              user_id:uscr.id                 

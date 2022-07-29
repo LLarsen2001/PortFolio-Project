@@ -36,7 +36,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true)
   const edit = true;
 
-  useEffect(()=> {
+  useEffect(() => {
     getPostedJobs()
   }, [])
 
@@ -51,14 +51,11 @@ const Profile = () => {
   }
   const handleEmailSubmit = (e) => {
     e.preventDefault()
-    EditUser({ email })
+    EditUser({ email, name })
     setEmailToggle(false)
-  }
-  const handleUsernameSubmit = (n) => {
-    n.preventDefault()
-    EditUser({ name })
     setNameToggle(false)
   }
+
   const handlePasswordSubmit = (p) => {
     p.preventDefault()
     if (password.length < 6) {
@@ -106,60 +103,56 @@ const Profile = () => {
       <Card.Body>
         <ImageS><Card.Img variant="top" src={user.image ? user.image : noImage} /></ImageS >
         <Card.Title>Profile Page</Card.Title>
-        <Card.Text>Username {user.name}</Card.Text>
+        <Card.Text>Hello {user.name}</Card.Text>
+        <Card.Text>{user.email}</Card.Text>
+      </Card.Body>
+      <div style={{ border: ".5px solid grey " }}></div>
 
-
-        <Card.Text>Email {user.email}</Card.Text>
+      <Card.Body>
+        <Card.Text>You can change your Profile image by dragging desired image file into the dropbox below.</Card.Text>
+        <SingleImageUpload style={{}} id={user.id} setUser={setUser} />
+      </Card.Body>
+      <div style={{ border: ".5px solid grey " }}></div>
+      <Card.Body>
         <>
-          <Button size="sm" onClick={handleEmailToggle}>Edit</Button>
-          {emailToggle &&
-            <Form onSubmit={handleEmailSubmit}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value)
-                  }}
-                  type="email" placeholder="Change Email?"
-                />
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
-          }
+
+          <Form onSubmit={handleEmailSubmit}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                }}
+                type="email" placeholder="Change Email?"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                value={name}
+                onChange={(n) => {
+                  setName(n.target.value)
+                }}
+                type="name" placeholder="Change Username?"
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+
 
         </>
-        <>
-          <Card.Text>Username {user.name}</Card.Text>
-          <Button size="sm" onClick={handleNameToggle}>Edit</Button>
-          {nameToggle &&
-            <Form onSubmit={handleUsernameSubmit}>
-              <Form.Group className="mb-3" controlId="formBasicName">
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                  value={name}
-                  onChange={(n) => {
-                    setName(n.target.value)
-                  }}
-                  type="name" placeholder="Change Username?"
-                />
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
-          }
 
-        </>
+
         <>
-          <Card.Text>Password {user.password}</Card.Text>
+          <Card.Text>Change your Password?</Card.Text>
           <Button size="sm" onClick={handlePasswordToggle}>Edit</Button>
           {passwordToggle &&
             <Form onSubmit={handlePasswordSubmit}>
               <Form.Group className="mb-3" controlId="formBasicName">
-                <Form.Label>password</Form.Label>
+                <Form.Label> Enter new password</Form.Label>
                 <Form.Control
                   value={password}
                   onChange={(p) => {
@@ -169,7 +162,7 @@ const Profile = () => {
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicName">
-                <Form.Label>Confirm Password </Form.Label>
+                <Form.Label>Confirm New Password </Form.Label>
                 <Form.Control
                   value={passwordConfirm}
                   onChange={(p) => {
@@ -185,17 +178,15 @@ const Profile = () => {
           }
 
         </>
+
       </Card.Body>
+      <div style={{ border: ".5px solid grey " }}></div>
 
       <Card.Body>
-        <Card.Text>You can change your Profile image by dragging desired image file into the dropbox below.</Card.Text>
-        <SingleImageUpload style={{}} id={user.id} setUser={setUser} />
-      </Card.Body>
-      <Card.Body>
-          <Card.Text>My Posted Jobs</Card.Text>
-          <CreatedJobs>
+        <Card.Text>My Posted Jobs</Card.Text>
+        <CreatedJobs>
           {renderPostedJobs()}
-          </CreatedJobs>
+        </CreatedJobs>
       </Card.Body>
     </Card>
   );

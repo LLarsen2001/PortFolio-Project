@@ -3,20 +3,23 @@ import React, { useContext, useState } from 'react'
 import styled from 'styled-components';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import Button from 'react-bootstrap/esm/Button';
+import Container from 'react-bootstrap/Container'
 import { UserJobsContext } from '../../providers/UserJobsProvider';
 import ModalDemo from '../../demos/ModalDemo'
+import Badge from 'react-bootstrap/Badge'
 import { FormDataContext } from '../../providers/FormDataProvider';
-const Cardstyle = styled.div`
-max-width: 19vw;
-display: flex;
-border-radius: 45px;
-padding: 15px 15px;
-`;
-const Cardjobbodystyle = styled.div`
-display-left: left;
-`
+// const Cardstyle = styled.div`
+// max-width: 19vw;
+// display: flex;
+// border-radius: 45px;
+// padding: .4vw .4vw;
+// `;
+
 const Cardlocationtext = styled.div`
 font-size: 12px;
+`;
+const Titletext = styled.div`
+font-size: 15px;
 `;
 const Job = (props) => {
   const { setJobData } = useContext(FormDataContext)
@@ -29,18 +32,29 @@ const Job = (props) => {
   }
   const formatSalary = () => {
     return "$" + props.salary + "/yr"
+
   }
+  const CheckRemote = () => {
+    if (props.remote === true) {
+      return ('Remote')
+    } else {
+      return
+    }
+  }
+
   const handleSubmit = () => {
     addUserJob({ job_id: props.id, status: 'wishlist' })
   }
   return (
-    <Cardstyle>
+    <div style={{ margin: ".5rem" }}>
+
       <Card
         text='white'
         style={{
-          width: '19vw', height: '22vw', background: "#4640DE", borderRadius: "45px", justifyContent: "space-between", overflow: "hidden"
+          width: '18.5vw', height: '21vh', background: "#4640DE", borderRadius: "24px", justifyContent: "space-between", overflow: "hidden",
+          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
         }}>
-        <Card.Header>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
           {props.edit &&
             <Button variant="primary" onClick={() => {
               handleShow(props.id)
@@ -48,31 +62,54 @@ const Job = (props) => {
               Edit
             </Button>
           }
+
           <ModalDemo show={show} handleClose={handleClose} edit={props.edit} />
-          <Card.Text> <Cardlocationtext>Posted by: {props.email} </Cardlocationtext></Card.Text>
-        </Card.Header>
-        <Cardjobbodystyle>
-          <Card.Body>
-            <Card.Text>
-              <p><b>{props.jobname}</b>  <Cardlocationtext>{props.location}</Cardlocationtext></p>
-              <p>
-                {props.description}
-                {formatSalary()}
-              </p>
-              <p>
-                {props.id}
-              </p>
-            </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <Card.Text>
-              <p><b>{props.companyname} </b><Cardlocationtext>{props.baselocation}</Cardlocationtext></p>
-              <p>{props.about}<button onClick={handleSubmit}>add</button></p>
-            </Card.Text>
-          </Card.Footer>
-        </Cardjobbodystyle>
+          <Card.Text style={{ marginLeft: '.75rem' }}><Cardlocationtext>Created by {props.name} </Cardlocationtext></Card.Text>
+          <button
+            style={{ marginLeft: 'auto', marginRight: '.4vw', width: '3rem', height: '1.5rem' }}
+            onClick={handleSubmit}>add</button>
+        </div>
+        <Card.Body>
+          <Card.Text>
+            <p><b><Titletext>{props.jobname}</Titletext></b>
+              <Cardlocationtext>{props.companyname}</Cardlocationtext>
+            </p>
+
+            <div>
+              <h6>
+                <Badge style={{ marginLeft: 'auto', marginRight: '.75rem' }}>{props.description}</Badge>
+                <Badge style={{ marginRight: 'auto', marginLeft: '.75rem' }}>{CheckRemote()}</Badge>
+
+              </h6>
+            </div>
+
+          </Card.Text>
+        </Card.Body>
+
+
+        <div style={{
+          display: 'flex', flexDirection: 'row', fontWeight: 'bold', justifyContent: 'spaceBetween'
+
+        }}>
+          <div style={{ marginRight: 'auto', marginLeft: '1.3rem' }}>
+            <Cardlocationtext>
+              <p>  {formatSalary()}</p>
+            </Cardlocationtext>
+          </div>
+
+
+          <div style={{ marginLeft: 'auto', marginRight: '1.3rem' }}>
+
+
+            <Cardlocationtext>
+              <p>{props.location}</p>
+            </Cardlocationtext>
+          </div>
+        </div>
+
       </Card >
-    </Cardstyle >
+    </div>
+
   )
 }
 export default Job

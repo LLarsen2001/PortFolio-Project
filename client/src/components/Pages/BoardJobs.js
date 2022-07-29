@@ -14,33 +14,35 @@ const Container = styled.div`
 `;
 
 const TaskList = styled.div`
-  
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr) ) ;
-  border: 1px solid black;
+  margin: .4rem;
+  margin-top: 1rem;
+  grid-gap: 5px;
+  grid-template-columns: repeat(auto-fill, minmax(200vw, 1fr) ) ;
+  border: .5px solid black;
   background: #f3f3f3;
-  width: 19.8vw;
+  width: 19.25vw;
   border-radius: 10px;
   justify-content: space-between;
-  
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   
 `;
 
 const TaskColumnStyles = styled.div`
 
-  margin: 8px;
-  display: flex;
   
+  display: flex;
+  padding: .05rem;
   min-height: 80vh;
 `;
 
 const Title = styled.span`
-  color: #10957d;
-  background: rgba(16, 149, 125, 0.15);
+  
+  font-weight: bold;
   padding: 2px 10px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
+  padding-bottom: 1.5rem
 `;
 
 const JobsBoard = () => {
