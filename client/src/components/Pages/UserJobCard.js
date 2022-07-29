@@ -70,20 +70,11 @@ const UserJobCard = ({ job, index }) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <Card
+                    <Card className='ujCardBackGround'
                         text='white'
                         style={{
 
-                            width: '18.5vw',
-                            height: '21.5vh',
-                            background: "#4640DE",
-                            borderRadius: "24px",
-                            justifyContent: "space-between",
-                            overflow: "hidden",
-                            background: cardColor,
-                            boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
-                            padding: ".4vw .4vw",
-                            margin: '.4rem'
+
                         }}>
                         <div style={{ display: 'flex', flexDirection: 'row' }}>
 
@@ -103,7 +94,7 @@ const UserJobCard = ({ job, index }) => {
                             </button>
                             {/* // <a onClick={() => deleteUserJob(job.id)} className="close"></a> */}
                         </div>
-                        <Card.Body style={{ marginTop: '-2rem' }}>
+                        <Card.Body style={{ marginTop: '-2.2rem' }}>
                             <Card.Text>
                                 <p><b><Titletext>{job.jobname}</Titletext></b>
                                     <Cardlocationtext>{job.companyname}</Cardlocationtext>
