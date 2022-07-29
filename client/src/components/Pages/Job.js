@@ -1,13 +1,16 @@
 import Card from 'react-bootstrap/Card'
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components';
+import "../../App.css"
 import CardHeader from 'react-bootstrap/esm/CardHeader';
+import Vector from "../../Imgstyle/Vector.png"
 import Button from 'react-bootstrap/esm/Button';
 import Container from 'react-bootstrap/Container'
 import { UserJobsContext } from '../../providers/UserJobsProvider';
 import ModalDemo from '../../demos/ModalDemo'
 import Badge from 'react-bootstrap/Badge'
 import { FormDataContext } from '../../providers/FormDataProvider';
+import { AuthContext } from '../../providers/AuthProvider';
 // const Cardstyle = styled.div`
 // max-width: 19vw;
 // display: flex;
@@ -24,6 +27,7 @@ font-size: 15px;
 const Job = (props) => {
   const { setJobData } = useContext(FormDataContext)
   const { addUserJob } = useContext(UserJobsContext)
+  const { user } = useContext(AuthContext)
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = (id) => {
@@ -42,18 +46,17 @@ const Job = (props) => {
     }
   }
 
-  const handleSubmit = () => {
+  const click = () => {
+    console.log('hello')
     addUserJob({ job_id: props.id, status: 'wishlist' })
   }
   return (
     <div style={{ margin: ".5rem" }}>
 
       <Card
+        className='cardBackGround'
         text='white'
-        style={{
-          width: '18.5vw', height: '21vh', background: "#4640DE", borderRadius: "24px", justifyContent: "space-between", overflow: "hidden",
-          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
-        }}>
+      >
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           {props.edit &&
             <Button variant="primary" onClick={() => {
@@ -65,9 +68,12 @@ const Job = (props) => {
 
           <ModalDemo show={show} handleClose={handleClose} edit={props.edit} />
           <Card.Text style={{ marginLeft: '.75rem' }}><Cardlocationtext>Created by {props.name} </Cardlocationtext></Card.Text>
-          <button
-            style={{ marginLeft: 'auto', marginRight: '.4vw', width: '3rem', height: '1.5rem' }}
-            onClick={handleSubmit}>add</button>
+
+          {user ? <img src={Vector}
+            className='SaveJobButton'
+            onClick={() => { click() }}
+          /> : null}
+
         </div>
         <Card.Body>
           <Card.Text>
@@ -108,7 +114,7 @@ const Job = (props) => {
         </div>
 
       </Card >
-    </div>
+    </div >
 
   )
 }
