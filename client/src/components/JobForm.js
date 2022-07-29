@@ -10,10 +10,10 @@ import { useNavigate } from 'react-router-dom'
 import { JobsContext } from '../providers/JobsProvider';
 
 const JobForm = (props) => {
-  const { addJob } = useContext(JobsContext)
+  const { addJob, companies } = useContext(JobsContext)
   const { user } = useContext(AuthContext)
   const [jobname, setJobName] = useState("")
-  const [companies, setCompanies] = useState([])
+  // const [companies, setCompanies] = useState([])
   const [company_id, setCompanyID] = useState(null)
   const [salary, setSalary] = useState(null)
   const [description, setDescription] = useState("")
@@ -21,27 +21,6 @@ const JobForm = (props) => {
   const [location, setLocation] = useState("")
   const user_id = user.id
   const isFilled = false
-
-  useEffect(()=> {
-    getCompanies()
-  }, [])
-
-  const getCompanies = async () => {
-    try {
-      let res = await axios.get('/api/companies')
-      setCompanies(res.data)
-    } catch(err) {
-      alert("Error occurred getting companies")
-    }
-  }
-
-  // const addJob = async (job) => {
-  //   try {
-  //     await axios.post('/api/jobs', job)
-  //   } catch(err) {
-  //     alert("Error occurred adding a job")
-  //   }
-  // }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -129,7 +108,6 @@ const JobForm = (props) => {
           </Form.Control>
           </Form.Group>
           
-          {/* <MyLink url="/addcompany">Add A New Company</MyLink> */}
           <Button size="sm" onClick={props.toggleForms}>Add Company</Button>
 
           </Col>

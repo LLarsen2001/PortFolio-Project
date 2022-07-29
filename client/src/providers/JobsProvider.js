@@ -12,10 +12,11 @@ const JobsProvider = ({ children }) => {
   const { userJobs } = useContext(UserJobsContext)
   const [jobs, setJobs] = useState([])
   const [job, setJob] = useState(null)
-  // const [filteredJobs, setFilteredJobs] = useState([])
+  const [companies, setCompanies] = useState([])
 
   useEffect(() => {
     getJobs()
+    getCompanies()
   }, [])
 
   const getJobs = async () => {
@@ -23,12 +24,6 @@ const JobsProvider = ({ children }) => {
     try {
       let res = await axios.get('/api/jobs')
       setJobs(res.data)
-      // setLoading(false)
-      // setFilteredJobs(res.data.filter((j) => {
-      //   return !userJobs.some((uj) => {
-      //     return j.id === uj.job_id
-      //   })
-      // }))
     } catch (err) {
       alert("Error with getJobs")
     }
@@ -40,17 +35,43 @@ const JobsProvider = ({ children }) => {
       let res = await axios.post('/api/jobs', job)
       console.log(res.data)
       setJobs([res.data, ...jobs])
-      // props.addJobToUI(job)
     } catch(err) {
       alert("Error occurred adding a job")
     }
   }
 
+  // const updateJob = async (updatedJob, id) => {
+  //   console.log(id)
+  //   try {
+  //     let res = await axios.put(`/api/jobs/${id}`, updatedJob)
+  //     setJobs([res.data, ...jobs])
+  //   } catch(err) {
+  //     alert("Error occurred updating a job")
+  //   }
+  // }
 
+  const getCompanies = async () => {
+    try {
+      let res = await axios.get('/api/companies')
+      setCompanies(res.data)
+    } catch(err) {
+      alert("Error occurred getting companies")
+    }
+  }
+
+
+  const addCompany = async (company) => {
+    try {
+      let res = await axios.post('/api/companies', company)
+      setCompanies([res.data, ...companies])
+    } catch(err) {
+      alert("Error occurred adding a company")
+    }
+  }
 
   return (
 
-    <JobsContext.Provider value={{ jobs, addJob }}>
+    <JobsContext.Provider value={{ jobs, companies, addJob, addCompany }}>
       {children}
     </JobsContext.Provider>
   )
