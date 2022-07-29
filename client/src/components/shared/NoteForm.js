@@ -12,15 +12,6 @@ const NoteForm = (props) => {
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")
 
-  // const addNote = async (note) => {
-  //   try {
-  //     await axios.post(`/api/userjobs/${userJob[0].id}/notes`, note)
-  //   } catch(err) {
-  //     console.log(err)
-  //     alert("Error occurred adding a note")
-  //   }
-  // }
-
   const handleSubmit = (e) => {
     e.preventDefault()
     props.addNote({title, body})
