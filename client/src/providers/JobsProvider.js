@@ -63,7 +63,7 @@ const JobsProvider = ({ children }) => {
   const addCompany = async (company) => {
     try {
       let res = await axios.post('/api/companies', company)
-      setCompanies([res.data, ...companies])
+      setCompanies([...companies, res.data])
     } catch(err) {
       alert("Error occurred adding a company")
     }
