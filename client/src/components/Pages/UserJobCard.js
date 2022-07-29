@@ -22,7 +22,7 @@ const UserJobCard = ({ job, index }) => {
     const [cardColor, setCardColor] = useState("")
     const { deleteUserJob, setUserJobData } = useContext(UserJobsContext)
     const [show, setShow] = useState(false);
-    const { primary, secondary, tertiary } = useContext(ThemeContext)
+    const { primary, secondary, tertiary, ujSecondColor, ujThirdColor } = useContext(ThemeContext)
     const userJob = true;
     const handleClose = () => setShow(false);
     const handleShow = (id) => {
@@ -43,10 +43,10 @@ const UserJobCard = ({ job, index }) => {
         if (duration.values.days <= 1) {
             return setCardColor(primary)
         } else if (duration.values.days <= 2) {
-            return setCardColor("#F7B821")
+            return setCardColor(ujSecondColor)
 
         } else {
-            return setCardColor("#D50404")
+            return setCardColor(ujThirdColor)
         }
     }
 
