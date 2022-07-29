@@ -1,20 +1,14 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import axios from "axios"
 import Form from 'react-bootstrap/Form'
 import Button from "react-bootstrap/esm/Button"
+import { JobsContext } from "../../providers/JobsProvider"
 
 const CompanyForm = (props) => {
+  const { addCompany } = useContext(JobsContext)
   const [companyname, setCompanyName] = useState("")
   const [baselocation, setBaseLocation] = useState("")
   const [about, setAbout] = useState("")
-
-  const addCompany = async (company) => {
-    try {
-      await axios.post('/api/companies', company)
-    } catch(err) {
-      alert("Error occurred adding a company")
-    }
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()

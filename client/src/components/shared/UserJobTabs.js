@@ -29,6 +29,16 @@ function UserJobTabs(props) {
     }
   }
 
+  const addNote = async (note) => {
+    try {
+      let res = await axios.post(`/api/userjobs/${userJob[0].id}/notes`, note)
+      setNotes([...notes, res.data])
+    } catch(err) {
+      console.log(err)
+      alert("Error occurred adding a note")
+    }
+  }
+
   const renderNotes = () => {
     return notes.map(n => {
       return (<div className='jobpage'>
@@ -46,7 +56,7 @@ function UserJobTabs(props) {
       className="mb-3"
     >
       <Tab eventKey="notes" title="Notes">
-        <NoteForm />
+        <NoteForm addNote={addNote} />
         {renderNotes()}
       </Tab>
       <Tab eventKey="documents" title="Documents">

@@ -48,7 +48,25 @@ class Api::JobsController < ApplicationController
 
   def update
     if(@job.update(job_params))
-      render json: @job
+      render json: {
+        about: @job.company.about,
+        baselocation: @job.company.baselocation,
+        company_id: @job.company_id,
+        companyname:@job.company.companyname,
+        created_by: @job.user_id,
+        description: @job.description,
+        # email: newJob.user.email,
+        id: @job.id,
+        job_id: @job.id,
+        jobname:@job.jobname,
+        location: @job.location,
+        remote: @job.remote,
+        salary: @job.salary,
+        # status: newJob.status,
+        # user_id:@user.id,
+        created_at:@job.created_at,
+        updated_at:@job.updated_at
+    }
     else
       render json: @job.errors.full_message, status: 422
     end
