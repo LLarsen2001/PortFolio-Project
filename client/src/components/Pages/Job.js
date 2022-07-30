@@ -2,9 +2,9 @@ import Card from 'react-bootstrap/Card'
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components';
 import "../../App.css"
-import CardHeader from 'react-bootstrap/esm/CardHeader';
-import Vector from "../../Imgstyle/Vector.png"
 import Button from 'react-bootstrap/esm/Button';
+import Vector from "../../Imgstyle/Vector.png"
+import Edit from "../../Imgstyle/EditButton.png"
 import Container from 'react-bootstrap/Container'
 import { UserJobsContext } from '../../providers/UserJobsProvider';
 import ModalDemo from '../../demos/ModalDemo'
@@ -59,11 +59,12 @@ const Job = (props) => {
       >
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           {props.edit &&
-            <Button variant="primary" onClick={() => {
-              handleShow(props.id)
-            }}>
-              Edit
-            </Button>
+            <img src={Edit}
+              className='EditJobButton'
+              onClick={() => handleShow(props.id)}
+            />
+
+
           }
 
           <ModalDemo show={show} handleClose={handleClose} edit={props.edit} />
