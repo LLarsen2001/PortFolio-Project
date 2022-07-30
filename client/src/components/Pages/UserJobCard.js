@@ -65,66 +65,49 @@ const UserJobCard = ({ job, index }) => {
     }
 
     return (
-        <Draggable key={job.id} draggableId={job.id.toString()} index={index}>
+        <Draggable className="Draggable" key={job.id} draggableId={job.id.toString()} index={index}>
             {(provided) => (
                 <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <div >
-
+                    <div>
                         <Card className='ujCardBackGround'
                             text='white'
-
-
-
                         >
                             <div style={{ display: 'flex', flexDirection: 'row' }}>
-
                                 <Card.Text style={{ marginRight: 'auto', marginLeft: '.5rem' }}><Cardlocationtext>Created by {job.name}
                                     <p> Added on {format(job.created_at)}  </p>
-
                                 </Cardlocationtext>
                                 </Card.Text>
                                 <ModalDemo show={show} handleClose={handleClose} userJob={userJob} />
-
                                 <div
-                                    className='div'
-                                    style={{ marginLeft: 'auto', }} >
-
+                                    style={{ marginLeft: 'auto', zIndex: '10' }}
+                                >
                                     <img src={Delete}
-                                        className="DeleteButton"
                                         onClick={() => deleteUserJob(job.id)}
+                                        className="DeleteButton"
                                     />
                                     <img src={Note}
                                         className="NotesButton"
                                         onClick={() => handleShow(job.id)}
-
                                     />
                                 </div>
                             </div>
-
-
-                            {/* // <a onClick={() => deleteUserJob(job.id)} className="close"></a> */}
                             <Card.Body style={{ marginTop: '-2.2rem' }}>
                                 <Card.Text>
                                     <p><b><Titletext>{job.jobname}</Titletext></b>
                                         <Cardlocationtext>{job.companyname}</Cardlocationtext>
                                     </p>
-
                                     <div>
                                         <h6>
                                             <Badge style={{ marginLeft: 'auto', marginRight: '.75rem' }}>{job.description}</Badge>
                                             <Badge style={{ marginRight: 'auto', marginLeft: '.75rem' }}>{CheckRemote()}</Badge>
-
                                         </h6>
                                     </div>
-
                                 </Card.Text>
                             </Card.Body>
-
-
                             <div style={{
                                 display: 'flex', flexDirection: 'row', fontWeight: 'bold', justifyContent: 'spaceBetween'
 
@@ -134,11 +117,7 @@ const UserJobCard = ({ job, index }) => {
                                         <p>  {formatSalary()}</p>
                                     </Cardlocationtext>
                                 </div>
-
-
                                 <div style={{ marginLeft: 'auto', marginRight: '1.3rem' }}>
-
-
                                     <Cardlocationtext>
                                         <p>{job.location}</p>
                                     </Cardlocationtext>
@@ -147,9 +126,9 @@ const UserJobCard = ({ job, index }) => {
 
                         </Card >
                     </div>
-                </div>
+                </div >
             )}
-        </Draggable>
+        </Draggable >
     );
 }
 
