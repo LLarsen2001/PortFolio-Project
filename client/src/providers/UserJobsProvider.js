@@ -28,7 +28,7 @@ const UserJobsProvider = ({ children }) => {
 
     const setUserJobData = (id) => {
         setUserJob(userJobs.filter(uj => uj.id === id))
-       }
+    }
 
     const addUserJob = async (uj) => {
         try {

@@ -5,11 +5,13 @@ import "../../App.css"
 import { Draggable } from 'react-beautiful-dnd';
 import { useContext, useEffect, useState } from 'react';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
-import Button from 'react-bootstrap/esm/Button';
+
 import ModalDemo from '../../demos/ModalDemo';
 import { FormDataContext } from '../../providers/FormDataProvider';
 import { ThemeContext } from '../../providers/ThemeProvider';
 import Badge from 'react-bootstrap/esm/Badge';
+import Note from '../../Imgstyle/NotesButton.png'
+import Delete from '../../Imgstyle/Delete.png'
 
 const Cardlocationtext = styled.div`
 font-size: 12px;
@@ -63,79 +65,70 @@ const UserJobCard = ({ job, index }) => {
     }
 
     return (
-        <Draggable key={job.id} draggableId={job.id.toString()} index={index}>
+        <Draggable className="Draggable" key={job.id} draggableId={job.id.toString()} index={index}>
             {(provided) => (
                 <div
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <Card className='ujCardBackGround'
-                        text='white'
-                        style={{
-
-
-                        }}>
-                        <div style={{ display: 'flex', flexDirection: 'row' }}>
-
-                            <Card.Text style={{ marginRight: 'auto', marginLeft: '.5rem' }}><Cardlocationtext>Created by {job.name}
-                                <p> Added on {format(job.created_at)}  </p>
-
-                            </Cardlocationtext>
-                            </Card.Text>
-                            <ModalDemo show={show} handleClose={handleClose} userJob={userJob} />
-                            <button style={{
-                                width: "4.2rem", height: "1.5rem", marginleft: 'auto', marginRight: '.5rem', marginTop: '.5rem', fontSize: '1rem'
-                            }}
-                                onClick={() => {
-                                    handleShow(job.id)
-                                }}>
-                                Notes
-                            </button>
-                            {/* // <a onClick={() => deleteUserJob(job.id)} className="close"></a> */}
-                        </div>
-                        <Card.Body style={{ marginTop: '-2.2rem' }}>
-                            <Card.Text>
-                                <p><b><Titletext>{job.jobname}</Titletext></b>
-                                    <Cardlocationtext>{job.companyname}</Cardlocationtext>
-                                </p>
-
-                                <div>
-                                    <h6>
-                                        <Badge style={{ marginLeft: 'auto', marginRight: '.75rem' }}>{job.description}</Badge>
-                                        <Badge style={{ marginRight: 'auto', marginLeft: '.75rem' }}>{CheckRemote()}</Badge>
-
-                                    </h6>
+                    <div>
+                        <Card className='ujCardBackGround'
+                            text='white'
+                        >
+                            <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                <Card.Text style={{ marginRight: 'auto', marginLeft: '.5rem' }}><Cardlocationtext>Created by {job.name}
+                                    <p> Added on {format(job.created_at)}  </p>
+                                </Cardlocationtext>
+                                </Card.Text>
+                                <ModalDemo show={show} handleClose={handleClose} userJob={userJob} />
+                                <div
+                                    style={{ marginLeft: 'auto', zIndex: '10' }}
+                                >
+                                    <img src={Delete}
+                                        onClick={() => deleteUserJob(job.id)}
+                                        className="DeleteButton"
+                                    />
+                                    <img src={Note}
+                                        className="NotesButton"
+                                        onClick={() => handleShow(job.id)}
+                                    />
                                 </div>
+                            </div>
+                            <Card.Body style={{ marginTop: '-2.2rem' }}>
+                                <Card.Text>
+                                    <p><b><Titletext>{job.jobname}</Titletext></b>
+                                        <Cardlocationtext>{job.companyname}</Cardlocationtext>
+                                    </p>
+                                    <div>
+                                        <h6>
+                                            <Badge style={{ marginLeft: 'auto', marginRight: '.75rem' }}>{job.description}</Badge>
+                                            <Badge style={{ marginRight: 'auto', marginLeft: '.75rem' }}>{CheckRemote()}</Badge>
+                                        </h6>
+                                    </div>
+                                </Card.Text>
+                            </Card.Body>
+                            <div style={{
+                                display: 'flex', flexDirection: 'row', fontWeight: 'bold', justifyContent: 'spaceBetween'
 
-                            </Card.Text>
-                        </Card.Body>
-
-
-                        <div style={{
-                            display: 'flex', flexDirection: 'row', fontWeight: 'bold', justifyContent: 'spaceBetween'
-
-                        }}>
-                            <div style={{ marginRight: 'auto', marginLeft: '1.3rem' }}>
-                                <Cardlocationtext>
-                                    <p>  {formatSalary()}</p>
-                                </Cardlocationtext>
+                            }}>
+                                <div style={{ marginRight: 'auto', marginLeft: '1.3rem' }}>
+                                    <Cardlocationtext>
+                                        <p>  {formatSalary()}</p>
+                                    </Cardlocationtext>
+                                </div>
+                                <div style={{ marginLeft: 'auto', marginRight: '1.3rem' }}>
+                                    <Cardlocationtext>
+                                        <p>{job.location}</p>
+                                    </Cardlocationtext>
+                                </div>
                             </div>
 
-
-                            <div style={{ marginLeft: 'auto', marginRight: '1.3rem' }}>
-
-
-                                <Cardlocationtext>
-                                    <p>{job.location}</p>
-                                </Cardlocationtext>
-                            </div>
-                        </div>
-
-                    </Card >
-                </div>
+                        </Card >
+                    </div>
+                </div >
             )}
-        </Draggable>
+        </Draggable >
     );
 }
 
