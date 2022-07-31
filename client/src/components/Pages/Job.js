@@ -5,12 +5,14 @@ import "../../App.css"
 import Button from 'react-bootstrap/esm/Button';
 import Vector from "../../Imgstyle/Vector.png"
 import Edit from "../../Imgstyle/EditButton.png"
+import Delete from "../../Imgstyle/Delete.png"
 import Container from 'react-bootstrap/Container'
 import { UserJobsContext } from '../../providers/UserJobsProvider';
 import ModalDemo from '../../demos/ModalDemo'
 import Badge from 'react-bootstrap/Badge'
 import { FormDataContext } from '../../providers/FormDataProvider';
 import { AuthContext } from '../../providers/AuthProvider';
+import JobsProvider, { JobsContext } from '../../providers/JobsProvider';
 // const Cardstyle = styled.div`
 // max-width: 19vw;
 // display: flex;
@@ -25,9 +27,10 @@ const Titletext = styled.div`
 font-size: 15px;
 `;
 const Job = (props) => {
-  const { setJobData } = useContext(FormDataContext)
+  const { setJobData, deleteJob } = useContext(FormDataContext)
   const { addUserJob } = useContext(UserJobsContext)
   const { user } = useContext(AuthContext)
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = (id) => {
@@ -58,22 +61,33 @@ const Job = (props) => {
         text='white'
       >
         <div style={{ display: 'flex', flexDirection: 'row' }}>
-          {props.edit &&
-            <img src={Edit}
-              className='EditJobButton'
-              onClick={() => handleShow(props.id)}
-            />
 
 
-          }
+
+
+
 
           <ModalDemo show={show} handleClose={handleClose} edit={props.edit} />
           <Card.Text style={{ marginLeft: '.75rem' }}><Cardlocationtext>Created by {props.name} </Cardlocationtext></Card.Text>
+          <div style={{ marginLeft: 'auto', zIndex: '10' }}>
+            {props.edit &&
+              <>
+                <img src={Edit}
+                  className='EditJobButton'
+                  onClick={() => handleShow(props.id)}
+                />
+                <img src={Delete}
+                  onClick={() => deleteJob(props.id)}
+                  className="DeleteJobButton"
+                />
+              </>}
+            {user ? <><img src={Vector}
+              className='SaveJobButton'
+              onClick={() => { click() }}
+            />
 
-          {user ? <img src={Vector}
-            className='SaveJobButton'
-            onClick={() => { click() }}
-          /> : null}
+            </> : null}
+          </div>
 
         </div>
         <Card.Body>

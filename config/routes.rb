@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get '/users/:user_id/postedjobs', to: 'jobs#posted'
     post '/jobs', to: 'jobs#create'
     put '/jobs/:job_id', to: 'jobs#update'
-    delete '/jobs/:job_id', to: 'jobs#destroy'
+    delete '/users/:user_id/jobs/:job_id', to: 'jobs#destroy'
     get '/companies', to: 'companies#index'
     post '/companies', to: 'companies#create'
     get '/userjobs/:id/notes', to: 'notes#index'

@@ -76,10 +76,24 @@
   cursor: default;
 }
 
+.DeleteJobButton {
+  margin-left: auto;
+  margin-right: .5vw;
+  margin-top: .5vw;
+  width: 18px;
+  height: 22px;
+  z-index: 1
+}
+
+.DeleteJobButton:hover {
+  opacity: .5;
+  cursor: default;
+}
+
 .EditJobButton {
-  margin-left: .5vw;
-  margin-right: auto;
-  margin-top: .2vw;
+  margin-right: .5vw;
+  margin-left: auto;
+  margin-top: .5vw;
   width: 18px;
   height: 22px;
   z-index: 1

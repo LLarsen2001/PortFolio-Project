@@ -35,25 +35,35 @@ const JobsProvider = ({ children }) => {
       let res = await axios.post('/api/jobs', job)
       console.log(res.data)
       setJobs([res.data, ...jobs])
-    } catch(err) {
+    } catch (err) {
       alert("Error occurred adding a job")
     }
   }
 
   const updateJob = async (updatedJob, id) => {
-  console.log('updateJob called')
+    console.log('updateJob called')
     try {
       let res = await axios.put(`/api/jobs/${id}`, updatedJob)
-      const updatedArray = jobs.map((j)=> {
-        if(j.id === id) {
+      const updatedArray = jobs.map((j) => {
+        if (j.id === id) {
           return res.data
         }
         return j
       })
       console.log(res.data)
       setJobs(updatedArray)
-    } catch(err) {
+    } catch (err) {
       alert("Error occurred updating a job")
+    }
+  }
+
+  const deleteJob = async (id) => {
+    try {
+      console.log(id)
+      await axios.delete(`/api/users/${user.id}/jobs/${id}`);
+      setJobs(jobs.filter((e) => e.id !== id))
+    } catch (err) {
+      alert('error has occured in the delete a users jobs ')
     }
   }
 
@@ -61,7 +71,7 @@ const JobsProvider = ({ children }) => {
     try {
       let res = await axios.get('/api/companies')
       setCompanies(res.data)
-    } catch(err) {
+    } catch (err) {
       alert("Error occurred getting companies")
     }
   }
@@ -71,14 +81,14 @@ const JobsProvider = ({ children }) => {
     try {
       let res = await axios.post('/api/companies', company)
       setCompanies([...companies, res.data])
-    } catch(err) {
+    } catch (err) {
       alert("Error occurred adding a company")
     }
   }
 
   return (
 
-    <JobsContext.Provider value={{ jobs, companies, addJob, addCompany, updateJob }}>
+    <JobsContext.Provider value={{ jobs, companies, addJob, addCompany, updateJob, deleteJob }}>
       {children}
     </JobsContext.Provider>
   )
