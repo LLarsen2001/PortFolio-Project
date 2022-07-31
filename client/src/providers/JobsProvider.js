@@ -76,9 +76,15 @@ const JobsProvider = ({ children }) => {
     }
   }
 
+  const setJobData = (id) => {
+    console.log('setJobData called,')
+    setJob(jobs.filter(j => j.id === id))
+   
+}
+
   return (
 
-    <JobsContext.Provider value={{ jobs, companies, addJob, addCompany, updateJob }}>
+    <JobsContext.Provider value={{ jobs, companies, addJob, addCompany, updateJob, setJobData, job }}>
       {children}
     </JobsContext.Provider>
   )

@@ -9,12 +9,10 @@ import EditJobForm from '../components/shared/EditJobForm';
 import NoteCard from '../components/shared/NoteCard';
 import NoteForm from '../components/shared/NoteForm';
 import { AuthContext } from '../providers/AuthProvider';
-import { FormDataContext } from '../providers/FormDataProvider';
 import { UserJobsContext } from '../providers/UserJobsProvider';
 
 function TabsDemo(props) {
   const [notes, setNotes] = useState([])
-  const { job } = useContext(FormDataContext)
   const { user } = useContext(AuthContext)
   const { userJob } = useContext(UserJobsContext)
 

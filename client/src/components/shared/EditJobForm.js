@@ -7,24 +7,23 @@ import axios from 'axios'
 
 import { MyLink } from './Navbar'
 import { AuthContext } from '../../providers/AuthProvider';
-import { FormDataContext } from '../../providers/FormDataProvider';
 import { JobsContext } from '../../providers/JobsProvider';
 
 const EditJobForm = (props) => {
-  const { updateJob } = useContext(JobsContext)
-  const { job } = useContext(FormDataContext)
+  const { updateJob, job } = useContext(JobsContext)
   const { user } = useContext(AuthContext)
-  const [jobname, setJobName] = useState(null)
+  const [jobname, setJobName] = useState(job[0].jobname || "")
   const [companies, setCompanies] = useState([])
-  const [company_id, setCompanyID] = useState(null)
-  const [salary, setSalary] = useState(null)
-  const [description, setDescription] = useState("")
+  const [company_id, setCompanyID] = useState(job[0].company_id)
+  const [salary, setSalary] = useState(job[0].salary || "")
+  const [description, setDescription] = useState(job[0].description || "")
   const [remote, setRemote] = useState(false)
-  const [location, setLocation] = useState("")
+  const [location, setLocation] = useState(job[0].location || "")
   const user_id = user.id
   const isFilled = false
 
   useEffect(()=> {
+    console.log(jobname)
     getCompanies()
   }, [])
 
@@ -52,7 +51,7 @@ const EditJobForm = (props) => {
           <Form.Label>Job Name: </Form.Label>
           <Form.Control
             type='jobname'
-            placeholder={job[0].jobname}
+            // placeholder={job[0].jobname}
             value={jobname}
             onChange={(e) => {
               setJobName(e.target.value)
@@ -66,7 +65,7 @@ const EditJobForm = (props) => {
           <Form.Label>Job Description: </Form.Label>
           <Form.Control
             type='description'
-            placeholder={job[0].description}
+            // placeholder={job[0].description}
             value={description}
             onChange={(e) => {
               setDescription(e.target.value)
@@ -80,7 +79,7 @@ const EditJobForm = (props) => {
           <Form.Label>Salary: </Form.Label>
           <Form.Control
             type='salary'
-            placeholder={job[0].salary}
+            // placeholder={job[0].salary}
             value={salary}
             onChange={(e) => {
               setSalary(e.target.value)
@@ -94,7 +93,7 @@ const EditJobForm = (props) => {
           <Form.Label>Location: </Form.Label>
           <Form.Control
             type='location'
-            placeholder={job[0].location}
+            // placeholder={job[0].location}
             value={location}
             onChange={(e) => {
               setLocation(e.target.value)
@@ -114,7 +113,7 @@ const EditJobForm = (props) => {
             onChange={(e) => {
               setCompanyID(e.target.value)
             }}>
-            <option>Choose a company</option>
+            {/* <option>{Choose a company}</option> */}
             {companies.map(option => (
             <option key={option.id} value={option.id}>
               {option.companyname}

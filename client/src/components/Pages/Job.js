@@ -9,8 +9,8 @@ import Container from 'react-bootstrap/Container'
 import { UserJobsContext } from '../../providers/UserJobsProvider';
 import ModalDemo from '../../demos/ModalDemo'
 import Badge from 'react-bootstrap/Badge'
-import { FormDataContext } from '../../providers/FormDataProvider';
 import { AuthContext } from '../../providers/AuthProvider';
+import { JobsContext } from '../../providers/JobsProvider';
 // const Cardstyle = styled.div`
 // max-width: 19vw;
 // display: flex;
@@ -25,7 +25,7 @@ const Titletext = styled.div`
 font-size: 15px;
 `;
 const Job = (props) => {
-  const { setJobData } = useContext(FormDataContext)
+  const { setJobData } = useContext(JobsContext)
   const { addUserJob } = useContext(UserJobsContext)
   const { user } = useContext(AuthContext)
   const [show, setShow] = useState(false);
