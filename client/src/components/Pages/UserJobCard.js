@@ -7,7 +7,6 @@ import { useContext, useEffect, useState } from 'react';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
 
 import ModalDemo from '../../demos/ModalDemo';
-import { FormDataContext } from '../../providers/FormDataProvider';
 import { ThemeContext } from '../../providers/ThemeProvider';
 import Badge from 'react-bootstrap/esm/Badge';
 import Note from '../../Imgstyle/NotesButton.png'
@@ -20,7 +19,6 @@ const Titletext = styled.div`
 font-size: .9rem;
 `;
 const UserJobCard = ({ job, index }) => {
-    const { setJobData } = useContext(FormDataContext)
     const [cardColor, setCardColor] = useState("")
     const { deleteUserJob, setUserJobData } = useContext(UserJobsContext)
     const [show, setShow] = useState(false);

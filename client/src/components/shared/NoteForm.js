@@ -3,11 +3,9 @@ import { useContext, useState } from 'react'
 import Button from 'react-bootstrap/esm/Button'
 import Row from 'react-bootstrap/esm/Row'
 import Form from 'react-bootstrap/Form'
-import { FormDataContext } from '../../providers/FormDataProvider'
 import { UserJobsContext } from '../../providers/UserJobsProvider'
 
 const NoteForm = (props) => {
-  const { job } = useContext(FormDataContext)
   const { userJob } = useContext(UserJobsContext)
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")

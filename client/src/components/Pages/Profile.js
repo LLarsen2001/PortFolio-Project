@@ -87,7 +87,7 @@ const Profile = () => {
   return (
     <Card style={{
       width: "50vw",
-      height: "65vw",
+      height: "auto",
       boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
       justifyContent: "center",
       alignItems: "",
@@ -140,8 +140,9 @@ const Profile = () => {
 
 
         </>
-
-
+</Card.Body>
+<div style={{ border: ".5px solid grey " }}></div>
+<Card.Body>
         <>
           <Card.Text>Change your Password?</Card.Text>
           <Button size="sm" onClick={handlePasswordToggle}>Edit</Button>

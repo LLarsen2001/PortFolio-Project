@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { AuthContext } from '../../providers/AuthProvider';
-import { FormDataContext } from '../../providers/FormDataProvider';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
 import DocumentUpload from './DocumentUpload';
 import NoteCard from './NoteCard';
@@ -11,7 +10,6 @@ import NoteForm from './NoteForm';
 
 function UserJobTabs(props) {
   const [notes, setNotes] = useState([])
-  const { job } = useContext(FormDataContext)
   const { user } = useContext(AuthContext)
   const { userJob } = useContext(UserJobsContext)
 
@@ -57,6 +55,8 @@ function UserJobTabs(props) {
     >
       <Tab eventKey="notes" title="Notes">
         <NoteForm addNote={addNote} />
+        <div style={{ border: ".5px solid grey", margin: "10px 0px 10px 0px" }}></div>
+        <h4>Notes</h4>
         {renderNotes()}
       </Tab>
       <Tab eventKey="documents" title="Documents">

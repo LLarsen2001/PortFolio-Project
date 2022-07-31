@@ -1,6 +1,6 @@
 class Userjob < ApplicationRecord
-  has_many :notes
-  has_many :documents
+  has_many :notes, dependent: :destroy
+  has_many :documents, dependent: :destroy
   belongs_to :user
   belongs_to :job
 
