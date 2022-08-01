@@ -6,6 +6,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Button from "react-bootstrap/esm/Button";
 import { ThemeContext } from "../../providers/ThemeProvider";
 import logo from "../../Imgstyle/Logo.png"
+import { Link } from "react-router-dom";
 
 export const MyLink = ({ url, children }) => {
     return (
@@ -81,7 +82,9 @@ const BuildingNavbar = () => {
                                 <Nav.Link > Login</Nav.Link>
                             </LinkContainer>
                             <div style={{ borderLeft: "1px solid grey" }}></div>
-                            <Button href="/signup" variant="signup" size="xxl">Sign Up</Button>
+                            <LinkContainer to="/signup">
+                                <Button href="/signup" variant="signup" size="xxl">Sign Up</Button>
+                            </LinkContainer >
                         </Nav>
                     </Navbar>
                 </>
