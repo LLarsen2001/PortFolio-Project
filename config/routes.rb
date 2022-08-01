@@ -26,5 +26,6 @@ Rails.application.routes.draw do
     get '/userjobs/:id/notes', to: 'notes#index'
     post '/userjobs/:id/notes', to: 'notes#create'
     post '/userjobs/:id/documents', to: 'documents#upload_document'
+    get '*other', to: 'static#index'
   end
 end
