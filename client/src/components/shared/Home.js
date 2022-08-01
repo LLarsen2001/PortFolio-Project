@@ -35,7 +35,7 @@ const Home = () => {
 
                 }}>
                     <h4>Resources</h4>
-                    <p5>Conteact Us</p5>
+                    <p5>Contact Us</p5>
                 </div>
             </footer >
         </div >
