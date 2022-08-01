@@ -42,7 +42,7 @@ const getFontWeight = (type) => {
 };
 
 export const Title = styled.h1`
-  font-family: "Roboto", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: ${(props) => getFontSize(props.type)};
   font-weight: ${(props) => getFontWeight(props.type)};
   line-height: ${(props) => getFontSpacing(props.type)};

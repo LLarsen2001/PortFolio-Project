@@ -17,8 +17,8 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)
 
 const ImageStyle = styled.div`
-width: 40em;
-height: 6rem; 
+width: auto;
+height: auto; 
 `;
 
 function SingleImageUpload({ id, setUser }) {

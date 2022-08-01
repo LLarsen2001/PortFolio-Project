@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import { AuthContext } from '../../providers/AuthProvider';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
 import DocumentUpload from './DocumentUpload';
 import NoteCard from './NoteCard';
@@ -10,7 +9,6 @@ import NoteForm from './NoteForm';
 
 function UserJobTabs(props) {
   const [notes, setNotes] = useState([])
-  const { user } = useContext(AuthContext)
   const { userJob } = useContext(UserJobsContext)
 
   useEffect(()=> {
