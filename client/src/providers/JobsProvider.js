@@ -82,9 +82,21 @@ const JobsProvider = ({ children }) => {
    
 }
 
+
+const deleteJob = async (id) => {
+  try {
+      debugger
+      console.log(id)
+      await axios.delete(`/api/jobs/${id}`);
+      setJobs(jobs.filter((e) => e.id !== id))
+  } catch (err) {
+      alert('error has occured in the delete a users jobs ')
+  }
+}
+
   return (
 
-    <JobsContext.Provider value={{ jobs, companies, addJob, addCompany, updateJob, setJobData, job }}>
+    <JobsContext.Provider value={{ jobs, companies, addJob, addCompany, updateJob, setJobData, job, deleteJob }}>
       {children}
     </JobsContext.Provider>
   )
