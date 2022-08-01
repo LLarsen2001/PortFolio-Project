@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav'
 import { LinkContainer } from 'react-router-bootstrap'
 import Button from "react-bootstrap/esm/Button";
 import { ThemeContext } from "../../providers/ThemeProvider";
+import logo from "../../Imgstyle/Logo.png"
 
 export const MyLink = ({ url, children }) => {
     return (
@@ -45,7 +46,7 @@ const BuildingNavbar = () => {
                         paddingLeft: "2rem", boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
                     }}>
                         <LinkContainer to="/">
-                            <Navbar.Brand href="/Home">JobSeek</Navbar.Brand>
+                            <Navbar.Brand href="/Home"><img src={logo} />JobSeek</Navbar.Brand>
                         </LinkContainer>
                         <Nav className="me-auto">
                             <MyLink url="/jobs">Discover Jobs</MyLink>
