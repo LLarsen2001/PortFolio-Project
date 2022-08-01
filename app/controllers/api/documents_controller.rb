@@ -15,12 +15,14 @@ class Api::DocumentsController < ApplicationController
           
           render json: @document
         else
+       
           render json: {
                   errors: @document.errors, 
                   message:'Error trying to save file'},
                 status: 422
          end 
       rescue => e
+  
          # error occured uploading to cloudinary 
          render json: {errors: e, message:'Error uploading to cloudinary'}, status: 422
       end
