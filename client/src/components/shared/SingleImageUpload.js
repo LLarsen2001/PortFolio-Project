@@ -25,7 +25,7 @@ function SingleImageUpload({ id, setUser }) {
   const [files, setFiles] = useState([])
   return (
     <div className="App">
-      <ImageStyle>
+      
         <FilePond
           files={files}
           onupdatefiles={setFiles}
@@ -34,7 +34,7 @@ function SingleImageUpload({ id, setUser }) {
           name="file"
           labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
         />
-      </ImageStyle>
+      
     </div>
   )
 }

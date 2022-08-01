@@ -9,9 +9,9 @@ import Job from "./Job";
 import { JobsContext } from "../../providers/JobsProvider";
 
 const ImageS = styled.div`
-  display: flex;
+ 
   max-width: 30%;
-  float: right;
+  
 `;
 
 const CreatedJobs = styled.div`
@@ -20,6 +20,12 @@ display: flex;
 align-items: center;
 
 overflow-x: auto;
+`;
+
+const Container = styled.div`
+display: grid;
+float: right;
+max-width: 30%;
 `;
 
 const Profile = () => {
@@ -34,12 +40,7 @@ const Profile = () => {
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
   const [loading, setLoading] = useState(true)
-  const [show, setShow] = useState(false);
   const edit = true;
-  const handleShow = () => {
-    setShow(true)
-  }
-  const handleClose = () => setShow(false);
 
   const handleEmailToggle = () => {
     setEmailToggle(!emailToggle)
@@ -76,7 +77,7 @@ const Profile = () => {
     //   return <p>Loading</p>
     // }
     console.log(jobs)
-    let postedJobs = jobs.filter((j)=> j.created_by === user.id)
+    let postedJobs = jobs.filter((j) => j.created_by === user.id)
     console.log(postedJobs)
     return postedJobs.map(j => {
       return (<div className='jobpage'>
@@ -99,25 +100,26 @@ const Profile = () => {
     }}>
 
       <Card.Body>
-        <ImageS><Card.Img variant="top" src={user.image ? user.image : "noImage"} onClick={handleShow} /></ImageS >
-        {/* <ImageModal show={show} handleClose={handleClose}/> */}
-        <Card.Title style={{fontFamily: "Poppins", fontSize: "50px"}}>Profile</Card.Title>
-        <Card.Text>Hello {user.name}</Card.Text>
+        <Container>
+          <Card.Img variant="top" src={user.image ? user.image : "noImage"} />
+          <SingleImageUpload id={user.id} setUser={setUser} />
+        </Container>
+        <Card.Title style={{ fontFamily: "Poppins", fontSize: "50px" }}>Profile</Card.Title>
+        <Card.Text style={{ fontFamily: "Poppins", fontSize: "25px" }}>Hello {user.name}</Card.Text>
         <Card.Text>{user.email}</Card.Text>
-        {/* <Button size="sm" onClick={handlePasswordToggle} style={{float: "right"}}>Change Profile Picture</Button> */}
       </Card.Body>
       <div style={{ border: ".5px solid grey " }}></div>
 
-      <Card.Body>
+      {/* <Card.Body>
         <Card.Text>You can change your Profile image by dragging desired image file into the dropbox below.</Card.Text>
         <SingleImageUpload style={{}} id={user.id} setUser={setUser} />
-      </Card.Body>
+      </Card.Body> */}
       <div style={{ border: ".5px solid grey " }}></div>
       <Card.Body>
         <>
-        <Card.Text style={{fontFamily: "Poppins", fontSize: "20px"}}>Account Information</Card.Text>
-          <Form onSubmit={handleEmailSubmit} style={{width: "30%"}}>
-          <Form.Group className="mb-3" controlId="formBasicName">
+          <Card.Text style={{ fontFamily: "Poppins", fontSize: "20px" }}>Account Information</Card.Text>
+          <Form onSubmit={handleEmailSubmit} style={{ width: "30%" }}>
+            <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label className="FormLabel">Name: </Form.Label>
               <Form.Control
                 value={name}
@@ -144,14 +146,14 @@ const Profile = () => {
 
 
         </>
-</Card.Body>
-<div style={{ border: ".5px solid grey " }}></div>
-<Card.Body>
+      </Card.Body>
+      <div style={{ border: ".5px solid grey " }}></div>
+      <Card.Body>
         <>
-          <Card.Text style={{fontFamily: "Poppins", fontSize: "20px"}}>Change your Password:</Card.Text>
+          <Card.Text style={{ fontFamily: "Poppins", fontSize: "20px" }}>Change your Password:</Card.Text>
           {/* <Button size="sm" onClick={handlePasswordToggle}>Edit</Button> */}
           {passwordToggle &&
-            <Form onSubmit={handlePasswordSubmit} style={{width: "30%"}}>
+            <Form onSubmit={handlePasswordSubmit} style={{ width: "30%" }}>
               <Form.Group className="mb-3" controlId="formBasicName">
                 <Form.Label className="FormLabel"> Enter new password:</Form.Label>
                 <Form.Control
@@ -184,7 +186,7 @@ const Profile = () => {
       <div style={{ border: ".5px solid grey " }}></div>
 
       <Card.Body>
-        <Card.Text style={{fontFamily: "Poppins", fontSize: "20px"}}>My Posted Jobs</Card.Text>
+        <Card.Text style={{ fontFamily: "Poppins", fontSize: "20px" }}>My Posted Jobs</Card.Text>
         <CreatedJobs>
           {renderPostedJobs()}
         </CreatedJobs>
