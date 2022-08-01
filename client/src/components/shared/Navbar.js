@@ -47,7 +47,7 @@ const BuildingNavbar = () => {
                         paddingLeft: "2rem", boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
                     }}>
                         <LinkContainer to="/">
-                            <Navbar.Brand href="/Home"><img src={logo} />JobSeek</Navbar.Brand>
+                            <Navbar.Brand href="/Home"><img src={logo} style={{ width: '1.5rem', height: '1.5rem', marginTop: '-.35rem' }} />JobSeek</Navbar.Brand>
                         </LinkContainer>
                         <Nav className="me-auto">
                             <MyLink url="/jobs">Discover Jobs</MyLink>
@@ -71,7 +71,7 @@ const BuildingNavbar = () => {
                         paddingLeft: "2rem", boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
                     }}>
                         <LinkContainer to="/">
-                            <Navbar.Brand href="/home"><img src={logo} />JobSeek</Navbar.Brand>
+                            <Navbar.Brand href="/home"><img src={logo} style={{ width: '1.5rem', height: '1.5rem', marginTop: '-.35rem' }} />JobSeek</Navbar.Brand>
                         </LinkContainer>
                         <Nav className="me-auto">
 
