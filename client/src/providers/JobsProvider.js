@@ -1,15 +1,9 @@
 import axios from "axios"
 import React, { useContext, useEffect, useState } from "react"
 
-
-import { AuthContext } from "./AuthProvider"
-import { UserJobsContext } from "./UserJobsProvider";
-
 export const JobsContext = React.createContext();
 
 const JobsProvider = ({ children }) => {
-  const { user } = useContext(AuthContext)
-  const { userJobs } = useContext(UserJobsContext)
   const [jobs, setJobs] = useState([])
   const [job, setJob] = useState(null)
   const [companies, setCompanies] = useState([])

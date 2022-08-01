@@ -3,17 +3,14 @@ import { useContext, useEffect, useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import JobForm from '../components/JobForm';
-import Job from '../components/Pages/Job';
 import DocumentUpload from '../components/shared/DocumentUpload';
 import EditJobForm from '../components/shared/EditJobForm';
 import NoteCard from '../components/shared/NoteCard';
 import NoteForm from '../components/shared/NoteForm';
-import { AuthContext } from '../providers/AuthProvider';
 import { UserJobsContext } from '../providers/UserJobsProvider';
 
 function TabsDemo(props) {
   const [notes, setNotes] = useState([])
-  const { user } = useContext(AuthContext)
   const { userJob } = useContext(UserJobsContext)
 
   useEffect(()=> {
