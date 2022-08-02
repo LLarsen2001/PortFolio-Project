@@ -16,7 +16,7 @@ const Home = () => {
 
                 }}>
 
-                    <h4>JobHuntly</h4>
+                    <h4>JobSeek</h4>
                     <p5>Great platform for the job seeker<br />
                         that passionate about startups.<br />
                         Find your dream job easier.</p5>
