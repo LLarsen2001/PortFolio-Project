@@ -18,6 +18,8 @@ font-size: 12px;
 const Titletext = styled.div`
 font-size: .9rem;
 `;
+
+
 const UserJobCard = ({ job, index }) => {
     const [cardColor, setCardColor] = useState("")
     const { deleteUserJob, setUserJobData } = useContext(UserJobsContext)
@@ -50,6 +52,18 @@ const UserJobCard = ({ job, index }) => {
         }
     }
 
+    const CardBackgroundColor = styled(Card)`
+    width: 18.5vw;
+    height: 21.5vh;
+    border-radius: 24px;
+    justify-content: space-between;
+    overflow: hidden;
+    background: ${cardColor};
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    padding: .4vw .4vw;
+    margin: .4rem; 
+    `
+
     const formatSalary = () => {
         return "$" + job.salary + "/yr"
 
@@ -71,9 +85,7 @@ const UserJobCard = ({ job, index }) => {
                     {...provided.dragHandleProps}
                 >
                     <div>
-                        <Card className='ujCardBackGround'
-                            text='white'
-                        >
+                    <CardBackgroundColor>
                             <div style={{ display: 'flex', flexDirection: 'row' }}>
                                 <Card.Text style={{ marginRight: 'auto', marginLeft: '.5rem' }}><Cardlocationtext>Created by {job.name}
                                     <p> Added on {format(job.created_at)}  </p>
@@ -122,7 +134,7 @@ const UserJobCard = ({ job, index }) => {
                                 </div>
                             </div>
 
-                        </Card >
+                        </CardBackgroundColor>
                     </div>
                 </div >
             )}
