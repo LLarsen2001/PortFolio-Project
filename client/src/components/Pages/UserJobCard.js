@@ -5,7 +5,7 @@ import "../../App.css"
 import { Draggable } from 'react-beautiful-dnd';
 import { useContext, useEffect, useState } from 'react';
 import { UserJobsContext } from '../../providers/UserJobsProvider';
-
+import Background from '../../Imgstyle/Background.png'
 import ModalDemo from '../../demos/ModalDemo';
 import { ThemeContext } from '../../providers/ThemeProvider';
 import Badge from 'react-bootstrap/esm/Badge';
@@ -62,6 +62,22 @@ const UserJobCard = ({ job, index }) => {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     padding: .4vw .4vw;
     margin: .4rem; 
+
+    &:before {
+        border-radius: 10px;
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 18.5vw;
+        height: 21vh;
+        opacity: 1;
+        background-image: url(${Background});
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        background-size: cover;
+    }
     `
 
     const formatSalary = () => {
