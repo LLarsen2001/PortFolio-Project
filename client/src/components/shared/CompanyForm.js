@@ -34,7 +34,7 @@ const CompanyForm = (props) => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="baselocation">
-          <Form.Label>Job Description: </Form.Label>
+          <Form.Label>Address: </Form.Label>
           <Form.Control
             type='baselocation'
             placeholder='Enter Company Address'
@@ -46,7 +46,7 @@ const CompanyForm = (props) => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="about">
-          <Form.Label>About </Form.Label>
+          <Form.Label>About: </Form.Label>
           <Form.Control
             type='about'
             placeholder='Enter About Info'
