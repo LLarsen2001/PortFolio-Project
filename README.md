@@ -1,6 +1,7 @@
 ##JobSeek
 `Dont push to the Main Branch!`
-## After CLone the repo in the terminal
+###Setup
+## After cloning the project in your terminal
 ```
 cd portfolio-project/
 bundle 
