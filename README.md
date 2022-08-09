@@ -21,5 +21,5 @@ Link to the Live JobSeek Website
 ### [Trello](https://trello.com/b/YxwmT6vN/portfolio)
 Link to teams Trello Board
 ### [Figma](https://www.figma.com/file/nea5dh6xGUPkna74kNZmMZ/JobSeek?node-id=0%3A1)
-Link to our Figma site. It is the first draft of the project, also the design we wanted. 
+Link to our Figma site. It is the first draft of the project, also an aggreed appon design. 
 
