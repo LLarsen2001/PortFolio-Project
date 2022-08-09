@@ -15,6 +15,6 @@ $ yarn
 ```
 
 ## Links
-[Trello](https://trello.com/b/YxwmT6vN/portfolio)
-[Figma](https://www.figma.com/file/nea5dh6xGUPkna74kNZmMZ/JobSeek?node-id=0%3A1)
-[JobSeek-LiveSite](https://job-seek-2022.herokuapp.com/)
+####[Trello](https://trello.com/b/YxwmT6vN/portfolio)
+####[Figma](https://www.figma.com/file/nea5dh6xGUPkna74kNZmMZ/JobSeek?node-id=0%3A1)
+####[JobSeek-LiveSite](https://job-seek-2022.herokuapp.com/)
