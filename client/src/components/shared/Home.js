@@ -1,5 +1,6 @@
 import React from "react"
 import BackGround from "../../Imgstyle/Desktop.png"
+import Logo from "../../Imgstyle/Logo.png"
 
 const Home = () => {
     return (
@@ -16,27 +17,27 @@ const Home = () => {
 
                 }}>
 
-                    <h4>JobSeek</h4>
+                    <h4><img src={Logo} style={{ width: '1.5rem', marginTop: '-5px' }} />JobSeek</h4>
                     <p5>Great platform for the job seeker<br />
                         that passionate about startups.<br />
                         Find your dream job easier.</p5>
                 </div>
                 <div style={{
-                    display: "block", marginLeft: "10rem", marginRight: "10rem", fontWeight: '400',
+                    display: "block", marginLeft: "auto", marginRight: "70rem", fontWeight: '400',
                     color: '#D6DDEB',
 
                 }}>
-                    <h4>About</h4>
-                    <p5>Team</p5>
-                </div>
-                <div style={{
-                    display: "block", fontWeight: '400', marginRight: "55rem",
-                    color: '#D6DDEB',
+                    <h4>Contributors</h4>
+                    <li>
 
-                }}>
-                    <h4>Resources</h4>
-                    <p5>Contact Us</p5>
+                        <a href="https://www.linkedin.com/in/lancelarsen2001/">Lance Larsen</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/colby-patterson/">Colby Patterson</a>
+                    </li>
+
                 </div>
+
             </footer >
         </div >
     )
