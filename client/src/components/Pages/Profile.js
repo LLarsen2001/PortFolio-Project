@@ -115,11 +115,6 @@ const Profile = () => {
         <Card.Text>{user.email}</Card.Text>
       </Card.Body>
       <div style={{ border: ".5px solid grey " }}></div>
-
-      {/* <Card.Body>
-        <Card.Text>You can change your Profile image by dragging desired image file into the dropbox below.</Card.Text>
-        <SingleImageUpload style={{}} id={user.id} setUser={setUser} />
-      </Card.Body> */}
       <div style={{ border: ".5px solid grey " }}></div>
       <Card.Body>
         <>

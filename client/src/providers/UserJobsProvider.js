@@ -1,7 +1,5 @@
 import axios from "axios"
 import React, { useContext, useEffect, useState } from "react"
-
-
 import { AuthContext } from "./AuthProvider"
 
 export const UserJobsContext = React.createContext();
@@ -17,8 +15,6 @@ const UserJobsProvider = ({ children }) => {
         }
         getUserJobs();
     }, [user]);
-
-
 
     const getUserJobs = async () => {
         let res = await axios.get(`/api/users/${user.id}/data`)
@@ -61,8 +57,6 @@ const UserJobsProvider = ({ children }) => {
             alert('error has occured in the delete UserJob')
         }
     }
-
-
 
     return (
 

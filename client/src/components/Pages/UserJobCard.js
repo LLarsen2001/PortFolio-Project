@@ -182,5 +182,4 @@ const UserJobCard = ({ job, index }) => {
     </Draggable>
   );
 };
-
 export default UserJobCard;

@@ -13,10 +13,7 @@ const Home = () => {
                     marginRight: "auto",
                     fontWeight: '400',
                     color: '#D6DDEB',
-
-
                 }}>
-
                     <h4><img src={Logo} style={{ width: '1.5rem', marginTop: '-5px' }} />JobSeek</h4>
                     <p5>Great platform for the job seeker<br />
                         that passionate about startups.<br />
@@ -25,19 +22,15 @@ const Home = () => {
                 <div style={{
                     display: "block", marginLeft: "auto", marginRight: "70rem", fontWeight: '400',
                     color: '#D6DDEB',
-
                 }}>
                     <h4>Contributors</h4>
                     <li>
-
-                        <a href="https://www.linkedin.com/in/lancelarsen2001/">Lance Larsen</a>
+                        <a target="_blank" href="https://www.linkedin.com/in/lancelarsen2001/">Lance Larsen</a>
                     </li>
                     <li>
-                        <a href="https://www.linkedin.com/in/colby-patterson/">Colby Patterson</a>
+                        <a target="_blank" href="https://www.linkedin.com/in/colby-patterson/">Colby Patterson</a>
                     </li>
-
                 </div>
-
             </footer >
         </div >
     )

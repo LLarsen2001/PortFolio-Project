@@ -17,6 +17,7 @@ export const MyLink = ({ url, children }) => {
         </>
     )
 };
+
 const BuildingNavbar = () => {
     const { user, logout } = useContext(AuthContext);
     const { primary } = useContext(ThemeContext)

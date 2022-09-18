@@ -37,8 +37,6 @@ const AuthProvider = ({ children }) => {
         }
     };
 
-
-
     const Signup = async (user) => {
         // TODO axios call interact with DB
         try {
