@@ -9,8 +9,6 @@ const JobContainer = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  
-  
   `;
 
 const SearchBar = () => {
@@ -60,7 +58,6 @@ const SearchBar = () => {
   const handleKeyUp = (event) => {
     event.preventDefault()
     if (query) {
-
       setFilteredJob(searchJob.filter((item) => item.jobname.includes(query)))
       setShowJob(true)
     } else {

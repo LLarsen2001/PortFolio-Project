@@ -13,7 +13,7 @@ function TabsDemo(props) {
   const [notes, setNotes] = useState([])
   const { userJob } = useContext(UserJobsContext)
 
-  useEffect(()=> {
+  useEffect(() => {
     getNotes()
   }, [])
 
@@ -22,7 +22,7 @@ function TabsDemo(props) {
       console.log(userJob[0].id)
       let res = await axios.get(`/api/userjobs/${userJob[0].id}/notes`)
       setNotes(res.data)
-    } catch(err) {
+    } catch (err) {
       alert("Error occurred getting notes")
     }
   }
@@ -35,24 +35,24 @@ function TabsDemo(props) {
       )
     })
   }
-  
+
   return (
     <Tabs
-      defaultActiveKey={props.add ? "details" : "notes" }
+      defaultActiveKey={props.add ? "details" : "notes"}
       transition={false}
       id="noanim-tab-example"
       className="mb-3"
     >
       {props.add &&
-      <Tab eventKey="details" title="Job Details">
-        {props.add ? <JobForm /> : <EditJobForm />}
-      </Tab>}
+        <Tab eventKey="details" title="Job Details">
+          {props.add ? <JobForm /> : <EditJobForm />}
+        </Tab>}
       <Tab eventKey="notes" title="Notes">
         <NoteForm />
         {renderNotes()}
       </Tab>
       <Tab eventKey="documents" title="Documents">
-        <DocumentUpload id={userJob[0].id}/>
+        <DocumentUpload id={userJob[0].id} />
       </Tab>
     </Tabs>
   );

@@ -14,7 +14,6 @@ const ImageModal = (props) => {
   }
   return (
     <>
-
       <Modal
         show={props.show}
         onHide={props.handleClose}
@@ -24,11 +23,11 @@ const ImageModal = (props) => {
         <Modal.Header closeButton>
           <Modal.Title></Modal.Title>
         </Modal.Header>
-        <Modal.Body> 
-          <div style={{height: 'auto', width: 'auto'}}>
-         {<img src={user.image} />}
-         </div>
-          </Modal.Body>
+        <Modal.Body>
+          <div style={{ height: 'auto', width: 'auto' }}>
+            {<img src={user.image} />}
+          </div>
+        </Modal.Body>
         <Modal.Footer>
         </Modal.Footer>
       </Modal>

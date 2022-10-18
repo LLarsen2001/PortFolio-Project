@@ -9,9 +9,9 @@ const AddJobModal = (props) => {
   const toggleForms = () => {
     setCompany(!company)
   }
+
   return (
     <>
-
       <Modal
         show={props.show}
         onHide={props.handleClose}
@@ -22,8 +22,8 @@ const AddJobModal = (props) => {
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {company ? <CompanyForm toggleForms={toggleForms}/> : <JobForm handleClose={props.handleClose} toggleForms={toggleForms}/>}
-          </Modal.Body>
+          {company ? <CompanyForm toggleForms={toggleForms} /> : <JobForm handleClose={props.handleClose} toggleForms={toggleForms} />}
+        </Modal.Body>
         <Modal.Footer>
         </Modal.Footer>
       </Modal>

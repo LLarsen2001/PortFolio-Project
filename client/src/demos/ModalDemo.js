@@ -19,10 +19,9 @@ function ModalDemo(props) {
           <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {props.userJob ? (<UserJobTabs />) : <EditJobForm handleClose={props.handleClose} /> }
+          {props.userJob ? (<UserJobTabs />) : <EditJobForm handleClose={props.handleClose} />}
         </Modal.Body>
         <Modal.Footer>
-          
         </Modal.Footer>
       </Modal>
     </>
